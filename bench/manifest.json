@@ -1,0 +1,2454 @@
+{
+ "samples": [
+  {
+   "sample_id": "cheque_axis_syn_0005",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0010",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0034",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0035",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0047",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0057",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0073",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0085",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_axis_syn_0086",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0026",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0034",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0048",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0051",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0059",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0074",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0076",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0079",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0096",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_canara_syn_0098",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_icici_syn_0000",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_icici_syn_0021",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_icici_syn_0041",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_icici_syn_0054",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_icici_syn_0074",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0004",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0033",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0045",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0058",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0065",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "cheque_syndicate_syn_0069",
+   "source": "cheque",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82092117",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 223,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82200067_0069",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 167,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82250337_0338",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 214,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82251504",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 222,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82252956_2958",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 108,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253058_3059",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253245_3247",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 234,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253362_3364",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 228,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82254765",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 116,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82491256",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 70,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82504862",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82562350",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82573104",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 135,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82837252",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 112,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83443897",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 194,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83553333_3334",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 204,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83573282",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 299,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83594639",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 87,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83624198",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83635935",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 141,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83641919_1921",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 209,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83772145",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 236,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83823750",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 162,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83996357",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 98,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_85201976",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 80,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X00016469670",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X00016469671",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005200931",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230605",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230616",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230621",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230648",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230657",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230659",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005268275",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005268408",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005288570",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005301666",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005337867",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005337877",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361906",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361908",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361912",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361923",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005365187",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433518",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433543",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433548",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433556",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442322",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442334",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442343",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442366",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442375",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442382",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442388",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444040",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444041",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444044",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444046",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447841",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447842",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447844",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447851",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447859",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0000",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 174,
+   "has_char_gt": true,
+   "n_words": 42,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0001",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 108,
+   "has_char_gt": true,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0002",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 130,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0003",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 170,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0004",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 242,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0005",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 164,
+   "has_char_gt": true,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0006",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 260,
+   "has_char_gt": true,
+   "n_words": 36,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0007",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 246,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 147,
+   "has_char_gt": true,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0009",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 192,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0010",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 153,
+   "has_char_gt": true,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0011",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 217,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0012",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 163,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0013",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 250,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0014",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 193,
+   "has_char_gt": true,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0015",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 268,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0016",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 185,
+   "has_char_gt": true,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0017",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 187,
+   "has_char_gt": true,
+   "n_words": 35,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0018",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 244,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0019",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 123,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0020",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 277,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0021",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 211,
+   "has_char_gt": true,
+   "n_words": 38,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0022",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 117,
+   "has_char_gt": true,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0023",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 243,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0024",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 287,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0025",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 162,
+   "has_char_gt": true,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0026",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 226,
+   "has_char_gt": true,
+   "n_words": 38,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0027",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 202,
+   "has_char_gt": true,
+   "n_words": 38,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_cheque_0028",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 283,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0000",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 88,
+   "has_char_gt": true,
+   "n_words": 62,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0001",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 141,
+   "has_char_gt": true,
+   "n_words": 62,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0002",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 87,
+   "has_char_gt": true,
+   "n_words": 61,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0003",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 145,
+   "has_char_gt": true,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0004",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 143,
+   "has_char_gt": true,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0005",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 105,
+   "has_char_gt": true,
+   "n_words": 62,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0006",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 126,
+   "has_char_gt": true,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0007",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 128,
+   "has_char_gt": true,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 93,
+   "has_char_gt": true,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0009",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 143,
+   "has_char_gt": true,
+   "n_words": 61,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0010",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 106,
+   "has_char_gt": true,
+   "n_words": 62,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0011",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 127,
+   "has_char_gt": true,
+   "n_words": 61,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0012",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 86,
+   "has_char_gt": true,
+   "n_words": 65,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0013",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 139,
+   "has_char_gt": true,
+   "n_words": 62,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0014",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 123,
+   "has_char_gt": true,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0015",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 96,
+   "has_char_gt": true,
+   "n_words": 65,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_form_0016",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 123,
+   "has_char_gt": true,
+   "n_words": 61,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0000",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 232,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0001",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 218,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0002",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 176,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0003",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 218,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0004",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 218,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0005",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 256,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0006",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 188,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0007",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 175,
+   "has_char_gt": true,
+   "n_words": 33,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 222,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0009",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 214,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0010",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 226,
+   "has_char_gt": true,
+   "n_words": 33,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0011",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 254,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0012",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 183,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0013",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 124,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0014",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 224,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0015",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 160,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0016",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 198,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0017",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 222,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0018",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 202,
+   "has_char_gt": true,
+   "n_words": 33,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0019",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 204,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0020",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 152,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0021",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 168,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0022",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 221,
+   "has_char_gt": true,
+   "n_words": 33,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0023",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 208,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0024",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 106,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0025",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 223,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0026",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 238,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0027",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 292,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0028",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 245,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0029",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 160,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0030",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 172,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0031",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 204,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0032",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 174,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0033",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 191,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0034",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 202,
+   "has_char_gt": true,
+   "n_words": 28,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0035",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 194,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0036",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 155,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0037",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 232,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0038",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 102,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0039",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 206,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0040",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 209,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0041",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 227,
+   "has_char_gt": true,
+   "n_words": 28,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0042",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 155,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0043",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 284,
+   "has_char_gt": true,
+   "n_words": 31,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0044",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 120,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0045",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 178,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0046",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 170,
+   "has_char_gt": true,
+   "n_words": 29,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0047",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 175,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0048",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 226,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0049",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 199,
+   "has_char_gt": true,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_id_card_0050",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 214,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0000",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 122,
+   "has_char_gt": true,
+   "n_words": 42,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0001",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 96,
+   "has_char_gt": true,
+   "n_words": 43,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0002",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 125,
+   "has_char_gt": true,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0003",
+   "source": "synth",
+   "capture": "photo",
+   "script": "han",
+   "dpi": 96,
+   "has_char_gt": true,
+   "n_words": 36,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0004",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 98,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0005",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 122,
+   "has_char_gt": true,
+   "n_words": 46,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0006",
+   "source": "synth",
+   "capture": "scan",
+   "script": "han",
+   "dpi": 123,
+   "has_char_gt": true,
+   "n_words": 32,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0007",
+   "source": "synth",
+   "capture": "photo",
+   "script": "han",
+   "dpi": 101,
+   "has_char_gt": true,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_han_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "han",
+   "dpi": 84,
+   "has_char_gt": true,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0000",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 100,
+   "has_char_gt": true,
+   "n_words": 312,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0001",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 95,
+   "has_char_gt": true,
+   "n_words": 367,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0002",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 105,
+   "has_char_gt": true,
+   "n_words": 317,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0003",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 140,
+   "has_char_gt": true,
+   "n_words": 286,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0004",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 137,
+   "has_char_gt": true,
+   "n_words": 284,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0005",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 103,
+   "has_char_gt": true,
+   "n_words": 373,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0006",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 87,
+   "has_char_gt": true,
+   "n_words": 287,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0007",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 141,
+   "has_char_gt": true,
+   "n_words": 316,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 86,
+   "has_char_gt": true,
+   "n_words": 369,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0009",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 83,
+   "has_char_gt": true,
+   "n_words": 285,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0010",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 127,
+   "has_char_gt": true,
+   "n_words": 295,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0011",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 144,
+   "has_char_gt": true,
+   "n_words": 313,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0012",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 114,
+   "has_char_gt": true,
+   "n_words": 278,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0013",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 98,
+   "has_char_gt": true,
+   "n_words": 323,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0014",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 115,
+   "has_char_gt": true,
+   "n_words": 285,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_plain_latin_0015",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 114,
+   "has_char_gt": true,
+   "n_words": 373,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0000",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 122,
+   "has_char_gt": true,
+   "n_words": 50,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0001",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 99,
+   "has_char_gt": true,
+   "n_words": 47,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0002",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 73,
+   "has_char_gt": true,
+   "n_words": 60,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0003",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 113,
+   "has_char_gt": true,
+   "n_words": 56,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0004",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 120,
+   "has_char_gt": true,
+   "n_words": 46,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0005",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 122,
+   "has_char_gt": true,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0006",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 68,
+   "has_char_gt": true,
+   "n_words": 54,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0007",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 134,
+   "has_char_gt": true,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0008",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 64,
+   "has_char_gt": true,
+   "n_words": 53,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0009",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 55,
+   "has_char_gt": true,
+   "n_words": 68,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0010",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 118,
+   "has_char_gt": true,
+   "n_words": 70,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0011",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 85,
+   "has_char_gt": true,
+   "n_words": 70,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0012",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 87,
+   "has_char_gt": true,
+   "n_words": 52,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0013",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 120,
+   "has_char_gt": true,
+   "n_words": 67,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0014",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 86,
+   "has_char_gt": true,
+   "n_words": 75,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0015",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 75,
+   "has_char_gt": true,
+   "n_words": 57,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0016",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 90,
+   "has_char_gt": true,
+   "n_words": 53,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0017",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 64,
+   "has_char_gt": true,
+   "n_words": 66,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0018",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 87,
+   "has_char_gt": true,
+   "n_words": 46,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0019",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 50,
+   "has_char_gt": true,
+   "n_words": 53,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0020",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 78,
+   "has_char_gt": true,
+   "n_words": 55,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0021",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 119,
+   "has_char_gt": true,
+   "n_words": 60,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0022",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 94,
+   "has_char_gt": true,
+   "n_words": 46,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0023",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 92,
+   "has_char_gt": true,
+   "n_words": 59,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0024",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 89,
+   "has_char_gt": true,
+   "n_words": 67,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0025",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 92,
+   "has_char_gt": true,
+   "n_words": 54,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0026",
+   "source": "synth",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 110,
+   "has_char_gt": true,
+   "n_words": 52,
+   "image_present": true
+  },
+  {
+   "sample_id": "synth_receipt_0027",
+   "source": "synth",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 73,
+   "has_char_gt": true,
+   "n_words": 57,
+   "image_present": true
+  }
+ ]
+}
