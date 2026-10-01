@@ -4,9 +4,9 @@ Two tiers, cheapest first:
 
 * **Tier 1** uses only a component's own geometry, so it needs no page statistics and
   can reject obvious junk before we have looked at the page as a whole.
-* **Tier 2** keys off the *ink-weighted median height of Tier-1 survivors*, which is robust
-  estimate of "how tall is a character on this page" precisely because Tier 1 has
-  already removed the rules and blobs that would skew it.
+* **Tier 2** keys off the *ink-weighted median height of Tier-1 survivors* — an estimate
+  of "how tall is a character on this page" that survives a page covered in speckle,
+  which a plain median does not. See :func:`ink_weighted_median_height`.
 
 The governing principle is that **filtering routes rather than deletes**. Only
 :attr:`ComponentKind.NOISE` is thrown away. Everything else is labelled and kept:
