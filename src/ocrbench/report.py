@@ -15,6 +15,8 @@ from .metrics import SampleMetrics
 from .runner import (
     RunResult,
     aggregate_chars,
+    aggregate_regions,
+    aggregate_text,
     aggregate_words,
     dpi_bucket,
     latency_summary,
@@ -109,6 +111,8 @@ def build(result: RunResult) -> str:
     samples = result.samples
     all_chars = aggregate_chars([s.chars for s in samples if s.chars is not None])
     all_words = aggregate_words([s.words for s in samples])
+    all_regions = aggregate_regions(s.regions for s in samples)
+    all_text = aggregate_text(s.text for s in samples)
     n_char_samples = sum(1 for s in samples if s.chars is not None)
 
     lat = result.latency.get("total", {})
@@ -142,6 +146,8 @@ def build(result: RunResult) -> str:
                 ["small-mark retention", _pct(all_chars.small_retention)],
                 [f"region hit rate ({all_words.granularity})", _pct(all_words.hit_rate)],
                 [f"region coverage ({all_words.granularity})", _pct(all_words.mean_coverage)],
+                ["line recall (engine-agnostic)", _pct(all_regions.line_recall if all_regions.n_gt else None)],
+                ["CER", _pct(all_text.cer if all_text.n_gt_chars else None)],
                 ["end-to-end P50 / P95 / P99 ms",
                  f"{lat.get('p50', 0):.1f} / {lat.get('p95', 0):.1f} / {lat.get('p99', 0):.1f}"],
             ],

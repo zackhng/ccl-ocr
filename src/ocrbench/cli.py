@@ -3,6 +3,8 @@
     python -m ocrbench.cli fonts                        # what can this machine render?
     python -m ocrbench.cli synth --count 150            # build the synthetic set
     python -m ocrbench.cli run --repeats 5              # measure
+    python -m ocrbench.cli compare --engines ccl paddle-det paddle   # Phase 6 bake-off
+    python -m ocrbench.cli report --runs <dir> <dir> --out <dir>     # re-compare saved runs
     python -m ocrbench.cli overlays --limit 30          # look at the failures
 """
 
@@ -12,13 +14,14 @@ import argparse
 import json
 import random
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from ocr.config import DEFAULT_CONFIG, PipelineConfig
-from ocr.engine import CCLEngine, load_image
+from ocr.engine import CCLEngine, Engine, load_image
 from ocr.visualize import binary_preview, draw_components, save_image, side_by_side
 
-from . import report, runner
+from . import compare, report, runner
 from .gt import BenchmarkStore
 from .synth import fonts
 from .synth.generate import DEFAULT_STRATA, generate
@@ -28,6 +31,28 @@ def _config(path: str | None) -> PipelineConfig:
     if not path:
         return DEFAULT_CONFIG
     return PipelineConfig.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
+
+
+ENGINES = ("ccl", "paddle", "paddle-det")
+
+
+def make_engine(name: str, cfg: PipelineConfig, threads: int | None) -> Engine:
+    """Build an engine by name. Paddle is imported only when asked for."""
+    if name == "ccl":
+        return CCLEngine(cfg)
+    from ocr.paddle_engine import PaddleConfig, PaddleEngine
+
+    kw = {"cpu_threads": threads} if threads else {}
+    return PaddleEngine(PaddleConfig(mode="full" if name == "paddle" else "det", **kw))
+
+
+def _apply_threads(threads: int | None) -> None:
+    # One thread budget for every engine; otherwise the comparison measures the
+    # thread pools, not the pipelines.
+    if threads:
+        import cv2
+
+        cv2.setNumThreads(threads)
 
 
 def cmd_fonts(args: argparse.Namespace) -> int:
@@ -66,10 +91,14 @@ def cmd_run(args: argparse.Namespace) -> int:
         sources=tuple(args.sources or ()),
         captures=tuple(args.captures or ()),
         scripts=tuple(args.scripts or ()),
+        note=args.note or "",
     )
     cfg = _config(args.config)
-    print(f"running {CCLEngine(cfg).name} over {store.root}")
-    result = runner.run(store, engine=CCLEngine(cfg), run_config=rc, pipeline_config=cfg)
+    _apply_threads(args.threads)
+    engine = make_engine(args.engine, cfg, args.threads)
+    print(f"running {engine.name} over {store.root}")
+    result = runner.run(store, engine=engine, run_config=rc,
+                        pipeline_config=cfg if args.engine == "ccl" else None)
 
     out_dir = runner.save(result, args.results)
     summary_path = report.write(result, out_dir)
@@ -85,8 +114,112 @@ def cmd_run(args: argparse.Namespace) -> int:
               f"(over-seg {chars.over_segmentation_rate:.1%}, merged {chars.merge_rate:.1%}, "
               f"missed {chars.miss_rate:.1%})")
     words = runner.aggregate_words([s.words for s in result.samples])
-    print(f"  word hit rate {words.hit_rate:.1%}, coverage {words.mean_coverage:.1%}")
+    if words.n_gt:
+        print(f"  word hit rate {words.hit_rate:.1%}, coverage {words.mean_coverage:.1%}")
+    regions = runner.aggregate_regions(s.regions for s in result.samples)
+    print(f"  line recall {regions.line_recall:.1%} over {regions.n_gt} GT lines")
+    text = runner.aggregate_text(s.text for s in result.samples)
+    if text.n_gt_chars:
+        print(f"  CER {text.cer:.1%}, word F1 {text.word_f1:.1%}")
     print(f"\n  {summary_path}")
+    return 0
+
+
+def _print_checks(results: dict[str, runner.RunResult], roles: compare.Roles) -> None:
+    for c in compare.checks(results, roles):
+        value = "n/a" if c.value is None else f"{c.value:.2f}"
+        status = "n/a" if c.passed is None else ("pass" if c.passed else "FAIL")
+        print(f"  [{status:4}] {c.slice:8} {c.name}: {value} (limit {c.limit:.2f}) - {c.detail}")
+
+
+def _roles(args: argparse.Namespace) -> compare.Roles:
+    return compare.Roles(candidate=args.candidate, baseline=args.baseline,
+                         baseline_det=args.baseline_det)
+
+
+def cmd_compare(args: argparse.Namespace) -> int:
+    """Phase 6: run engines over the same documents, one comparison report.
+
+    Each engine's ``results.json`` and ``summary.md`` are written the moment that
+    engine finishes, not after the last one: a full-Paddle pass takes tens of minutes,
+    and a killed or crashed run must not throw away the engines that completed.
+    Engines whose results already exist in ``--out`` are loaded instead of re-run, so
+    re-invoking the same command resumes where it stopped.
+    """
+    store = BenchmarkStore(args.bench)
+    rc = runner.RunConfig(
+        repeats=args.repeats,
+        warmup=args.warmup,
+        limit=args.limit,
+        sources=tuple(args.sources or ()),
+        captures=tuple(args.captures or ()),
+        scripts=tuple(args.scripts or ()),
+        note=args.note or "",
+    )
+    cfg = _config(args.config)
+    _apply_threads(args.threads)
+
+    if args.out:
+        out_root = Path(args.out)
+    else:
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        out_root = Path(args.results) / f"{stamp}-compare"
+    print(f"results -> {out_root}", flush=True)
+
+    results: dict[str, runner.RunResult] = {}
+    for name in args.engines:
+        engine_dir = out_root / name
+        if (engine_dir / "results.json").exists():
+            results[name] = runner.load(engine_dir)
+            print(f"  [{name}] already measured ({len(results[name].samples)} samples), "
+                  "loaded from disk", flush=True)
+            continue
+        engine = make_engine(name, cfg, args.threads)
+        print(f"running {engine.name} over {store.root}", flush=True)
+        res = runner.run(store, engine=engine, run_config=rc,
+                         pipeline_config=cfg if name == "ccl" else None)
+        report.write(res, runner.save(res, out_root, subdir=name))
+        lat = res.latency.get("total", {})
+        print(f"  [{name}] done: {len(res.samples)} samples in {res.run_config.get('wall_s')}s, "
+              f"P50 {lat.get('p50', 0):.1f} ms, P95 {lat.get('p95', 0):.1f} ms "
+              f"-> {engine_dir}", flush=True)
+        results[name] = res
+
+    path = compare.write(results, out_root, out_root.name, _roles(args))
+    print()
+    _print_checks(results, _roles(args))
+    print(f"\n  {path}")
+    return 0
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    """Rebuild a comparison from saved runs, without measuring anything.
+
+    Each ``--runs`` entry is a folder (or ``results.json``) written by ``run`` or
+    ``compare``, optionally prefixed ``name=`` to override the engine name — e.g. to
+    set today's CCL run against a Paddle baseline measured last week:
+
+        python -m ocrbench.cli report --candidate ccl-cnn --out bench/results/<x>
+            --runs bench/results/<old>-compare/paddle ccl-cnn=bench/results/<new>
+    """
+    results: dict[str, runner.RunResult] = {}
+    for spec in args.runs:
+        name, sep, path = spec.partition("=")
+        if not sep:
+            name, path = "", spec
+        res = runner.load(path)
+        key = name or res.engine
+        if key in results:
+            print(f"two runs named {key!r}; prefix one with name=", file=sys.stderr)
+            return 2
+        results[key] = res
+        print(f"  {key}: run {res.run_id}, {len(res.samples)} samples ({path})")
+
+    out_dir = Path(args.out)
+    path = compare.write(results, out_dir, out_dir.name, _roles(args))
+    print()
+    _print_checks(results, _roles(args))
+    print(f"\n  {path}")
     return 0
 
 
@@ -152,7 +285,38 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--captures", nargs="+")
     p.add_argument("--scripts", nargs="+")
     p.add_argument("--results", default="bench/results")
+    p.add_argument("--engine", choices=ENGINES, default="ccl")
+    p.add_argument("--threads", type=int, help="thread budget for cv2 and Paddle")
+    p.add_argument("--note", help="stored with the run, e.g. 'machine busy: GPU training'")
     p.set_defaults(func=cmd_run)
+
+    p = sub.add_parser("compare", parents=[bench_arg], help="Phase 6: run several engines, compare")
+    p.add_argument("--engines", nargs="+", choices=ENGINES, default=["ccl", "paddle-det", "paddle"])
+    p.add_argument("--repeats", type=int, default=3)
+    p.add_argument("--warmup", type=int, default=1)
+    p.add_argument("--limit", type=int)
+    p.add_argument("--sources", nargs="+")
+    p.add_argument("--captures", nargs="+")
+    p.add_argument("--scripts", nargs="+")
+    p.add_argument("--results", default="bench/results")
+    p.add_argument("--threads", type=int, default=8, help="thread budget for cv2 and Paddle")
+    p.add_argument("--out", help="output folder; engines already saved there are loaded, not re-run")
+    p.add_argument("--note", help="stored with each run, e.g. 'machine busy: GPU training'")
+    p.set_defaults(func=cmd_compare)
+
+    p = sub.add_parser("report", help="rebuild a comparison from saved runs")
+    p.add_argument("--runs", nargs="+", required=True,
+                   help="run folders or results.json files, optionally name=path")
+    p.add_argument("--out", required=True, help="folder to write comparison.md into")
+    p.set_defaults(func=cmd_report)
+
+    # Who is under test and who is the bar, for both compare and report.
+    for name in ("compare", "report"):
+        sp = sub.choices[name]
+        sp.add_argument("--candidate", default="ccl", help="engine under test (default: ccl)")
+        sp.add_argument("--baseline", default="paddle", help="full baseline (default: paddle)")
+        sp.add_argument("--baseline-det", default="paddle-det",
+                        help="detection-only baseline (default: paddle-det)")
 
     p = sub.add_parser("overlays", parents=[bench_arg], help="render overlays for inspection")
     p.add_argument("--out", default="bench/overlays")

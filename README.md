@@ -1,4 +1,4 @@
-# ocr-engine — Phases 0–2
+# ocr-engine — Phases 0–2 + Phase 6 bake-off
 
 An in-house OCR engine for financial documents (NRIC photos, cheques, receipts, forms).
 The target architecture is:
@@ -7,9 +7,11 @@ The target architecture is:
 image → preprocess → binarize → CCL → component filtering → tiny CNN → reconstruction
 ```
 
-**This repository currently implements Phases 0–2 only**: the benchmark harness, the
+**This repository currently implements Phases 0–2**: the benchmark harness, the
 connected-component engine, and the geometric filtering that protects the classifier.
-There is no neural network and no text output yet. The deliverable is a number:
+It also implements **the Phase 6 PaddleOCR bake-off**, which checks whether the
+architecture is worth building before anything is trained. There is no neural network
+and no text output from the CCL engine yet. The deliverable is a number:
 
 > Does connected-component labelling reliably isolate character candidates on *our*
 > document distribution, and what does it cost in milliseconds?
@@ -21,7 +23,7 @@ inherits that ceiling — which is why this is measured before anything is train
 
 ```bash
 uv sync --group dev
-uv run pytest                                   # 90 tests
+uv run pytest                                   # 138 tests
 
 # Materialise the benchmark: checks what is already on disk, downloads only what is
 # missing. Idempotent. --check reports without downloading; --offline skips the network.
@@ -32,7 +34,31 @@ uv run python -m ocrbench.cli overlays --limit 30 --stages
 
 # Measure it
 uv run python -m ocrbench.cli run --repeats 5
+
+# Phase 6: CCL against PaddleOCR on the same documents (needs the baselines extra)
+uv sync --group dev --extra baselines
+uv run python -m ocrbench.cli compare --engines ccl paddle-det paddle --repeats 5 \
+    --out bench/results/phase6 --note "idle machine"
 ```
+
+Each engine's `results.json` and `summary.md` are written as soon as that engine
+finishes. Re-running the same command with the same `--out` loads the engines already
+saved and runs only the missing ones. Latency is only meaningful on an idle machine, so
+record the conditions with `--note`. The report flags runs whose notes, thread counts or
+machines differ.
+
+To compare a later pipeline of ours against a baseline measured earlier, without
+re-measuring Paddle:
+
+```bash
+uv run python -m ocrbench.cli report --candidate ccl-cnn --out bench/results/cnn-vs-paddle \
+    --runs bench/results/phase6/paddle bench/results/phase6/paddle-det \
+           ccl-cnn=bench/results/<new-run>
+```
+
+On Windows machines with Application Control (Smart App Control / WDAC), `uv sync` can
+fail building the project itself. Use `uv sync --no-install-project ...` and run with
+`PYTHONPATH=src`.
 
 **[`RESULTS.md`](RESULTS.md) has the current answer.** Short version: 65.9% character
 isolation recall overall, but 76.3% on scans against 52.7% on photographs, and the
@@ -47,7 +73,9 @@ aggregate, is what decides the next step.
 | `src/ocr/visualize.py` | Overlay rendering. The real Phase 1 gate — look before you trust a metric. |
 | `src/ocrbench/synth/` | Synthetic document generator. The only source of exact per-glyph ground truth, and the only source of NRIC-shaped documents at all. |
 | `src/ocrbench/adapters/` | Normalise each public dataset into one on-disk ground-truth format. |
-| `src/ocrbench/metrics.py` | Character isolation recall, over-segmentation, merge, junk, diacritic retention. |
+| `src/ocr/paddle_engine.py` | PaddleOCR 3.x baseline behind the same `Engine` protocol (Phase 6). |
+| `src/ocrbench/metrics.py` | Character isolation recall, over-segmentation, merge, junk, diacritic retention; plus engine-agnostic line localisation and CER. |
+| `src/ocrbench/compare.py` | Phase 6 comparison report and go/no-go verdict. |
 | `src/ocrbench/runner.py` | Per-stage P50/P95/P99 latency + metrics, sliced by capture mode / script / DPI. |
 | `scripts/` | Dataset acquisition and the semi-automatic ground-truth review tool. |
 

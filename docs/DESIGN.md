@@ -143,6 +143,48 @@ honest if both sides are driven through one interface by one runner — otherwis
 measured difference includes whatever each harness happens to do around the call. The
 protocol costs nothing now and avoids a rewrite then.
 
+## 9. Phase 6: scoring engines that disagree about what a box is
+
+CCL answers with one box per glyph; PaddleOCR answers with one padded box per line.
+Every metric that compares them has to be indifferent to that, or it measures
+granularity instead of quality. Three choices follow, each from a bug that produced
+plausible numbers first.
+
+**Localisation is scored on a GT line's horizontal span**, not its area, and not by
+matching boxes (`region_metrics`). A predicted box contributes to a line if its
+vertical centre is inside the line and it overlaps at least half the shorter height.
+Gaps under one line-height are closed before measuring. Without the gap closing,
+forty tight character boxes could never reach the coverage one padded line box gets
+for free. Without the centre test, Paddle's padding (a 12 px line gets a 26–29 px
+box) lets a box localise the line above it too.
+`test_line_box_and_character_boxes_score_alike` pins the invariant.
+
+**Text is scored per connected cluster**, not per matched pair (`text_metrics`). GT
+lines and predictions are linked where they overlap by half the *smaller* box. Each
+connected group is compared as one string, GT in reading order against predictions in
+reading order. One-to-one matching charges a correct read twice (one deletion, one
+insertion) whenever the two sides split text differently. They often do:
+
+- Paddle splits one line into two boxes.
+- FUNSD annotates "TO:" and its value as two entities on one printed line.
+- A FUNSD entity spans three printed lines.
+
+The first version linked on the prediction's area alone. Paddle's padded boxes then
+fell below 50% on their own line, and a perfectly-read form scored **CER 185% with
+word F1 92%**. Two metrics disagreeing that badly is the signal to look.
+
+**CER compares characters, not layout.** Whitespace is removed and NFKC applied on
+both sides. Case is folded only for sources whose transcripts are case-normalised
+(SROIE is all upper case). Dropped spaces are a real Paddle defect ("ROCNO:538358-H"),
+and they are charged in the space-sensitive word F1. Folding them into CER would make
+them indistinguishable from misreads. NFKC is needed because the multilingual
+dictionary emits a full-width colon (U+FF1A) for a printed ASCII one.
+
+**Paddle's version is pinned for latency fairness.** paddlepaddle 3.3.x crashes in
+the PP-OCRv5 detector with oneDNN enabled on Windows CPU. Running it without oneDNN is
+~3–5x slower, which would hand CCL a win it did not earn. 3.1.1 runs with oneDNN; 3.0.0
+is blocked by Application Control on the reference machine. See `pyproject.toml`.
+
 ## Known limitations
 
 - **Ground-truth boxes are axis-aligned**, so under perspective warp we store the

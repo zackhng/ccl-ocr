@@ -1,7 +1,7 @@
 [project]
 name = "ocr-engine"
 version = "0.1.0"
-description = "CCL-based OCR engine for financial documents — Phases 0-2 (benchmark, CCL, filtering)"
+description = "CCL-based OCR engine for financial documents — Phases 0-2 + Phase 6 PaddleOCR bake-off"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
@@ -15,7 +15,12 @@ dependencies = [
 train = ["torch>=2.2"]
 # Baseline engines used only by the Phase 6 bake-off and by scripts/review_gt.py
 # for bootstrapping ground truth on real images that ship without transcripts.
-baselines = ["paddleocr>=2.7", "paddlepaddle>=2.6"]
+#
+# paddlepaddle is pinned to 3.1.x deliberately. 3.3.x crashes in the PP-OCRv5 detector
+# with oneDNN enabled (ConvertPirAttribute2RuntimeAttribute, Windows CPU), and running
+# it with oneDNN off is ~5x slower — which would hand the CCL engine a latency win it
+# did not earn. 3.2.2 works but is ~1.7x slower than 3.1.1 on CPU.
+baselines = ["paddleocr>=3.0,<4", "paddlepaddle>=3.1,<3.2"]
 fetch = ["requests>=2.31", "huggingface-hub>=0.23"]
 
 [dependency-groups]

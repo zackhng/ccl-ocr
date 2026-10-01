@@ -43,17 +43,20 @@ from ocrbench.gt import BenchmarkStore, GTBox, Sample  # noqa: E402
 # ------------------------------------------------------------------ OCR backends
 
 
+_PADDLE = None
+
+
 def _paddle_boxes(image) -> list[tuple[BBox, str]] | None:
+    # Reuses the Phase 6 baseline engine so there is one place that knows the
+    # PaddleOCR 3.x API; constructed once because model loading takes seconds.
+    global _PADDLE
     try:
-        from paddleocr import PaddleOCR
+        from ocr.paddle_engine import PaddleEngine
+        if _PADDLE is None:
+            _PADDLE = PaddleEngine()
     except ImportError:
         return None
-    engine = PaddleOCR(use_angle_cls=False, lang="en", show_log=False)
-    out: list[tuple[BBox, str]] = []
-    for line in engine.ocr(image, cls=False) or []:
-        for box, (text, _conf) in line or []:
-            out.append((BBox.from_points(box), text))
-    return out
+    return [(ln.bbox, ln.text) for ln in _PADDLE.run(image).lines]
 
 
 def _tesseract_boxes(image) -> list[tuple[BBox, str]] | None:

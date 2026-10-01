@@ -31,7 +31,9 @@ only.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+import unicodedata
+from collections import Counter
+from dataclasses import dataclass, field, fields
 from statistics import median
 
 import numpy as np
@@ -93,6 +95,19 @@ class BoxIndex:
 
 def _safe_div(a: float, b: float) -> float:
     return a / b if b else 0.0
+
+
+def _counts_from_dict(cls, d: dict | None):
+    """Rebuild a metrics dataclass from its ``as_dict`` output.
+
+    ``as_dict`` writes the raw counts *and* the derived rates; only the counts are
+    fields, so the rates are dropped here and recomputed from the counts. That keeps
+    a reloaded run's aggregates identical to the original's (rates aggregate from
+    counts, never from stored per-sample rates)."""
+    if d is None:
+        return None
+    names = {f.name for f in fields(cls)}
+    return cls(**{k: v for k, v in d.items() if k in names})
 
 
 @dataclass(slots=True)
@@ -210,10 +225,110 @@ class WordMetrics:
             "junk": self.junk,
             "gt_complete": self.gt_complete,
             "granularity": self.granularity,
+            "coverage_sum": round(self.coverage_sum, 4),
             "hit_rate": round(self.hit_rate, 4),
             "mean_coverage": round(self.mean_coverage, 4),
             "crossing_rate": round(self.crossing_rate, 4),
             "junk_rate": None if self.junk_rate is None else round(self.junk_rate, 4),
+        }
+
+
+@dataclass(slots=True)
+class RegionMetrics:
+    """Engine-agnostic text localisation, scored per ground-truth *line*.
+
+    Exists because the component metrics above cannot compare engines: they match
+    predicted boxes against characters or words, so an engine that returns one box per
+    line (PaddleOCR) would score every word it covers as "crossing" and every line box
+    as junk. Here each GT line asks only "how much of my horizontal extent did the
+    engine put a text box on?", which reads the same whether the engine answered with
+    one line box or forty character boxes. See :func:`region_metrics`.
+    """
+
+    n_gt: int = 0
+    n_pred: int = 0
+    found: int = 0
+    coverage_sum: float = 0.0
+    spurious: int = 0
+    gt_complete: bool = True
+
+    @property
+    def line_recall(self) -> float:
+        return _safe_div(self.found, self.n_gt)
+
+    @property
+    def mean_coverage(self) -> float:
+        return _safe_div(self.coverage_sum, self.n_gt)
+
+    @property
+    def spurious_rate(self) -> float | None:
+        """Share of predicted boxes on no GT line. Undefined where GT is incomplete,
+        for the same reason as :attr:`CharMetrics.junk_rate`."""
+        if not self.gt_complete:
+            return None
+        return _safe_div(self.spurious, self.n_pred)
+
+    def as_dict(self) -> dict:
+        return {
+            "n_gt": self.n_gt,
+            "n_pred": self.n_pred,
+            "found": self.found,
+            "coverage_sum": round(self.coverage_sum, 4),
+            "spurious": self.spurious,
+            "gt_complete": self.gt_complete,
+            "line_recall": round(self.line_recall, 4),
+            "mean_coverage": round(self.mean_coverage, 4),
+            "spurious_rate": None if self.spurious_rate is None else round(self.spurious_rate, 4),
+        }
+
+
+@dataclass(slots=True)
+class TextMetrics:
+    """Recognition accuracy, for engines that return text.
+
+    CER counts edits against ground-truth characters, plus every character of a
+    predicted line that landed on no GT line (an insertion) — but only where GT is
+    complete, since text on an unannotated line is not an error. Word F1 is a
+    bag-of-words score, independent of reading order and line matching, as a cross-
+    check on the line assignment.
+    """
+
+    n_gt_chars: int = 0
+    edits: int = 0
+    inserted_chars: int = 0
+    n_gt_words: int = 0
+    n_pred_words: int = 0
+    matched_words: int = 0
+    gt_complete: bool = True
+
+    @property
+    def cer(self) -> float:
+        return _safe_div(self.edits + self.inserted_chars, self.n_gt_chars)
+
+    @property
+    def word_precision(self) -> float:
+        return _safe_div(self.matched_words, self.n_pred_words)
+
+    @property
+    def word_recall(self) -> float:
+        return _safe_div(self.matched_words, self.n_gt_words)
+
+    @property
+    def word_f1(self) -> float:
+        p, r = self.word_precision, self.word_recall
+        return _safe_div(2 * p * r, p + r)
+
+    def as_dict(self) -> dict:
+        return {
+            "n_gt_chars": self.n_gt_chars,
+            "edits": self.edits,
+            "inserted_chars": self.inserted_chars,
+            "n_gt_words": self.n_gt_words,
+            "n_pred_words": self.n_pred_words,
+            "matched_words": self.matched_words,
+            "gt_complete": self.gt_complete,
+            "cer": round(self.cer, 4),
+            "word_f1": round(self.word_f1, 4),
         }
 
 
@@ -226,7 +341,11 @@ class SampleMetrics:
     dpi: int
     template: str = ""
     chars: CharMetrics | None = None
-    words: WordMetrics = field(default_factory=WordMetrics)
+    words: WordMetrics | None = None
+    """``None`` for engines that produce no components (PaddleOCR): word metrics score
+    components, and zeros would read as a failure rather than 'not applicable'."""
+    regions: RegionMetrics | None = None
+    text: TextMetrics | None = None
     timings_ms: dict[str, float] = field(default_factory=dict)
     kind_counts: dict[str, int] = field(default_factory=dict)
     meta: dict = field(default_factory=dict)
@@ -240,11 +359,35 @@ class SampleMetrics:
             "dpi": self.dpi,
             "template": self.template,
             "chars": None if self.chars is None else self.chars.as_dict(),
-            "words": self.words.as_dict(),
+            "words": None if self.words is None else self.words.as_dict(),
+            "regions": None if self.regions is None else self.regions.as_dict(),
+            "text": None if self.text is None else self.text.as_dict(),
             "timings_ms": self.timings_ms,
             "kind_counts": self.kind_counts,
             "meta": self.meta,
         }
+
+    @classmethod
+    def from_dict(cls, d: dict) -> SampleMetrics:
+        words = _counts_from_dict(WordMetrics, d.get("words"))
+        if words is not None and "coverage_sum" not in (d.get("words") or {}):
+            # Results written before coverage_sum was persisted.
+            words.coverage_sum = d["words"].get("mean_coverage", 0.0) * words.n_gt
+        return cls(
+            sample_id=d["sample_id"],
+            source=d["source"],
+            capture=d["capture"],
+            script=d["script"],
+            dpi=int(d.get("dpi", 0)),
+            template=d.get("template", ""),
+            chars=_counts_from_dict(CharMetrics, d.get("chars")),
+            words=words,
+            regions=_counts_from_dict(RegionMetrics, d.get("regions")),
+            text=_counts_from_dict(TextMetrics, d.get("text")),
+            timings_ms=d.get("timings_ms", {}),
+            kind_counts=d.get("kind_counts", {}),
+            meta=d.get("meta", {}),
+        )
 
 
 def _surviving_boxes(result: PageResult) -> list[BBox]:
@@ -410,7 +553,257 @@ def word_metrics(sample: Sample, result: PageResult) -> WordMetrics:
     return m
 
 
+# ---------------------------------------------------------------- engine-agnostic
+
+LINE_FOUND = 0.5
+"""Span coverage at which a GT line counts as found."""
+
+SPAN_MIN_V_OVERLAP = 0.5
+"""A predicted box contributes to a GT line only if it overlaps at least this fraction
+of the shorter of the two heights, *and* its vertical centre lies within the line. The
+centre test is what stops a box on the line above from localising this one: PaddleOCR
+pads its boxes (unclip ratio 1.5), so a 12 px line gets a 26-29 px box whose edge can
+reach well into the neighbouring line."""
+
+SPAN_MAX_HEIGHT_RATIO = 4.0
+"""...and is at most this many times the line's height. A blob swallowing a whole
+paragraph has not localised any line within it. 4x matches the CCL filter's own
+oversize gate, and clears Paddle's padding (up to ~2.7x on small text)."""
+
+SPAN_GAP_CLOSE = 1.0
+"""Gaps narrower than this many line-heights between contributing boxes are closed
+before measuring coverage. Inter-character and inter-word gaps are well under one
+line-height; without closing them, per-character boxes could never reach the coverage
+a single line box gets for free, and the metric would reward granularity, not
+localisation."""
+
+SPURIOUS_MAX_OVERLAP = 0.15
+"""A predicted box with less than this fraction of its area on GT lines is spurious."""
+
+
+def text_boxes(result: PageResult) -> list[BBox]:
+    """What an engine claims is text: its line boxes if it produced lines, otherwise
+    its surviving components."""
+    if result.lines:
+        return [ln.bbox for ln in result.lines]
+    return _surviving_boxes(result)
+
+
+def _span_coverage(gt: BBox, boxes: list[BBox]) -> float:
+    spans: list[tuple[int, int]] = []
+    for b in boxes:
+        if b.h > SPAN_MAX_HEIGHT_RATIO * gt.h:
+            continue
+        if gt.vertical_overlap(b) < SPAN_MIN_V_OVERLAP or not gt.y <= b.cy <= gt.y2:
+            continue
+        x0, x1 = max(gt.x, b.x), min(gt.x2, b.x2)
+        if x1 > x0:
+            spans.append((x0, x1))
+    if not spans:
+        return 0.0
+    spans.sort()
+    gap = SPAN_GAP_CLOSE * gt.h
+    covered = 0
+    cur0, cur1 = spans[0]
+    for x0, x1 in spans[1:]:
+        if x0 - cur1 <= gap:
+            cur1 = max(cur1, x1)
+        else:
+            covered += cur1 - cur0
+            cur0, cur1 = x0, x1
+    covered += cur1 - cur0
+    return min(1.0, covered / gt.w) if gt.w else 0.0
+
+
+def region_metrics(sample: Sample, result: PageResult) -> RegionMetrics:
+    """Line-level localisation, comparable across engines of any output granularity.
+
+    Coverage is measured along the line's *horizontal span* rather than its area: a
+    tight character box and a padded line box over the same glyphs then score alike.
+    """
+    gt_boxes = [ln.bbox for ln in sample.lines]
+    pred = text_boxes(result)
+    gt_complete = bool(sample.meta.get("gt_complete", sample.source == "synth"))
+    m = RegionMetrics(n_gt=len(gt_boxes), n_pred=len(pred), gt_complete=gt_complete)
+    if not gt_boxes:
+        return m
+
+    gt_index = BoxIndex(gt_boxes)
+    pred_index = BoxIndex(pred) if pred else None
+
+    for gb in gt_boxes:
+        near = [pred[j] for j in pred_index.query(gb)] if pred_index else []
+        cov = _span_coverage(gb, near)
+        m.coverage_sum += cov
+        if cov >= LINE_FOUND:
+            m.found += 1
+
+    for pb in pred:
+        on_text = sum(pb.intersection_area(gt_boxes[i]) for i in gt_index.query(pb))
+        if min(1.0, _safe_div(on_text, pb.area)) < SPURIOUS_MAX_OVERLAP:
+            m.spurious += 1
+    return m
+
+
+def levenshtein(a: str, b: str) -> int:
+    """Edit distance, two-row DP. Lines are short, so pure Python is fast enough."""
+    if len(a) < len(b):
+        a, b = b, a
+    if not b:
+        return len(a)
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        for j, cb in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        prev = cur
+    return prev[-1]
+
+
+def _norm(text: str) -> str:
+    """NFKC, then collapse whitespace runs to one space.
+
+    NFKC because PP-OCRv5's multilingual dictionary emits full-width punctuation
+    ("NAME：" with U+FF1A) for what is printed as an ASCII colon. That is the same
+    character to any reader and to any downstream parser that normalises, so charging
+    it as a misread would measure the dictionary, not the recogniser."""
+    return " ".join(unicodedata.normalize("NFKC", text).split())
+
+
+CASE_FOLDED_SOURCES = frozenset({"sroie"})
+"""Datasets whose transcripts are case-normalised. SROIE annotates every receipt in
+upper case whatever the print says, so a recogniser that correctly reads "Email" would
+be charged four errors against "EMAIL". Case is folded on both sides for these sources
+only; synthetic GT is exact and keeps case, so l/L and o/O confusions still count."""
+
+
+def _cer_key(text: str, fold: bool) -> str:
+    """What CER compares: no whitespace at all, case-folded where GT demands it.
+
+    Whitespace is excluded because CER should measure whether the *characters* were
+    read. Dropped spaces are a real defect — PP-OCRv5 on Latin produces "ROCNO:538358-H"
+    — and are charged where they belong, in word F1, instead of being folded into a
+    character-error figure where they cannot be told apart from misreads."""
+    s = "".join(_norm(text).split())
+    return s.casefold() if fold else s
+
+
+UNSPACED_SCRIPTS = frozenset({"han"})
+"""Scripts written without spaces between words. Bag-of-words uses characters there."""
+
+
+def _tokens(text: str, script: str) -> list[str]:
+    if script in UNSPACED_SCRIPTS:
+        return [ch for ch in text if not ch.isspace()]
+    return text.split()
+
+
+TEXT_LINK_MIN = 0.5
+"""Overlap, as a fraction of the *smaller* of the two boxes, at which a predicted line
+and a GT line are linked for scoring.
+
+Against the smaller box because Paddle pads its boxes to more than twice the height of
+the tight GT box: less than half the prediction lies on the line even when it reads it
+perfectly. A rule keyed to the prediction's area charged those lines once as a deletion
+and again as an insertion (CER 185% on a form whose word F1 was 92%)."""
+
+
+def _reading_order(items: list[tuple[BBox, str]]) -> list[str]:
+    """Texts in reading order: rows top to bottom, left to right within a row.
+
+    A plain (y, x) sort is not enough: two halves of one split line can differ in y
+    by a pixel and would come out right-half-first. Items join the current row while
+    their vertical centre is within half a height of the row's first item."""
+    rows: list[list[tuple[BBox, str]]] = []
+    for b, t in sorted(items, key=lambda it: it[0].cy):
+        if rows:
+            ref = rows[-1][0][0]
+            if abs(b.cy - ref.cy) <= 0.5 * min(b.h, ref.h):
+                rows[-1].append((b, t))
+                continue
+        rows.append([(b, t)])
+    return [t for row in rows for _, t in sorted(row, key=lambda it: it[0].x)]
+
+
+def text_metrics(sample: Sample, result: PageResult) -> TextMetrics | None:
+    """CER and word F1. ``None`` when the engine returned no text or GT has no line text.
+
+    GT lines and predicted lines are linked wherever they overlap substantially
+    (:data:`TEXT_LINK_MIN`), and each *connected cluster* is scored as one unit: its GT
+    texts joined in reading order against its predicted texts joined in reading order.
+
+    Clusters rather than one-to-one matching, because the two sides disagree on what a
+    "line" is far more often than they disagree on the text. A detector that splits a
+    line in two, or merges a FUNSD label with its value ("TO:" + "George Baroody" are
+    two GT entities on one printed line), or reads a multi-line FUNSD entity as three
+    lines, is reading the text correctly — any matching that must pick one partner
+    charges it a deletion plus an insertion for each. Clusters only charge what is
+    actually wrong: misread characters, GT lines nothing landed on (deletions), and
+    predictions on no GT line (insertions, where GT is complete).
+    """
+    preds = [(ln.bbox, _norm(ln.text)) for ln in result.lines]
+    preds = [(b, t) for b, t in preds if t]
+    if not preds:
+        return None
+    gts = [(ln.bbox, ln.text) for ln in sample.lines if ln.text]
+    if not gts:
+        return None
+    gt_complete = bool(sample.meta.get("gt_complete", sample.source == "synth"))
+    fold = sample.source in CASE_FOLDED_SOURCES
+    m = TextMetrics(gt_complete=gt_complete)
+
+    def words(t: str) -> list[str]:
+        t = _norm(t)
+        return _tokens(t.casefold() if fold else t, sample.script)
+
+    # Union-find over GT nodes 0..G-1 and prediction nodes G..G+P-1.
+    n_gt = len(gts)
+    parent = list(range(n_gt + len(preds)))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    index = BoxIndex([b for b, _ in gts])
+    for j, (pb, _) in enumerate(preds):
+        for i in index.query(pb):
+            gb = gts[i][0]
+            if _safe_div(pb.intersection_area(gb), min(pb.area, gb.area)) >= TEXT_LINK_MIN:
+                parent[find(n_gt + j)] = find(i)
+
+    clusters: dict[int, tuple[list[tuple[BBox, str]], list[tuple[BBox, str]]]] = {}
+    for i, g in enumerate(gts):
+        clusters.setdefault(find(i), ([], []))[0].append(g)
+    for j, p in enumerate(preds):
+        clusters.setdefault(find(n_gt + j), ([], []))[1].append(p)
+
+    linked_pred_words: list[str] = []
+    for g_items, p_items in clusters.values():
+        hyp = "".join(_cer_key(t, fold) for t in _reading_order(p_items))
+        if not g_items:
+            if gt_complete:
+                m.inserted_chars += len(hyp)
+            continue
+        ref = "".join(_cer_key(t, fold) for t in _reading_order(g_items))
+        m.n_gt_chars += len(ref)
+        m.edits += levenshtein(ref, hyp)
+        linked_pred_words += [tok for _, t in p_items for tok in words(t)]
+
+    gt_words = [tok for _, t in gts for tok in words(t)]
+    # Where GT is incomplete, words on unannotated lines are not false positives;
+    # count only predictions that landed on a GT line.
+    pred_words = [tok for _, t in preds for tok in words(t)] if gt_complete else linked_pred_words
+    m.n_gt_words, m.n_pred_words = len(gt_words), len(pred_words)
+    m.matched_words = sum((Counter(gt_words) & Counter(pred_words)).values())
+    return m
+
+
 def evaluate(sample: Sample, result: PageResult) -> SampleMetrics:
+    # A line-level engine (PaddleOCR) has lines and no components. Keyed on that rather
+    # than on emptiness, so a blank page through CCL still reports its word metrics.
+    has_components = bool(result.components) or not result.lines
     return SampleMetrics(
         sample_id=sample.sample_id,
         source=sample.source,
@@ -418,8 +811,10 @@ def evaluate(sample: Sample, result: PageResult) -> SampleMetrics:
         script=sample.script,
         dpi=sample.dpi,
         template=str(sample.meta.get("template", "")),
-        chars=char_metrics(sample, result) if sample.has_char_gt else None,
-        words=word_metrics(sample, result),
+        chars=char_metrics(sample, result) if sample.has_char_gt and has_components else None,
+        words=word_metrics(sample, result) if has_components else None,
+        regions=region_metrics(sample, result),
+        text=text_metrics(sample, result),
         timings_ms=result.timings_ms,
         kind_counts=result.kind_counts(),
         meta={

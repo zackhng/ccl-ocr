@@ -18,18 +18,20 @@ from __future__ import annotations
 
 import json
 import platform
+import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Iterable, Sequence
 
+import cv2
 import numpy as np
 
 from ocr.config import DEFAULT_CONFIG, PipelineConfig
 from ocr.engine import CCLEngine, Engine, load_image
 
 from .gt import BenchmarkStore, Sample
-from .metrics import CharMetrics, SampleMetrics, WordMetrics, evaluate
+from .metrics import CharMetrics, RegionMetrics, SampleMetrics, TextMetrics, WordMetrics, evaluate
 
 PERCENTILES = (50, 95, 99)
 
@@ -42,6 +44,10 @@ class RunConfig:
     sources: tuple[str, ...] = ()
     captures: tuple[str, ...] = ()
     scripts: tuple[str, ...] = ()
+    note: str = ""
+    """Free text stored with the results, e.g. "machine busy: GPU training running".
+    Latency is only as good as the machine was idle, and that is not recoverable from
+    the numbers afterwards."""
 
     def matches(self, s: Sample) -> bool:
         if self.sources and s.source not in self.sources:
@@ -76,6 +82,27 @@ class RunResult:
             "samples": [s.as_dict() for s in self.samples],
         }
 
+    @classmethod
+    def from_dict(cls, d: dict) -> RunResult:
+        return cls(
+            run_id=d["run_id"],
+            engine=d["engine"],
+            samples=[SampleMetrics.from_dict(x) for x in d.get("samples", [])],
+            latency=d.get("latency", {}),
+            environment=d.get("environment", {}),
+            pipeline_config=d.get("pipeline_config", {}),
+            run_config=d.get("run_config", {}),
+            skipped=d.get("skipped", []),
+        )
+
+
+def load(path: str | Path) -> RunResult:
+    """Load a saved run: a ``results.json`` file, or the folder holding one."""
+    p = Path(path)
+    if p.is_dir():
+        p = p / "results.json"
+    return RunResult.from_dict(json.loads(p.read_text(encoding="utf-8")))
+
 
 # --------------------------------------------------------------------------- aggregate
 
@@ -101,11 +128,13 @@ def aggregate_chars(metrics: Iterable[CharMetrics]) -> CharMetrics:
     return out
 
 
-def aggregate_words(metrics: Iterable[WordMetrics]) -> WordMetrics:
+def aggregate_words(metrics: Iterable[WordMetrics | None]) -> WordMetrics:
     out = WordMetrics()
     any_seen = False
     granularities: set[str] = set()
     for m in metrics:
+        if m is None:
+            continue
         any_seen = True
         if m.n_gt:
             granularities.add(m.granularity)
@@ -123,6 +152,43 @@ def aggregate_words(metrics: Iterable[WordMetrics]) -> WordMetrics:
     out.granularity = granularities.pop() if len(granularities) == 1 else (
         "mixed" if granularities else "none"
     )
+    return out
+
+
+def aggregate_regions(metrics: Iterable[RegionMetrics | None]) -> RegionMetrics:
+    out = RegionMetrics()
+    any_seen = False
+    for m in metrics:
+        if m is None or m.n_gt == 0:
+            continue
+        any_seen = True
+        out.n_gt += m.n_gt
+        out.n_pred += m.n_pred
+        out.found += m.found
+        out.coverage_sum += m.coverage_sum
+        out.spurious += m.spurious
+        out.gt_complete = out.gt_complete and m.gt_complete
+    if not any_seen:
+        out.gt_complete = False
+    return out
+
+
+def aggregate_text(metrics: Iterable[TextMetrics | None]) -> TextMetrics:
+    out = TextMetrics()
+    any_seen = False
+    for m in metrics:
+        if m is None:
+            continue
+        any_seen = True
+        out.n_gt_chars += m.n_gt_chars
+        out.edits += m.edits
+        out.inserted_chars += m.inserted_chars
+        out.n_gt_words += m.n_gt_words
+        out.n_pred_words += m.n_pred_words
+        out.matched_words += m.matched_words
+        out.gt_complete = out.gt_complete and m.gt_complete
+    if not any_seen:
+        out.gt_complete = False
     return out
 
 
@@ -195,15 +261,21 @@ def run(
             "platform": platform.platform(),
             "python": platform.python_version(),
             "processor": platform.processor(),
+            # Thread counts move latency more than anything else in this comparison.
+            "cv2_threads": cv2.getNumThreads(),
+            "engine_versions": getattr(engine, "versions", None),
         },
         pipeline_config=(pipeline_config or getattr(engine, "config", DEFAULT_CONFIG)).to_dict(),
         run_config={
             "repeats": rc.repeats, "warmup": rc.warmup, "limit": rc.limit,
             "sources": list(rc.sources), "captures": list(rc.captures), "scripts": list(rc.scripts),
+            "note": rc.note,
+            "started_at": run_id,
         },
     )
 
     processed = 0
+    started = time.perf_counter()
     for sid in sample_ids:
         sample = store.read(sid)
         if not rc.matches(sample):
@@ -233,7 +305,8 @@ def run(
         result.samples.append(evaluate(sample, page))
         processed += 1
         if progress and processed % 25 == 0:
-            print(f"  {processed} samples")
+            elapsed = time.perf_counter() - started
+            print(f"  [{result.engine}] {processed} samples, {elapsed:.0f}s elapsed", flush=True)
         if rc.limit and processed >= rc.limit:
             break
 
@@ -241,11 +314,13 @@ def run(
         raise RuntimeError("no samples matched the run filters")
 
     result.latency = latency_summary(result.samples)
+    result.run_config["wall_s"] = round(time.perf_counter() - started, 1)
     return result
 
 
-def save(result: RunResult, root: str | Path = "bench/results") -> Path:
-    out_dir = Path(root) / result.run_id
+def save(result: RunResult, root: str | Path = "bench/results", subdir: str | None = None) -> Path:
+    """Write ``results.json`` under ``<root>/<subdir or run_id>``."""
+    out_dir = Path(root) / (subdir or result.run_id)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "results.json").write_text(
         json.dumps(result.as_dict(), indent=1), encoding="utf-8"
