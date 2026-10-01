@@ -4,7 +4,7 @@ Two tiers, cheapest first:
 
 * **Tier 1** uses only a component's own geometry, so it needs no page statistics and
   can reject obvious junk before we have looked at the page as a whole.
-* **Tier 2** keys off the *median height of Tier-1 survivors*, which is a robust
+* **Tier 2** keys off the *ink-weighted median height of Tier-1 survivors*, which is robust
   estimate of "how tall is a character on this page" precisely because Tier 1 has
   already removed the rules and blobs that would skew it.
 
@@ -18,7 +18,6 @@ for photo masking. Each decision records which gate fired, so the overlay can sh
 
 from __future__ import annotations
 
-import statistics
 from dataclasses import dataclass
 
 from .config import FilterConfig
@@ -94,6 +93,52 @@ def apply_tier1(components: list[Component], page_w: int, page_h: int, cfg: Filt
             continue
 
 
+def ink_weighted_median_height(components: list[Component]) -> float:
+    """The height at which half the page's *ink* lies in shorter components.
+
+    A plain median of component heights is not robust here, and the failure is severe
+    rather than marginal. A noisy photograph produces hundreds of 2-4 px specks that
+    pass Tier 1 (they must — a decimal point is 4 px), and they outnumber the glyphs.
+    The median then collapses onto the speck population: measured at 4 px on ID cards
+    whose real glyphs are 17 px. Every relative gate is keyed to that number, so the
+    "4x median" ceiling lands at 16 px and routes the largest and most important text on
+    the card — the ID number, the name — to BLOB. Isolation recall on ID cards was 25%
+    for this reason alone.
+
+    Weighting by ink area fixes it because that is exactly what distinguishes the two
+    populations: a speck carries ~4 px of ink, a glyph ~100. Specks can outnumber glyphs
+    ten to one and still not move an ink-weighted statistic.
+
+    Weights are **winsorised at the 95th percentile**, because raw ink weighting has the
+    mirror-image failure: a single heavy component (a photo, a logo, a heading) can carry
+    more ink than every glyph on the page combined and drag the estimate up by itself.
+    Clipping bounds any one component's influence while leaving the speck-versus-glyph
+    separation — two orders of magnitude — completely intact.
+
+    The percentile has to be high. A lower one (75th was tried) fails in precisely the
+    case this function exists for: when specks outnumber glyphs, the 75th percentile of
+    *areas* is itself a speck, every weight clips to 4, and the estimator degenerates
+    back into the plain median it was meant to replace.
+    """
+    if not components:
+        return 0.0
+
+    areas = sorted(c.pixel_area for c in components)
+    cap = max(1, areas[int(0.95 * (len(areas) - 1))])
+
+    pairs = sorted((c.bbox.h, min(c.pixel_area, cap)) for c in components)
+    total = sum(weight for _, weight in pairs)
+    if total == 0:
+        return 0.0
+
+    half, accumulated = total / 2.0, 0
+    for height, weight in pairs:
+        accumulated += weight
+        if accumulated >= half:
+            return float(height)
+    return float(pairs[-1][0])
+
+
 def _build_x_index(components: list[Component], bucket_width: float) -> dict[int, list[Component]]:
     """Bucket components by x so the diacritic search is local, not quadratic.
 
@@ -165,12 +210,25 @@ def apply_tier2(components: list[Component], page_w: int, page_h: int, cfg: Filt
         stats.counts = _count_kinds(components)
         return stats
 
-    median_h = float(statistics.median(c.bbox.h for c in survivors))
+    page_area = page_w * page_h
+    blob_area = cfg.blob_area_frac * page_area
+
+    # Dense regions are routed *before* the scale is estimated. This test is absolute —
+    # it needs no median — and leaving a portrait photo in the pool would bias an
+    # ink-weighted statistic upward by its whole ink mass.
+    for c in survivors:
+        if c.pixel_area > blob_area:
+            _route(c, ComponentKind.BLOB, "t2:dense_region")
+
+    survivors = [c for c in survivors if c.kind is ComponentKind.TEXT]
+    if len(survivors) < cfg.min_components_for_stats:
+        stats.counts = _count_kinds(components)
+        return stats
+
+    median_h = ink_weighted_median_height(survivors)
     stats.median_height = median_h
     stats.relative_gates_applied = True
 
-    page_area = page_w * page_h
-    blob_area = cfg.blob_area_frac * page_area
     too_tall = cfg.max_height_ratio * median_h
     too_short = cfg.min_height_ratio * median_h
 
@@ -179,10 +237,6 @@ def apply_tier2(components: list[Component], page_w: int, page_h: int, cfg: Filt
     index = _build_x_index(normals, median_h)
 
     for c in survivors:
-        if c.pixel_area > blob_area:
-            _route(c, ComponentKind.BLOB, "t2:dense_region")
-            continue
-
         if c.bbox.h > too_tall:
             # Headings and drop caps land here too. BLOB rather than NOISE on purpose:
             # this is real text we are declining to classify *as a single character*,

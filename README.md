@@ -21,7 +21,7 @@ inherits that ceiling — which is why this is measured before anything is train
 
 ```bash
 uv sync --group dev
-uv run pytest                                   # 87 tests
+uv run pytest                                   # 90 tests
 
 # Materialise the benchmark: checks what is already on disk, downloads only what is
 # missing. Idempotent. --check reports without downloading; --offline skips the network.
@@ -34,9 +34,10 @@ uv run python -m ocrbench.cli overlays --limit 30 --stages
 uv run python -m ocrbench.cli run --repeats 5
 ```
 
-**[`RESULTS.md`](RESULTS.md) has the current answer.** Short version: 60.9% character
-isolation recall overall, but 74.9% on scans against 43.1% on photographs — and that
-gap, not the aggregate, is what decides the next step.
+**[`RESULTS.md`](RESULTS.md) has the current answer.** Short version: 65.9% character
+isolation recall overall, but 76.3% on scans against 52.7% on photographs, and the
+dominant failure is adjacent glyphs *merging* rather than being lost. That gap, not the
+aggregate, is what decides the next step.
 
 ## Layout
 

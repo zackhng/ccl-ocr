@@ -164,3 +164,46 @@ def test_every_routed_component_records_a_reason(document_like):
     for c in components:
         if c.kind is not ComponentKind.TEXT:
             assert c.reason, f"{c.kind} with no reason is undiagnosable in the overlay"
+
+
+class TestScaleEstimator:
+    """Regression tests for the median-height estimator.
+
+    A plain median of component heights collapses onto the speck population on noisy
+    pages, which inverts every relative gate: measured at 4 px where the real glyphs
+    were 17, the '4x median' ceiling landed at 16 px and routed an ID card's number and
+    name to BLOB. Isolation recall on ID cards was 25% for this reason alone.
+    """
+
+    def test_specks_do_not_drag_the_estimate_down(self):
+        from ocr.filters import ink_weighted_median_height
+
+        glyphs = [make(x=i * 15, y=100, w=10, h=20, fill=0.5, cid=i) for i in range(20)]
+        specks = [make(x=i * 7, y=300, w=2, h=2, fill=1.0, cid=100 + i) for i in range(200)]
+
+        import statistics
+        assert statistics.median(c.bbox.h for c in glyphs + specks) == 2  # the failure
+        assert ink_weighted_median_height(glyphs + specks) == pytest.approx(20)
+
+    def test_a_dense_photo_does_not_drag_the_estimate_up(self):
+        """The photo must be routed before the scale is estimated, or its ink mass
+        biases an ink-weighted statistic by itself."""
+        page = [make(x=i * 15, y=100, w=10, h=20, fill=0.5, cid=i) for i in range(20)]
+        photo = make(x=600, y=300, w=200, h=250, fill=0.95, cid=99)
+        page.append(photo)
+
+        stats = apply_tier2(page, 1000, 1000, CFG)
+        assert photo.kind is ComponentKind.BLOB
+        assert photo.reason == "t2:dense_region"
+        assert stats.median_height == pytest.approx(20)
+
+    def test_large_text_survives_on_a_noisy_page(self):
+        """The actual ID-card failure, end to end: a heading twice the body height must
+        not become a BLOB just because the page is full of speckle."""
+        page = [make(x=i * 15, y=100, w=10, h=20, fill=0.5, cid=i) for i in range(20)]
+        page += [make(x=i * 7, y=300, w=2, h=2, fill=1.0, cid=100 + i) for i in range(200)]
+        heading = make(x=0, y=20, w=24, h=40, fill=0.5, cid=500)
+        page.append(heading)
+
+        apply_tier2(page, 1000, 1000, CFG)
+        assert heading.kind is ComponentKind.TEXT
