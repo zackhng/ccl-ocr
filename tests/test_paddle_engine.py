@@ -54,7 +54,12 @@ def test_paddle_end_to_end():
     Windows: depending on what the process loaded first, one of them fails to import.
     The engines never need to share a process (Paddle is a baseline whose runs are
     saved and compared with ``ocrbench.cli report``), so neither do their tests."""
-    pytest.importorskip("paddleocr")
+    # No importorskip here: importing paddleocr in *this* process (where torch may
+    # already be loaded) is exactly what fails. Availability is probed in the child.
+    import importlib.util
+
+    if importlib.util.find_spec("paddleocr") is None:
+        pytest.skip("PaddleOCR not installed")
     import subprocess
     import sys
     from pathlib import Path
@@ -80,4 +85,9 @@ print("OK")
     if "OK" not in proc.stdout:
         if "No module named" in proc.stderr or "PaddleOCR unavailable" in proc.stderr:
             pytest.skip("PaddleOCR unavailable")
+        if "Application Control policy has blocked" in proc.stderr:
+            # Windows Smart App Control / WDAC blocked one of Paddle's native modules
+            # (seen: python-bidi's .pyd, unchanged on disk, allowed one day and blocked
+            # the next). An environment policy, not a code failure.
+            pytest.skip("PaddleOCR blocked by Windows Application Control on this machine")
         raise AssertionError(proc.stderr[-2000:])

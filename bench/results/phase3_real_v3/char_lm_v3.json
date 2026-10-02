@@ -1,0 +1,12 @@
+{
+ "stage": "finetune",
+ "train_lines": 60494,
+ "steps": 2363,
+ "held_out_bpc": 2.9252256005788975,
+ "financial_bpc": 2.9252256284236506,
+ "financial_bpc_before": 4.873015218346173,
+ "text": [
+  "data/corpora/financial.txt"
+ ],
+ "init": "models/char_lm_pretrain.pt"
+}

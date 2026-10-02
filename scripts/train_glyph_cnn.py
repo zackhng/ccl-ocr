@@ -34,19 +34,51 @@ from ocr.recog.charset import GLYPH_CLASSES, STRUCTURAL  # noqa: E402
 STRUCT_IDS = {GLYPH_CLASSES.index(c) for c in STRUCTURAL}
 
 
-def load_dir(d: Path):
-    crops, geom, labels, doc = [], [], [], []
-    for k, f in enumerate(sorted(d.glob("shard_*.npz"))):
-        z = np.load(f)
-        crops.append(z["crops"])
-        geom.append(z["geom"].astype(np.float32))
-        labels.append(z["labels"].astype(np.int64))
-        # Document id: page seed where present, else the shard (real stores write seed 0).
-        seed = z["seed"]
-        doc.append(seed if seed.any() else np.full(len(seed), k, np.int64))
-    if not crops:
+def _doc_ids(z, k: int) -> np.ndarray:
+    # Document id: page seed / doc_seed where present, else the shard index.
+    seed = z["seed"]
+    return seed if seed.any() else np.full(len(seed), k, np.int64)
+
+
+def stream_source(d: Path, weight: float, val_frac: float, rng, dev, si: int):
+    """Load one source shard by shard, moving its training rows straight to the GPU.
+
+    Two passes. The first reads only each shard's (small) document-id array to choose
+    validation *documents*; the second loads one shard at a time, keeps its sampled
+    training rows as uint8 on ``dev`` and its validation rows on the host, and frees
+    the shard. Peak host memory is one shard — loading every shard and concatenating
+    (then indexing, then concatenating again) took several copies of the whole set and
+    ran the machine out of memory twice.
+    """
+    files = sorted(d.glob("shard_*.npz"))
+    if not files:
         raise SystemExit(f"no shards in {d}")
-    return np.concatenate(crops), np.concatenate(geom), np.concatenate(labels), np.concatenate(doc)
+    docs = np.unique(np.concatenate([_doc_ids(np.load(f), k) for k, f in enumerate(files)]))
+    val_docs = rng.choice(docs, max(1, int(len(docs) * val_frac)), replace=False)
+
+    xs, gs, ys = [], [], []
+    va = ([], [], [])
+    n_total = 0
+    for k, f in enumerate(files):
+        z = np.load(f)
+        doc = _doc_ids(z, k)
+        is_val = np.isin(doc, val_docs)
+        tr = np.flatnonzero(~is_val)
+        if weight != 1.0:  # resample this shard's rows to weight x its size
+            tr = rng.choice(tr, int(round(len(tr) * weight)), replace=weight > 1.0) if len(tr) else tr
+        crops, geom, labels = z["crops"], z["geom"].astype(np.float32), z["labels"].astype(np.int64)
+        n_total += len(labels)
+        xs.append(torch.as_tensor(crops[tr], device=dev))
+        gs.append(torch.as_tensor(geom[tr], device=dev).clamp_(-4.0, 8.0))
+        ys.append(torch.as_tensor(labels[tr], device=dev))
+        va[0].append(crops[is_val])
+        va[1].append(geom[is_val])
+        va[2].append(labels[is_val])
+        del z, crops, geom, labels
+    train = (torch.cat(xs), torch.cat(gs), torch.cat(ys))
+    val = tuple(np.concatenate(v) for v in va)
+    print(f"  {d}: {n_total} crops, {len(docs)} docs -> train {len(train[2])}, val {len(val[2])}", flush=True)
+    return train, val + (np.full(len(val[2]), si),)
 
 
 def augment(x: torch.Tensor) -> torch.Tensor:
@@ -96,30 +128,22 @@ def main() -> int:
 
     tr_parts, va_parts, sources = [], [], []
     for si, (d, w) in enumerate(zip(args.data, weights)):
-        c, g, y, doc = load_dir(Path(d))
-        docs = np.unique(doc)
-        val_docs = set(rng.choice(docs, max(1, int(len(docs) * args.val_frac)), replace=False).tolist())
-        is_val = np.isin(doc, list(val_docs))
-        tr_idx = np.flatnonzero(~is_val)
-        if w != 1.0:  # resample this source to weight x its size
-            tr_idx = rng.choice(tr_idx, int(len(tr_idx) * w), replace=w > 1.0)
-        tr_parts.append((c[tr_idx], g[tr_idx], y[tr_idx]))
-        va_parts.append((c[is_val], g[is_val], y[is_val], np.full(int(is_val.sum()), si)))
+        train, val = stream_source(Path(d), w, args.val_frac, rng, dev, si)
+        tr_parts.append(train)
+        va_parts.append(val)
         sources.append(Path(d).name)
-        print(f"  {d}: {len(y)} crops, {len(docs)} docs -> train {len(tr_idx)}, val {int(is_val.sum())}", flush=True)
 
-    Xtr = np.concatenate([p[0] for p in tr_parts]); Gtr = np.concatenate([p[1] for p in tr_parts])
-    Ytr = np.concatenate([p[2] for p in tr_parts])
+    # Training crops stay uint8 on the GPU (4x smaller than float), converted a batch
+    # at a time in the loop below.
+    xtr = torch.cat([p[0] for p in tr_parts])
+    gtr = torch.cat([p[1] for p in tr_parts])
+    ytr = torch.cat([p[2] for p in tr_parts])
+    del tr_parts
+    Ytr = ytr  # only its length is used below
     Xva = np.concatenate([p[0] for p in va_parts]); Gva = np.concatenate([p[1] for p in va_parts])
     Yva = np.concatenate([p[2] for p in va_parts]); Sva = np.concatenate([p[3] for p in va_parts])
-
-    # Training crops stay uint8 on the GPU (4x smaller than float) and are converted a
-    # batch at a time; a full float copy of ~1M crops exhausted host memory once.
-    xtr = torch.as_tensor(Xtr, device=dev)
-    _, gtr = glyph_cnn.prepare(Xtr[:0], Gtr, dev)
-    del Xtr
-    ytr = torch.as_tensor(Ytr, device=dev)
     xva, gva = glyph_cnn.prepare(Xva, Gva, dev)
+    del Xva
     model = glyph_cnn.GlyphCNN(width=args.width).to(dev)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"  model: {n_params / 1e6:.2f}M params, {len(Ytr)} train crops, device {dev}", flush=True)

@@ -100,8 +100,11 @@ class TestScale:
         gray = page()
         gray[rng.integers(0, 200, 400), rng.integers(0, 600, 400)] = INK  # specks
         comps, _, stats = label_with_maps(binarize(gray))
-        assert ink_weighted_median_height(comps) == ink_weighted_median_height_arrays(
-            stats[1:, 3], stats[1:, 4]
+        from ocr.filters import glyph_height_estimate
+
+        st = stats[1:]
+        assert ink_weighted_median_height(comps) == glyph_height_estimate(
+            st[:, 0], st[:, 1], st[:, 2], st[:, 3], st[:, 4]
         )
 
 

@@ -155,10 +155,84 @@ def ink_weighted_median_height(components: list[Component]) -> float:
     """
     if not components:
         return 0.0
-    return ink_weighted_median_height_arrays(
-        np.fromiter((c.bbox.h for c in components), dtype=np.int64, count=len(components)),
-        np.fromiter((c.pixel_area for c in components), dtype=np.int64, count=len(components)),
+    n = len(components)
+    box = np.array([c.bbox.as_list() for c in components], dtype=np.int64)
+    areas = np.fromiter((c.pixel_area for c in components), dtype=np.int64, count=n)
+    return glyph_height_estimate(box[:, 0], box[:, 1], box[:, 2], box[:, 3], areas)
+
+
+ROW_GAP_RATIO = 1.5
+"""A neighbour within this many heights horizontally counts as row support."""
+ROW_HEIGHT_TOL = 1.45
+"""...if its height is within this factor..."""
+ROW_CY_TOL = 0.35
+"""...and its vertical centre within this fraction of the taller height."""
+MIN_SUPPORTED = 12
+
+
+def row_supported(x: np.ndarray, y: np.ndarray, w: np.ndarray, h: np.ndarray) -> np.ndarray:
+    """Which components have a same-height neighbour beside them in a row.
+
+    Glyphs come in rows; speckle, wood grain and fabric texture do not. On a phone photo
+    of a receipt lying on a table, the background yields thousands of specks whose total
+    ink outweighs the text even after ink weighting: the glyph-height estimate measured
+    6 px on CORD receipts whose glyphs are ~15 px, and every gate keyed to it failed.
+
+    Vectorised for tens of thousands of components: each component is bucketed by
+    height class (factor-1.4 bins) and row band (half its class height); copies go into
+    the neighbouring classes and bands so near-misses still meet; one lexsort by
+    (bucket, x) puts row neighbours side by side, and consecutive pairs are tested.
+    """
+    n = len(h)
+    out = np.zeros(n, dtype=bool)
+    if n < 2:
+        return out
+    hf = np.maximum(h, 1).astype(np.float64)
+    cy = y + hf / 2.0
+    hc = np.floor(np.log(hf) / np.log(1.4)).astype(np.int64)
+    bsize = 0.5 * 1.4 ** hc
+    band = np.floor(cy / bsize).astype(np.int64)
+    origin, keys = [], []
+    for dh in (-1, 0, 1):
+        for db in (-1, 0, 1):
+            origin.append(np.arange(n))
+            keys.append((hc + dh) * 10_000_000 + (band + db))
+    origin = np.concatenate(origin)
+    keys = np.concatenate(keys)
+    xs = x[origin]
+    order = np.lexsort((xs, keys))
+    o, k = origin[order], keys[order]
+    a, b = o[:-1], o[1:]
+    same = (k[:-1] == k[1:]) & (a != b)
+    gap = x[b] - (x[a] + w[a])
+    hmax = np.maximum(hf[a], hf[b])
+    ok = (
+        same
+        & (gap <= ROW_GAP_RATIO * hmax)
+        & (gap >= -0.5 * np.minimum(w[a], w[b]))
+        & (np.maximum(hf[a], hf[b]) <= ROW_HEIGHT_TOL * np.minimum(hf[a], hf[b]))
+        & (np.abs(cy[a] - cy[b]) <= ROW_CY_TOL * hmax)
     )
+    out[a[ok]] = True
+    out[b[ok]] = True
+    return out
+
+
+def glyph_height_estimate(x: np.ndarray, y: np.ndarray, w: np.ndarray, h: np.ndarray,
+                          areas: np.ndarray) -> float:
+    """The page's glyph height: ink-weighted median over components *in rows*.
+
+    Two layers of defence against speckle. Ink weighting (below) handles specks that
+    merely outnumber glyphs; row support (:func:`row_supported`) handles the photo case,
+    where specks are numerous *and* inky enough to outweigh the text. Falls back to all
+    components when fewer than ``MIN_SUPPORTED`` are in rows (a near-empty crop).
+    """
+    if len(h) == 0:
+        return 0.0
+    rows = row_supported(x, y, w, h)
+    if int(rows.sum()) >= MIN_SUPPORTED:
+        return ink_weighted_median_height_arrays(h[rows], areas[rows])
+    return ink_weighted_median_height_arrays(h, areas)
 
 
 def ink_weighted_median_height_arrays(heights: np.ndarray, areas: np.ndarray) -> float:

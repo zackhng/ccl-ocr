@@ -37,7 +37,7 @@ import cv2
 import numpy as np
 
 from .config import FilterConfig, SplitConfig
-from .filters import ink_weighted_median_height_arrays, tier1_text_mask
+from .filters import glyph_height_estimate, tier1_text_mask
 from .timing import StageTimer
 from .types import BBox, Component
 
@@ -93,7 +93,8 @@ def page_glyph_scale(
         return None
 
     heights = stats[text, cv2.CC_STAT_HEIGHT]
-    h = ink_weighted_median_height_arrays(heights, areas[text])
+    h = glyph_height_estimate(stats[text, cv2.CC_STAT_LEFT], stats[text, cv2.CC_STAT_TOP],
+                              stats[text, cv2.CC_STAT_WIDTH], heights, areas[text])
     if h <= 0:
         return None
     widths = stats[text, cv2.CC_STAT_WIDTH][(heights >= 0.7 * h) & (heights <= 1.3 * h)]

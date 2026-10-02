@@ -1,0 +1,152 @@
+{
+ "params": 771003,
+ "train_crops": 1193989,
+ "val_crops": 109342,
+ "val_acc": 0.931508477986501,
+ "val_acc_chars": 0.9580194987027534,
+ "val_acc_by_source": {
+  "real_v3": 0.9612882167337613,
+  "corpus_v3": 0.9099184375345102
+ },
+ "temperature": 0.8,
+ "ece_raw": 0.04511760318601811,
+ "ece_calibrated": 0.013531264653427827,
+ "top_confusions": [
+  {
+   "true": "<NONTEXT>",
+   "pred": "<PART>",
+   "n": 484
+  },
+  {
+   "true": "<PART>",
+   "pred": "<NONTEXT>",
+   "n": 286
+  },
+  {
+   "true": "<MULTI>",
+   "pred": "<NONTEXT>",
+   "n": 254
+  },
+  {
+   "true": "<PART>",
+   "pred": ".",
+   "n": 180
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": "<MULTI>",
+   "n": 110
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": ".",
+   "n": 104
+  },
+  {
+   "true": "<PART>",
+   "pred": "-",
+   "n": 91
+  },
+  {
+   "true": ".",
+   "pred": "<PART>",
+   "n": 88
+  },
+  {
+   "true": "N",
+   "pred": "<PART>",
+   "n": 83
+  },
+  {
+   "true": "<PART>",
+   "pred": ",",
+   "n": 72
+  },
+  {
+   "true": "O",
+   "pred": "o",
+   "n": 65
+  },
+  {
+   "true": "<MULTI>",
+   "pred": "A",
+   "n": 63
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": "r",
+   "n": 55
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": "l",
+   "n": 54
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": "i",
+   "n": 54
+  },
+  {
+   "true": ".",
+   "pred": "<NONTEXT>",
+   "n": 53
+  },
+  {
+   "true": "<PART>",
+   "pred": "i",
+   "n": 52
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": ",",
+   "n": 51
+  },
+  {
+   "true": "H",
+   "pred": "<PART>",
+   "n": 50
+  },
+  {
+   "true": "<PART>",
+   "pred": ":",
+   "n": 48
+  },
+  {
+   "true": "C",
+   "pred": "c",
+   "n": 47
+  },
+  {
+   "true": "<PART>",
+   "pred": "A",
+   "n": 47
+  },
+  {
+   "true": "<PART>",
+   "pred": "N",
+   "n": 47
+  },
+  {
+   "true": "M",
+   "pred": "<PART>",
+   "n": 45
+  },
+  {
+   "true": "<NONTEXT>",
+   "pred": "O",
+   "n": 44
+  }
+ ],
+ "data": [
+  "data/glyphs/real_v3",
+  "data/glyphs/corpus_v3"
+ ],
+ "weights": [
+  1.0,
+  0.2
+ ],
+ "epochs": 14,
+ "width": 48,
+ "charset": "fff45b767abd"
+}

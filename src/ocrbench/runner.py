@@ -43,6 +43,9 @@ from .metrics import (
 
 PERCENTILES = (50, 95, 99)
 
+TRACE_MEMORY = bool(__import__("os").environ.get("OCRBENCH_TRACE_MEMORY"))
+"""Record resident memory after every document (``meta['rss_gb']``)."""
+
 
 @dataclass(slots=True)
 class RunConfig:
@@ -337,7 +340,15 @@ def run(
             for stage in stage_names
         }
 
-        result.samples.append(evaluate(sample, page))
+        metrics = evaluate(sample, page)
+        if TRACE_MEMORY:
+            # Resident memory after each document, to find which input drives a
+            # spike: the engine processes are the ones that ran the machine out of
+            # memory, and per-document RSS is the only way to see what they held.
+            import psutil
+
+            metrics.meta["rss_gb"] = round(psutil.Process().memory_info().rss / 1e9, 3)
+        result.samples.append(metrics)
         processed += 1
         if progress and processed % 25 == 0:
             elapsed = time.perf_counter() - started

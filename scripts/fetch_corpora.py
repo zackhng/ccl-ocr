@@ -195,7 +195,13 @@ def real_train_text(root: Path, excluded: set[str]) -> tuple[list[str], list[str
         if sid in excluded or not sid.startswith(("cord_", "xfund_")):
             continue
         s = store.read(sid)
-        texts = [g.text for g in s.lines] or [" ".join(w.text for w in s.words)]
+        if s.lines:
+            texts = [g.text for g in s.lines]
+        else:
+            # Word-only annotation (XFUND): chunks of ten words in annotation order,
+            # rather than one multi-thousand-character "line" per form.
+            words = [w.text for w in s.words]
+            texts = [" ".join(words[k:k + 10]) for k in range(0, len(words), 10)]
         lines += [normalise(t) for t in texts if t.strip()]
         used.append(sid)
     return lines, used
