@@ -25,6 +25,9 @@ KIND_COLORS: dict[ComponentKind, tuple[int, int, int]] = {
     ComponentKind.NOISE: (60, 60, 230),
 }
 
+SPLIT_COLOR: tuple[int, int, int] = (0, 200, 255)
+"""Amber: TEXT components produced by the merge splitter (Phase 2b)."""
+
 KIND_THICKNESS: dict[ComponentKind, int] = {
     ComponentKind.TEXT: 2,
     ComponentKind.DIACRITIC: 2,
@@ -53,8 +56,13 @@ def draw_components(
     for c in result.components:
         if kinds is not None and c.kind not in kinds:
             continue
-        color = KIND_COLORS[c.kind]
         b = c.bbox
+        if c.split and c.kind is ComponentKind.TEXT:
+            # Pieces the merge splitter produced: drawn in their own colour so the
+            # eyeball gate can check every cut, which is where a splitter goes wrong.
+            color = SPLIT_COLOR
+        else:
+            color = KIND_COLORS[c.kind]
         cv2.rectangle(canvas, (b.x, b.y), (b.x2, b.y2), color, KIND_THICKNESS[c.kind])
         if label_reasons and c.reason:
             cv2.putText(
@@ -71,6 +79,9 @@ def _draw_legend(canvas: np.ndarray, result: PageResult) -> np.ndarray:
     counts = result.kind_counts()
     lines = [f"{k.value}: {counts[k.value]}" for k in ComponentKind]
     lines.append(f"total: {len(result.components)}")
+    n_split = sum(1 for c in result.components if c.split and c.kind is ComponentKind.TEXT)
+    if n_split:
+        lines.append(f"split pieces: {n_split}")
     median = result.meta.get("filter", {}).get("median_height")
     if median:
         lines.append(f"median h: {median}")
@@ -88,7 +99,10 @@ def _draw_legend(canvas: np.ndarray, result: PageResult) -> np.ndarray:
 
     for i, text in enumerate(lines):
         y = pad + line_h * (i + 1) - 5
-        color = KIND_COLORS.get(_kind_for_line(i), (30, 30, 30))
+        if text.startswith("split pieces"):
+            color = SPLIT_COLOR
+        else:
+            color = KIND_COLORS.get(_kind_for_line(i), (30, 30, 30))
         cv2.putText(canvas, text, (pad, y), cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 1, cv2.LINE_AA)
     return canvas
 

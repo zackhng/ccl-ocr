@@ -18,3 +18,6 @@ bench/gt/
 bench/raw/
 bench/results/*/overlays/
 overlays/
+
+# Held-out tuning set (seed 11) for split thresholds: regenerated, never committed.
+bench_tune/

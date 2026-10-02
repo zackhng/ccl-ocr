@@ -20,6 +20,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+import cv2
+import numpy as np
+
 from .config import FilterConfig
 from .timing import StageTimer
 from .types import Component, ComponentKind
@@ -46,6 +49,36 @@ class FilterStats:
 def _route(component: Component, kind: ComponentKind, reason: str) -> None:
     component.kind = kind
     component.reason = reason
+
+
+def tier1_text_mask(stats: np.ndarray, page_w: int, page_h: int, cfg: FilterConfig) -> np.ndarray:
+    """Which rows of a CCL ``stats`` array :func:`apply_tier1` would leave as TEXT.
+
+    A vectorised mirror of :func:`apply_tier1`, for the merge splitter, which must
+    measure the page's glyph scale before filtering and cannot afford a Python loop over
+    tens of thousands of components on a noisy photo. It must make exactly the same
+    decisions; ``tests/test_split.py`` checks that on randomised components. Row 0 (the
+    background) is included and comes out False.
+    """
+    w = stats[:, cv2.CC_STAT_WIDTH].astype(np.float64)
+    h = stats[:, cv2.CC_STAT_HEIGHT].astype(np.float64)
+    area = stats[:, cv2.CC_STAT_AREA].astype(np.float64)
+    box = np.maximum(w * h, 1.0)
+    fill = np.where(w * h > 0, area / box, 0.0)
+    aspect = np.where(h > 0, w / np.maximum(h, 1.0), 0.0)
+
+    degenerate = (area < cfg.min_pixel_area) | ((h < cfg.min_extent) & (w < cfg.min_extent))
+    oversized = (w > cfg.max_width_frac * page_w) | (h > cfg.max_height_frac * page_h)
+    vertical_rule = aspect <= cfg.min_aspect
+    wide = aspect >= cfg.max_aspect
+    # A wide *sparse* component stays TEXT (it is likely merged glyphs); a wide solid
+    # one is a rule. Below max_aspect, a hollow component is a rule.
+    rejected_wide = wide & (fill >= cfg.rule_fill_min)
+    hollow = ~wide & (fill < cfg.min_fill_ratio)
+
+    text = ~(degenerate | oversized | vertical_rule | rejected_wide | hollow)
+    text[0] = False
+    return text
 
 
 def apply_tier1(components: list[Component], page_w: int, page_h: int, cfg: FilterConfig) -> None:
@@ -122,21 +155,31 @@ def ink_weighted_median_height(components: list[Component]) -> float:
     """
     if not components:
         return 0.0
+    return ink_weighted_median_height_arrays(
+        np.fromiter((c.bbox.h for c in components), dtype=np.int64, count=len(components)),
+        np.fromiter((c.pixel_area for c in components), dtype=np.int64, count=len(components)),
+    )
 
-    areas = sorted(c.pixel_area for c in components)
-    cap = max(1, areas[int(0.95 * (len(areas) - 1))])
 
-    pairs = sorted((c.bbox.h, min(c.pixel_area, cap)) for c in components)
-    total = sum(weight for _, weight in pairs)
+def ink_weighted_median_height_arrays(heights: np.ndarray, areas: np.ndarray) -> float:
+    """:func:`ink_weighted_median_height` over parallel arrays — the one implementation.
+
+    The merge splitter needs the same estimate straight from CCL's ``stats`` array,
+    before any :class:`Component` exists for the pieces; both callers go through here so
+    the splitter and the filter can never disagree about what one glyph is.
+    """
+    n = len(heights)
+    if n == 0:
+        return 0.0
+    cap = max(1, int(np.sort(areas)[int(0.95 * (n - 1))]))
+    weights = np.minimum(areas, cap)
+    order = np.argsort(heights, kind="stable")
+    cumulative = np.cumsum(weights[order])
+    total = cumulative[-1]
     if total == 0:
         return 0.0
-
-    half, accumulated = total / 2.0, 0
-    for height, weight in pairs:
-        accumulated += weight
-        if accumulated >= half:
-            return float(height)
-    return float(pairs[-1][0])
+    idx = int(np.searchsorted(cumulative, total / 2.0, side="left"))
+    return float(heights[order][min(idx, n - 1)])
 
 
 def _build_x_index(components: list[Component], bucket_width: float) -> dict[int, list[Component]]:
@@ -198,6 +241,51 @@ def _find_parent(
     return None
 
 
+def _find_line_neighbour(
+    small: Component,
+    index: dict[int, list[Component]],
+    bucket_width: float,
+    median_h: float,
+    cfg: FilterConfig,
+) -> Component | None:
+    """Is there a normal-height glyph *beside* this mark, on the same line?
+
+    The complement of :func:`_find_parent`, which only looks above and below. Baseline
+    punctuation — full stop, comma, decimal point, hyphen, colon — sits next to its
+    neighbour, never over it, so the parent search cannot find it, and before Phase 2b
+    such a mark survived only when it happened to be *merged* into the glyph before it.
+    Once the merge splitter separated those, they were routed to NOISE as orphans, and
+    on a cheque that is "1,234.56" read as "123456".
+
+    Beside means: a small horizontal gap, and the mark sitting in the lower part of the
+    neighbour's vertical extent (from mid-height for a hyphen down to just below the
+    baseline for a comma's tail). A mark floating above a glyph is a diacritic, and is
+    the parent search's business.
+    """
+    b = small.bbox
+    width = max(1.0, bucket_width)
+    lo = int(b.x // width) - 1
+    hi = int(b.x2 // width) + 1
+    max_gap = cfg.punctuation_max_gap_ratio * median_h
+    below = cfg.punctuation_below_baseline_ratio * median_h
+
+    seen: set[int] = set()
+    for bucket in range(lo, hi + 1):
+        for cand in index.get(bucket, ()):
+            if cand.id in seen or cand is small:
+                continue
+            seen.add(cand.id)
+
+            cb = cand.bbox
+            gap = max(cb.x - b.x2, b.x - cb.x2)
+            if gap < 0 or gap > max_gap:
+                continue
+            if b.cy < cb.y + 0.25 * cb.h or b.y > cb.y2 + below:
+                continue
+            return cand
+    return None
+
+
 def apply_tier2(components: list[Component], page_w: int, page_h: int, cfg: FilterConfig) -> FilterStats:
     """Relative gates keyed to the median survivor height, plus diacritic recovery."""
     stats = FilterStats(total=len(components))
@@ -248,6 +336,10 @@ def apply_tier2(components: list[Component], page_w: int, page_h: int, cfg: Filt
             parent = _find_parent(c, index, median_h, median_h, cfg)
             if parent is not None and c.bbox.h <= cfg.diacritic_max_height_ratio * median_h:
                 _route(c, ComponentKind.DIACRITIC, "t2:diacritic")
+            elif _find_line_neighbour(c, index, median_h, median_h, cfg) is not None:
+                # Punctuation is a character in its own right for the classifier, not
+                # part of its neighbour — so TEXT, not DIACRITIC.
+                c.reason = "t2:punctuation"
             else:
                 _route(c, ComponentKind.NOISE, "t2:small_orphan")
 

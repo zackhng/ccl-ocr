@@ -185,6 +185,59 @@ the PP-OCRv5 detector with oneDNN enabled on Windows CPU. Running it without one
 ~3–5x slower, which would hand CCL a win it did not earn. 3.1.1 runs with oneDNN; 3.0.0
 is blocked by Application Control on the reference machine. See `pyproject.toml`.
 
+## 10. Phase 2b: splitting merged glyphs
+
+Merging was the dominant isolation failure: 37.8% of glyphs on photographs reached the
+classifier fused with a neighbour, against 8.2% lost. Three fixes looked plausible and
+two were wrong, which the measurements showed before any code was written.
+
+- **Not resolution.** Photos are already *upscaled* before thresholding (×1.35 for the
+  photo profile, ×2.4 for hard_photo). Glyphs reach CCL at ~16 px, the same as scans.
+  A resolution floor would add pixels without adding information; that was lost at
+  capture.
+- **Not rotation.** The merged neighbours' ground-truth boxes have a median gap of
+  **0 px**. They touch because of downscale and blur, and rotating a line does not
+  close horizontal gaps within it. Deskew belongs to Phase 5, where lines are built.
+- **The threshold window.** `adaptive_gaussian` uses a 35 px window on ~16 px glyphs.
+  That window averages across neighbours, so the one-pixel grey seam between two blurred
+  glyphs falls below the threshold and the glyphs join.
+
+**Why not just shrink the window.** It opens the seams but breaks strokes *inside*
+glyphs. Isolation on photos plateaus at 68–70% for every window from 9 to 19 px. Merges
+fall, but misses rise to match, and the extra misses are almost all normal-height glyphs
+broken into fragments.
+
+**What was built** (`src/ocr/split.py`, between CCL and filtering):
+
+1. Measure the page's glyph height and width with the filter's own ink-weighted
+   estimator, so the splitter and the filter agree on what one glyph is.
+2. Select **suspects**, components at least 1.2 glyph widths wide and 0.6–2.5 glyph
+   heights tall, with array operations on CCL's `stats` (a noisy photo carries tens of
+   thousands of components).
+3. **Re-threshold** each suspect inside its own mask, with a window of 0.4× the glyph
+   height. Accept the result only if it yields ≥2 parts of at least 0.4× the suspect's
+   height. A re-threshold that merely fragments strokes is rejected, so this step
+   cannot make a glyph worse than it was.
+4. Optionally **cut at low-ink columns** whatever still touches. This is *off by
+   default*: it assumes glyphs are separate shapes that meet at thin points, which is
+   false for Arabic (joined within a word) and Devanagari (a continuous headline). It
+   should be enabled per region once Phase 7 tags regions by script.
+
+The thresholds were tuned on a **held-out** synthetic set (seed 11) with
+`scripts/tune_split.py`, which refuses to run on the published benchmark. Every
+re-threshold setting in the grid landed within about two points of the best.
+
+**What splitting exposed in the filter.** Small-mark retention appeared to drop when
+splitting went in. In fact the drop exposed an existing bug: a full stop, comma,
+decimal point or hyphen sits *beside* its neighbour, never above or below it, so
+`_find_parent` cannot find it. Before splitting, such marks survived only by being
+fused to the glyph before them, which the metric counted as "retained". Separated, they
+were routed to NOISE as orphans, and `1,234.56` became `123456`.
+`_find_line_neighbour` now keeps a small mark that sits beside a normal glyph, from
+mid-height down to just below the baseline, as TEXT with reason `t2:punctuation`. With
+the splitter off, retention on the held-out set rose from 81.6% to **98.1%**. The old
+figure had been inflated by merges all along.
+
 ## Known limitations
 
 - **Ground-truth boxes are axis-aligned**, so under perspective warp we store the

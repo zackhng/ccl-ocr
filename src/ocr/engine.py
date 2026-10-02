@@ -15,10 +15,11 @@ import cv2
 import numpy as np
 
 from .binarize import binarize
-from .ccl import label_components
+from .ccl import label_with_maps
 from .config import DEFAULT_CONFIG, PipelineConfig
 from .filters import filter_components
 from .preprocess import Preprocessed, preprocess
+from .split import split_merged
 from .timing import StageTimer
 from .types import PageResult
 
@@ -72,7 +73,14 @@ class CCLEngine:
 
         pre = preprocess(image, cfg.preprocess, timer)
         binary, recovered = binarize(pre.gray, cfg.binarize, cfg.connectivity, timer)
-        components = label_components(binary, cfg.connectivity, timer)
+        components, labels, stats = label_with_maps(binary, cfg.connectivity, timer)
+
+        split = split_merged(
+            pre.gray, binary, labels, stats, cfg.split, cfg.filters, cfg.connectivity, timer
+        )
+        binary = split.binary
+        components = split.apply(components)
+        split_stats = split.stats
 
         proc_h, proc_w = binary.shape[:2]
         filter_stats = filter_components(components, proc_w, proc_h, cfg.filters, timer)
@@ -99,6 +107,7 @@ class CCLEngine:
                 "recovered_inverted_regions": recovered,
                 "processed_size": [proc_w, proc_h],
                 "filter": filter_stats.as_dict(),
+                "split": split_stats.as_dict(),
             },
         )
 

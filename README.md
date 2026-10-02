@@ -23,7 +23,7 @@ inherits that ceiling — which is why this is measured before anything is train
 
 ```bash
 uv sync --group dev
-uv run pytest                                   # 138 tests
+uv run pytest                                   # 159 tests
 
 # Materialise the benchmark: checks what is already on disk, downloads only what is
 # missing. Idempotent. --check reports without downloading; --offline skips the network.
@@ -60,16 +60,17 @@ On Windows machines with Application Control (Smart App Control / WDAC), `uv syn
 fail building the project itself. Use `uv sync --no-install-project ...` and run with
 `PYTHONPATH=src`.
 
-**[`RESULTS.md`](RESULTS.md) has the current answer.** Short version: 65.9% character
-isolation recall overall, but 76.3% on scans against 52.7% on photographs, and the
-dominant failure is adjacent glyphs *merging* rather than being lost. That gap, not the
-aggregate, is what decides the next step.
+**[`RESULTS.md`](RESULTS.md) has the current answer.** In short:
+- Phase 0–2 isolated 65.9% of characters overall (76.3% on scans, 52.7% on
+  photographs). The dominant failure was adjacent glyphs *merging*.
+- The Phase 2b merge splitter raises that to **82.0%** (scans 89.1%, photos 73.0%) and
+  cuts merging from 25.9% to 7.4%. It costs +4 ms at P50 and +28 ms at P95.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `src/ocr/` | The engine. `preprocess` → `binarize` → `ccl` → `filters`, wired by `engine.py`. |
+| `src/ocr/` | The engine. `preprocess` → `binarize` → `ccl` → `split` → `filters`, wired by `engine.py`. |
 | `src/ocr/visualize.py` | Overlay rendering. The real Phase 1 gate — look before you trust a metric. |
 | `src/ocrbench/synth/` | Synthetic document generator. The only source of exact per-glyph ground truth, and the only source of NRIC-shaped documents at all. |
 | `src/ocrbench/adapters/` | Normalise each public dataset into one on-disk ground-truth format. |

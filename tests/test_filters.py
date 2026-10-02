@@ -128,6 +128,45 @@ class TestTier2:
         apply_tier2(page, 1000, 1000, CFG)
         assert far.kind is ComponentKind.NOISE
 
+    def test_full_stop_beside_a_glyph_is_punctuation(self):
+        """Sits beside its neighbour on the baseline, never above it, so the parent
+        search cannot find it. Losing it turns "1,234.56" into "123456"."""
+        page = self._page()
+        stop = make(x=19 * 15 + 12, y=116, w=4, h=4, fill=1.0, cid=99)  # after the last glyph
+        page.append(stop)
+        apply_tier2(page, 1000, 1000, CFG)
+        assert stop.kind is ComponentKind.TEXT
+        assert stop.reason == "t2:punctuation"
+
+    def test_comma_tail_below_the_baseline_is_punctuation(self):
+        page = self._page()
+        comma = make(x=19 * 15 + 12, y=117, w=3, h=7, fill=0.8, cid=99)  # reaches 4 px below
+        page.append(comma)
+        apply_tier2(page, 1000, 1000, CFG)
+        assert comma.kind is ComponentKind.TEXT
+
+    def test_hyphen_at_mid_height_is_punctuation(self):
+        page = self._page()
+        hyphen = make(x=19 * 15 + 12, y=109, w=6, h=3, fill=1.0, cid=99)
+        page.append(hyphen)
+        apply_tier2(page, 1000, 1000, CFG)
+        assert hyphen.reason == "t2:punctuation"
+
+    def test_speck_a_word_gap_away_is_still_noise(self):
+        page = self._page()
+        speck = make(x=19 * 15 + 10 + 20, y=116, w=4, h=4, fill=1.0, cid=99)  # 20 px = 1x median
+        page.append(speck)
+        apply_tier2(page, 1000, 1000, CFG)
+        assert speck.kind is ComponentKind.NOISE
+
+    def test_mark_level_with_the_top_of_a_glyph_is_not_punctuation(self):
+        """Beside the glyph but up at cap height: not where punctuation sits."""
+        page = self._page()
+        mark = make(x=19 * 15 + 12, y=100, w=4, h=4, fill=1.0, cid=99)
+        page.append(mark)
+        apply_tier2(page, 1000, 1000, CFG)
+        assert mark.kind is ComponentKind.NOISE
+
     def test_relative_gates_can_be_disabled(self):
         page = self._page()
         tall = make(x=500, y=50, w=60, h=120, fill=0.6, cid=99)

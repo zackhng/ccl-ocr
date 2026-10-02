@@ -138,15 +138,90 @@ class FilterConfig:
     """Maximum vertical gap to the parent, in units of median height. Covers a dotted
     i/j above and a cedilla below."""
 
+    # --- Punctuation recovery ---
+    punctuation_max_gap_ratio: float = 0.6
+    """A small mark is punctuation rather than noise if a normal glyph sits beside it
+    within this horizontal gap (in units of median height). Covers the space before a
+    full stop and the tight spacing of "1,234.56"; a word gap is wider."""
+
+    punctuation_below_baseline_ratio: float = 0.35
+    """How far below the neighbour's bottom a punctuation mark may reach — a comma's
+    tail descends below the baseline."""
+
     min_components_for_stats: int = 12
     """Below this count the median height is not trustworthy, so Tier 2 is skipped
     entirely and only the absolute gates apply. Relevant for near-empty crops."""
 
 
 @dataclass(frozen=True, slots=True)
+class SplitConfig:
+    """Splitting of merged glyphs, between CCL and filtering (Phase 2b).
+
+    Merging, not loss, is the dominant isolation failure: on photographs 37.8% of
+    glyphs reached the classifier fused with a neighbour. The page-wide adaptive window
+    (``BinarizeConfig.block_size``, 35 px) is about twice the glyph height, so it
+    averages across neighbours and fills the grey seam between touching glyphs.
+    Shrinking it everywhere opens the seams but breaks strokes inside glyphs, and
+    plateaus around 68-70% isolation on photos. So the large window stays, and only
+    components too wide to be one glyph are re-examined. All ratios are relative to the
+    page's glyph height / width, measured with the filter's own robust estimator.
+
+    Defaults were chosen by ``scripts/tune_split.py`` on a *held-out* synthetic set
+    (seed 11), never on the published benchmark (seed 7) the results are reported on.
+    The plateau is flat: every re-threshold setting in the grid landed within ~2 points
+    of the best, which is what a real effect looks like rather than a fitted one.
+    """
+
+    enabled: bool = True
+
+    suspect_width_ratio: float = 1.2
+    """A component at least this many median glyph widths wide is a merge suspect."""
+
+    suspect_min_height_ratio: float = 0.6
+    suspect_max_height_ratio: float = 2.5
+    """Only glyph-height components are suspects. Shorter ones are punctuation, rules
+    and underlines; taller ones are headings or blobs that Tier 2 routes anyway."""
+
+    max_suspects: int = 1500
+    """Latency guard, like ``MAX_RECOVERED_REGIONS`` in binarisation. Suspects are
+    processed widest first, so a cap drops the narrowest — the least likely to hold
+    several glyphs. Hit only by pathological pages: the noisiest receipt in the
+    benchmark measures 5 px "glyphs" and yields ~4,500 suspects."""
+
+    small_block_ratio: float = 0.4
+    """Window of the local re-threshold, as a fraction of glyph height. Small enough
+    to resolve a one-pixel grey seam between glyphs."""
+
+    small_c: float = 10.0
+
+    min_part_height: float = 0.4
+    """A re-threshold is accepted only if it yields >= 2 parts each at least this
+    fraction of the suspect's height. Below that, the small window has broken strokes
+    rather than separated glyphs, and the suspect is left as it was."""
+
+    split_touching_columns: bool = False
+    """Cut what is still touching at low-ink columns.
+
+    **Off by default, deliberately.** Column cutting assumes glyphs are separate
+    shapes that touch at thin points, which is a Latin assumption. Arabic letters
+    within a word are joined, and Devanagari words hang from a continuous headline
+    (shirorekha); cutting at low-ink columns destroys both. Script detection arrives in
+    Phase 7, which should enable this per region once a region is tagged Latin."""
+
+    cut_max_ink: float = 0.3
+    """A column is a cut candidate if its ink is at most this fraction of the
+    component's densest column."""
+
+    min_piece_width: float = 0.8
+    """Pieces narrower than this many median glyph widths are not produced; an ``m``
+    is not three ``i``s."""
+
+
+@dataclass(frozen=True, slots=True)
 class PipelineConfig:
     preprocess: PreprocessConfig = field(default_factory=PreprocessConfig)
     binarize: BinarizeConfig = field(default_factory=BinarizeConfig)
+    split: SplitConfig = field(default_factory=SplitConfig)
     filters: FilterConfig = field(default_factory=FilterConfig)
 
     connectivity: Literal[4, 8] = 8
@@ -161,6 +236,7 @@ class PipelineConfig:
         return cls(
             preprocess=PreprocessConfig(**d.get("preprocess", {})),
             binarize=BinarizeConfig(**d.get("binarize", {})),
+            split=SplitConfig(**d.get("split", {})),
             filters=FilterConfig(**d.get("filters", {})),
             connectivity=d.get("connectivity", 8),
         )

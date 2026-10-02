@@ -1,3 +1,53 @@
+# Phase 2b result — splitting merged glyphs
+
+Published benchmark (seed 7, 245 documents, 57,548 GT characters). Thresholds tuned on
+a separate held-out set (seed 11), never on this one. All four runs were made on the
+same idle machine, back to back. Runs are in [`bench/results/phase2b/`](bench/results/phase2b).
+
+| | Phase 0–2 | splitter off | **splitter (default)** | + column cut |
+|---|---|---|---|---|
+| isolation recall | 65.9% | 66.2% | **82.0%** | 84.3% |
+| merged | 25.9% | 25.9% | **7.4%** | 4.2% |
+| missed | 6.9% | 6.6% | 7.8% | 8.0% |
+| over-segmented | 1.3% | 1.3% | 2.8% | 3.5% |
+| P50 / P95 ms | 22.6 / 57.7 | 23.9 / 63.4 | **27.0 / 85.7** | 29.2 / 114.9 |
+
+| capture | Phase 0–2 isolated | default isolated | Phase 0–2 merged | default merged |
+|---|---|---|---|---|
+| photo | 52.7% | **73.0%** | 37.8% | 12.6% |
+| scan | 76.3% | **89.1%** | 16.5% | 3.3% |
+
+**Every slice improves:**
+- By template: forms 67.5% → 89.9%, plain Latin 67.8% → 87.0%, cheques 62.3% → 77.9%,
+  receipts 63.5% → 74.5%, ID cards 59.3% → 68.3%.
+- Han 80.2% → 85.0%. The width gate leaves square glyphs alone.
+- Junk falls in every slice.
+
+**Small-mark retention** goes from 69–79% to ~99%. That is a filter fix splitting
+exposed: baseline punctuation was only ever "retained" by being merged into its
+neighbour. See `docs/DESIGN.md` §10.
+
+**Real documents (no character GT) hold:**
+- Line recall: SROIE 95.6% → 95.4%, FUNSD 96.0% → 96.6%.
+- Word hit rate: SROIE 98.4% → 98.4%, FUNSD 92.2% → 94.6%.
+
+**What it costs:**
+- **Latency:** +4.4 ms at P50 and +28 ms at P95. The P95 cost is cheques: 2365 px
+  scans with ~400 merge suspects each, at ~18 ms of splitting apiece. The slowest
+  document (a pathologically noisy receipt) goes from 472 to 498 ms. The suspect cap
+  bounds splitting at 28 ms on any page.
+- **Misses rise slightly** on degraded captures: photo 8.2% → 10.2%, hard_photo
+  12.1% → 18.4%. An accepted re-threshold applies the finer threshold to the whole
+  suspect, which on the worst captures can break a stroke in one of the glyphs it
+  separated. Isolation still improves on net in every slice.
+
+**The column cut is implemented but off by default.** It adds 2.3 points here. On
+Arabic or Devanagari it would cut through letters that are joined by design, and
+script detection (Phase 7) does not exist yet. Phase 7 should enable it per region
+once regions are tagged Latin.
+
+---
+
 # Phase 0–2 result
 
 Run `20261001T145727Z` · 245 documents · CCL engine, no neural network

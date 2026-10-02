@@ -153,6 +153,10 @@ class Component:
     reason: str = ""
     """Which gate decided :attr:`kind`. Diagnostic only — drives the overlay legend."""
 
+    split: bool = False
+    """Produced by the merge splitter (Phase 2b) rather than by plain CCL. Diagnostic
+    only — lets the overlay show where splitting happened."""
+
     @property
     def aspect_ratio(self) -> float:
         """Width over height. Tall glyphs < 1, wide rules >> 1."""
