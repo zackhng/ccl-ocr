@@ -1,3 +1,81 @@
+# Phase 6 result — CCL against PaddleOCR
+
+245 documents, each engine run 1 + 5 times per document on the same idle machine
+(8 threads for both). `ccl` is the Phase 2b engine. Paddle is PP-OCRv5 mobile on CPU
+with oneDNN. Full report: [`bench/results/phase6/comparison.md`](bench/results/phase6/comparison.md).
+Per-engine runs: `bench/results/phase6/{ccl,paddle-det,paddle}/`.
+
+## Verdict: GO
+
+All six criteria were fixed before the run, and all pass, overall and on photographs:
+
+| slice | criterion | value | limit |
+|---|---|---|---|
+| overall | CCL P50 / Paddle P50 | **0.04** (27.8 vs 718.7 ms) | ≤ 0.50 |
+| overall | CCL P95 / Paddle P95 | **0.05** (86.7 vs 1878.7 ms) | ≤ 0.50 |
+| overall | line recall gap vs Paddle detector | **1.1 pts** (96.5% vs 97.6%) | ≤ 10 pts |
+| photo | CCL P50 / Paddle P50 | **0.06** (25.9 vs 400.1 ms) | ≤ 0.50 |
+| photo | CCL P95 / Paddle P95 | **0.03** (36.2 vs 1431.1 ms) | ≤ 0.50 |
+| photo | line recall gap vs Paddle detector | **2.0 pts** (96.6% vs 98.6%) | ≤ 10 pts |
+
+## What it means
+
+**This is not CCL beating Paddle.** CCL stops at character candidates and reads
+nothing yet; Paddle returns text. What the run measures is the room left for the
+stages still to be built:
+
+| | P50 | P5 (tightest docs) |
+|---|---|---|
+| Paddle time − CCL time, same document | **691 ms** | 287 ms |
+| components to classify per document | 421 | P95 2,115 |
+| time available per component | **1.5 ms** | **0.45 ms** |
+
+A batched tiny 32×32 CNN on CPU costs tens of µs per glyph, an order of magnitude
+inside that budget. The architecture's latency premise holds with a wide margin.
+
+**Like-for-like detection** (both stop at "where is the text"):
+- CCL P50 27.8 ms against `paddle-det` 70.3 ms.
+- P95 86.7 ms against 107.8 ms.
+
+Paddle spends **91% of its time recognising**: about 625 ms per document at the median.
+
+**Where CCL is weaker:**
+- **Spurious boxes:** 25.6% of CCL's surviving components sit on no text line, against
+  1.9% for Paddle (31.9% vs 1.9% on photos). This is the junk the Phase 0–2 report
+  flagged. It costs classifier time, not accuracy, and it is already inside the budget
+  above (which counts every surviving component). A non-text class in the CNN, or a
+  line-grouping pass that drops orphans, should absorb it.
+- **Localisation:** coverage is 93.1% against 97.2%, and line recall is 1–2 points
+  behind.
+
+## The bar Phase 3+ has to clear
+
+Paddle's recognition accuracy on the same documents. CER is whitespace-free, so
+dropped spaces are charged in word F1 instead.
+
+| slice | CER | word F1 |
+|---|---|---|
+| all | **5.7%** | 78.1% |
+| synthetic | 2.6% | 87.5% |
+| SROIE receipts | 10.4% | 61.7% |
+| FUNSD forms | 9.8% | 65.4% |
+| Han | 0.7% | 99.5% |
+| ID cards | 2.5% | 71.2% |
+| cheques | 6.4% | 70.6% |
+
+The low word F1 next to a low CER is mostly Paddle dropping spaces ("ROCNO:538358-H").
+That is a real weakness, and one CCL's explicit gap measurement (Phase 5) should not
+share.
+
+## Caveats
+- Paddle uses its own resize defaults (no long-side cap). CCL caps at 1600 px.
+- paddlepaddle is pinned to 3.1.1. 3.3.x crashes with oneDNN on Windows, and running
+  without oneDNN would make Paddle 3–5× slower and this comparison meaningless.
+- SROIE transcripts omit some printed text on annotated lines, which inflates CER for
+  any engine. The synthetic rows are the cleanest target.
+
+---
+
 # Phase 2b result — splitting merged glyphs
 
 Published benchmark (seed 7, 245 documents, 57,548 GT characters). Thresholds tuned on
