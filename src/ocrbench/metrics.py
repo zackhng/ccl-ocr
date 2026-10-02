@@ -38,6 +38,7 @@ from statistics import median
 
 import numpy as np
 
+from ocr.group import reading_order
 from ocr.types import BBox, Component, ComponentKind, PageResult
 
 from .gt import Sample
@@ -333,6 +334,85 @@ class TextMetrics:
 
 
 @dataclass(slots=True)
+class GroupingMetrics:
+    """Did the engine's words and lines match the annotated ones? (Phase 5)
+
+    One-to-one matching at IoU >= :data:`GROUP_IOU`, so a line split in two scores
+    one hit at best, and a merge of two GT words scores none. Splits and merges are
+    counted separately because they have different fixes (word gap too small, too
+    large). Precision is ``None`` where GT is incomplete: a box on unannotated text is
+    not a false positive.
+    """
+
+    n_gt_lines: int = 0
+    n_pred_lines: int = 0
+    tp_lines: int = 0
+    n_gt_words: int = 0
+    n_pred_words: int = 0
+    tp_words: int = 0
+    word_splits: int = 0
+    """GT words covered by two or more predicted words."""
+    word_merges: int = 0
+    """Predicted words covering two or more GT words."""
+    gt_complete: bool = True
+
+    # Precision counts, from complete-GT samples only. Kept apart from the recall
+    # counts so an aggregate can report precision over the samples where it is
+    # defined instead of becoming undefined for all of them because one sample (a
+    # cheque with field-only GT) is incomplete.
+    p_tp_lines: int = 0
+    p_pred_lines: int = 0
+    p_tp_words: int = 0
+    p_pred_words: int = 0
+
+    # Recall ceiling: matches against emitted *and* rejected lines (Phase 5 sets junk
+    # lines aside rather than deleting them). The gap to plain recall is what the junk
+    # gates cost, and what a recogniser could win back by reading rejected lines.
+    tp_lines_any: int = 0
+    tp_words_any: int = 0
+
+    @property
+    def line_recall_ceiling(self) -> float:
+        return _safe_div(self.tp_lines_any, self.n_gt_lines)
+
+    @property
+    def word_recall_ceiling(self) -> float:
+        return _safe_div(self.tp_words_any, self.n_gt_words)
+
+    @staticmethod
+    def _prf(tp: int, n_gt: int, p_tp: int, p_pred: int) -> tuple[float | None, float, float | None]:
+        p = _safe_div(p_tp, p_pred) if p_pred else None
+        r = _safe_div(tp, n_gt)
+        f = None if p is None else _safe_div(2 * p * r, p + r)
+        return p, r, f
+
+    @property
+    def line_prf(self) -> tuple[float | None, float, float | None]:
+        return self._prf(self.tp_lines, self.n_gt_lines, self.p_tp_lines, self.p_pred_lines)
+
+    @property
+    def word_prf(self) -> tuple[float | None, float, float | None]:
+        return self._prf(self.tp_words, self.n_gt_words, self.p_tp_words, self.p_pred_words)
+
+    def as_dict(self) -> dict:
+        lp, lr, lf = self.line_prf
+        wp, wr, wf = self.word_prf
+        r4 = lambda v: None if v is None else round(v, 4)  # noqa: E731
+        return {
+            "n_gt_lines": self.n_gt_lines, "n_pred_lines": self.n_pred_lines,
+            "tp_lines": self.tp_lines, "n_gt_words": self.n_gt_words,
+            "n_pred_words": self.n_pred_words, "tp_words": self.tp_words,
+            "word_splits": self.word_splits, "word_merges": self.word_merges,
+            "gt_complete": self.gt_complete,
+            "p_tp_lines": self.p_tp_lines, "p_pred_lines": self.p_pred_lines,
+            "p_tp_words": self.p_tp_words, "p_pred_words": self.p_pred_words,
+            "tp_lines_any": self.tp_lines_any, "tp_words_any": self.tp_words_any,
+            "line_precision": r4(lp), "line_recall": r4(lr), "line_f1": r4(lf),
+            "word_precision": r4(wp), "word_recall": r4(wr), "word_f1": r4(wf),
+        }
+
+
+@dataclass(slots=True)
 class SampleMetrics:
     sample_id: str
     source: str
@@ -346,6 +426,7 @@ class SampleMetrics:
     components, and zeros would read as a failure rather than 'not applicable'."""
     regions: RegionMetrics | None = None
     text: TextMetrics | None = None
+    grouping: GroupingMetrics | None = None
     timings_ms: dict[str, float] = field(default_factory=dict)
     kind_counts: dict[str, int] = field(default_factory=dict)
     meta: dict = field(default_factory=dict)
@@ -362,6 +443,7 @@ class SampleMetrics:
             "words": None if self.words is None else self.words.as_dict(),
             "regions": None if self.regions is None else self.regions.as_dict(),
             "text": None if self.text is None else self.text.as_dict(),
+            "grouping": None if self.grouping is None else self.grouping.as_dict(),
             "timings_ms": self.timings_ms,
             "kind_counts": self.kind_counts,
             "meta": self.meta,
@@ -384,6 +466,7 @@ class SampleMetrics:
             words=words,
             regions=_counts_from_dict(RegionMetrics, d.get("regions")),
             text=_counts_from_dict(TextMetrics, d.get("text")),
+            grouping=_counts_from_dict(GroupingMetrics, d.get("grouping")),
             timings_ms=d.get("timings_ms", {}),
             kind_counts=d.get("kind_counts", {}),
             meta=d.get("meta", {}),
@@ -743,20 +826,9 @@ and again as an insertion (CER 185% on a form whose word F1 was 92%)."""
 
 
 def _reading_order(items: list[tuple[BBox, str]]) -> list[str]:
-    """Texts in reading order: rows top to bottom, left to right within a row.
-
-    A plain (y, x) sort is not enough: two halves of one split line can differ in y
-    by a pixel and would come out right-half-first. Items join the current row while
-    their vertical centre is within half a height of the row's first item."""
-    rows: list[list[tuple[BBox, str]]] = []
-    for b, t in sorted(items, key=lambda it: it[0].cy):
-        if rows:
-            ref = rows[-1][0][0]
-            if abs(b.cy - ref.cy) <= 0.5 * min(b.h, ref.h):
-                rows[-1].append((b, t))
-                continue
-        rows.append([(b, t)])
-    return [t for row in rows for _, t in sorted(row, key=lambda it: it[0].x)]
+    """Texts in reading order; the ordering itself is the engine's
+    (:func:`ocr.group.reading_order`), so metrics and pipeline cannot disagree."""
+    return [items[i][1] for i in reading_order([b for b, _ in items])]
 
 
 def text_metrics(sample: Sample, result: PageResult) -> TextMetrics | None:
@@ -834,6 +906,78 @@ def text_metrics(sample: Sample, result: PageResult) -> TextMetrics | None:
     return m
 
 
+GROUP_IOU = 0.5
+
+ENTITY_LINE_SOURCES = frozenset({"funsd"})
+"""Sources whose "lines" are not visual lines. FUNSD annotates form *entities*: one can
+span three printed lines, and a label and its value are two entities on one line
+(DESIGN.md §9). Scoring visual line segments against them would measure the
+annotation scheme. Their words are still scored."""
+
+
+def _match(pred: list[BBox], gt: list[BBox]) -> int:
+    """One-to-one greedy matching at IoU >= GROUP_IOU, best pairs first."""
+    if not pred or not gt:
+        return 0
+    index = BoxIndex(gt)
+    pairs = []
+    for j, pb in enumerate(pred):
+        for i in index.query(pb):
+            v = pb.iou(gt[i])
+            if v >= GROUP_IOU:
+                pairs.append((v, i, j))
+    pairs.sort(reverse=True)
+    used_g: set[int] = set()
+    used_p: set[int] = set()
+    for _, i, j in pairs:
+        if i not in used_g and j not in used_p:
+            used_g.add(i)
+            used_p.add(j)
+    return len(used_g)
+
+
+def grouping_metrics(sample: Sample, result: PageResult) -> GroupingMetrics | None:
+    """Line and word matching. ``None`` when the engine produced no lines."""
+    if not result.lines and not result.rejected_lines:
+        return None
+    every = result.lines + result.rejected_lines
+    gt_complete = bool(sample.meta.get("gt_complete", sample.source == "synth"))
+    m = GroupingMetrics(gt_complete=gt_complete)
+
+    if sample.source not in ENTITY_LINE_SOURCES and sample.lines:
+        pred_lines = [ln.bbox for ln in result.lines]
+        gt_lines = [g.bbox for g in sample.lines]
+        m.n_gt_lines, m.n_pred_lines = len(gt_lines), len(pred_lines)
+        m.tp_lines = _match(pred_lines, gt_lines)
+        m.tp_lines_any = _match([ln.bbox for ln in every], gt_lines)
+        if gt_complete:
+            m.p_tp_lines, m.p_pred_lines = m.tp_lines, m.n_pred_lines
+
+    if sample.words:
+        pred_words = [w.bbox for ln in result.lines for w in ln.words]
+        gt_words = [g.bbox for g in sample.words]
+        m.n_gt_words, m.n_pred_words = len(gt_words), len(pred_words)
+        m.tp_words = _match(pred_words, gt_words)
+        m.tp_words_any = _match([w.bbox for ln in every for w in ln.words], gt_words)
+        if gt_complete:
+            m.p_tp_words, m.p_pred_words = m.tp_words, m.n_pred_words
+        index = BoxIndex(gt_words)
+        inside: list[int] = [0] * len(gt_words)
+        for pb in pred_words:
+            covered = 0
+            for i in index.query(pb):
+                gb = gt_words[i]
+                inter = pb.intersection_area(gb)
+                if inter >= 0.5 * pb.area:
+                    inside[i] += 1
+                if inter >= 0.5 * gb.area:
+                    covered += 1
+            if covered >= 2:
+                m.word_merges += 1
+        m.word_splits = sum(1 for n in inside if n >= 2)
+    return m
+
+
 def evaluate(sample: Sample, result: PageResult) -> SampleMetrics:
     # A line-level engine (PaddleOCR) has lines and no components. Keyed on that rather
     # than on emptiness, so a blank page through CCL still reports its word metrics.
@@ -849,6 +993,7 @@ def evaluate(sample: Sample, result: PageResult) -> SampleMetrics:
         words=word_metrics(sample, result) if has_components else None,
         regions=region_metrics(sample, result),
         text=text_metrics(sample, result),
+        grouping=grouping_metrics(sample, result),
         timings_ms=result.timings_ms,
         kind_counts=result.kind_counts(),
         meta={

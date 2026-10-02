@@ -121,6 +121,14 @@ def cmd_run(args: argparse.Namespace) -> int:
     text = runner.aggregate_text(s.text for s in result.samples)
     if text.n_gt_chars:
         print(f"  CER {text.cer:.1%}, word F1 {text.word_f1:.1%}")
+    grouping = runner.aggregate_grouping(s.grouping for s in result.samples)
+    if grouping.n_gt_words:
+        lp, lr, lf = grouping.line_prf
+        wp, wr, wf = grouping.word_prf
+        print(f"  grouping: line F1 {lf or 0:.1%} (P {lp or 0:.1%} R {lr:.1%}, "
+              f"ceiling {grouping.line_recall_ceiling:.1%}), "
+              f"word F1 {wf or 0:.1%} (P {wp or 0:.1%} R {wr:.1%}, "
+              f"ceiling {grouping.word_recall_ceiling:.1%})")
     print(f"\n  {summary_path}")
     return 0
 

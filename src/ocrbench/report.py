@@ -15,6 +15,7 @@ from .metrics import SampleMetrics
 from .runner import (
     RunResult,
     aggregate_chars,
+    aggregate_grouping,
     aggregate_regions,
     aggregate_text,
     aggregate_words,
@@ -182,6 +183,27 @@ def build(result: RunResult) -> str:
 
     for name, group in slice_by(samples, lambda s: s.capture).items():
         parts += [f"### {name} ({len(group)} samples)", "", latency_table(group), ""]
+
+    parts += ["## Grouping (Phase 5)", "",
+              "Line segments and words against the annotated ones, one-to-one at IoU >= 0.5. "
+              "Line rows exclude FUNSD, whose lines are form entities. n/a precision = "
+              "incomplete GT.", ""]
+    for title, key in (("capture", lambda s: s.capture), ("template", lambda s: s.template or "-"),
+                       ("script", lambda s: s.script), ("source", lambda s: s.source)):
+        rows = []
+        for name, group in slice_by(samples, key).items():
+            agg = aggregate_grouping(s.grouping for s in group)
+            if not (agg.n_gt_lines or agg.n_gt_words):
+                continue
+            lp, lr, lf = agg.line_prf
+            wp, wr, wf = agg.word_prf
+            rows.append([name, agg.n_gt_lines, _pct(lp), _pct(lr), _pct(agg.line_recall_ceiling), _pct(lf),
+                         agg.n_gt_words, _pct(wp), _pct(wr), _pct(agg.word_recall_ceiling), _pct(wf),
+                         agg.word_splits, agg.word_merges])
+        if rows:
+            parts += [f"### By {title}", "", _table(
+                ["slice", "GT lines", "line P", "line R", "R ceiling", "line F1", "GT words",
+                 "word P", "word R", "R ceiling", "word F1", "word splits", "word merges"], rows), ""]
 
     parts += [
         "## Component routing",

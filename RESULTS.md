@@ -1,3 +1,53 @@
+# Phase 5 result — grouping characters into words and lines
+
+Published benchmark, Phase 2b engine plus grouping. Thresholds were tuned on the
+held-out seed-11 set. Run: [`bench/results/phase5/`](bench/results/phase5). Lines are
+line *segments*: a gap of 2.5 glyph heights breaks a row, matching per-field GT. Scoring
+is one-to-one matching at IoU ≥ 0.5.
+
+| slice | line P | line R | line F1 | word P | word R | word F1 |
+|---|---|---|---|---|---|---|
+| synthetic, all | 80.8% | 85.6% | **83.2%** | 79.5% | 87.7% | **83.4%** |
+| synthetic photo | 74.0% | 81.0% | 77.3% | 71.6% | 81.5% | 76.2% |
+| plain Latin | 100% | 100% | 100% | 92.3% | 97.7% | 95.0% |
+| forms | 98.7% | 99.5% | 99.1% | 69.9% | 57.5% | 63.1% |
+| cheques | 89.0% | 75.1% | 81.4% | 68.2% | 77.4% | 72.5% |
+| ID cards | 56.4% | 76.1% | 64.8% | 49.8% | 67.0% | 57.1% |
+| Han | 63.9% | 63.9% | 63.9% | 66.9% | 67.6% | 67.2% |
+| SROIE (lines only) | 44.5% | 64.8% | 52.7% | — | — | — |
+| FUNSD (words only) | — | — | — | 64.2% | 48.6% | 55.3% |
+
+Grouping adds ~2 ms at P50 and ~7 ms at P95 (total P50 29.2 ms, P95 97 ms).
+
+**What works.** Running text and forms are essentially solved at line level (99–100%).
+Two things were found and fixed with the held-out set:
+- **Monospaced receipts.** Their letter gaps exceed a fixed word-gap threshold. A
+  per-line threshold (at least 2× the line's median gap) raised word F1 by 4–6 points.
+- **Barcodes.** Each bar is glyph-tall, so the bars chain into a "line". They are now
+  gated by aspect ratio, with a margin so a run of `1`s is never mistaken for one.
+
+**Junk lines are routed, not deleted.** Lines failing a junk gate go to
+`PageResult.rejected_lines` with the gate's name. Geometry cannot tell a row of small
+print from a texture, so the recogniser gets the final say. Counting rejected lines
+lifts recall only 1–2 points (the "ceiling" column in the run's summary), so the
+gates are not where recall is lost.
+
+**Where it is weak, and why:**
+- **SROIE lines:** receipts print columns ("QTY   PRICE   TOTAL") that SROIE annotates
+  as one line, and our segmenter splits them at the 2.5 h gap. This is partly a
+  granularity mismatch, not only an error.
+- **FUNSD words:** 505 merged words. Faxed forms with very tight spacing, plus the
+  per-line median threshold, run words together.
+- **ID cards:** banner text fused with the banner, and portrait texture (see the
+  isolation dossier).
+- **Forms (words):** 534 merges. Field values are printed close to their labels.
+- **Han:** 64% line F1, not yet investigated.
+
+Word errors show up as missing or extra spaces in the recognised text. Whitespace-free
+CER will not see them; word F1 will.
+
+---
+
 # Phase 6 result — CCL against PaddleOCR
 
 245 documents, each engine run 1 + 5 times per document on the same idle machine

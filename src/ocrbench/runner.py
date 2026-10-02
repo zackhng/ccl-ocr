@@ -31,7 +31,15 @@ from ocr.config import DEFAULT_CONFIG, PipelineConfig
 from ocr.engine import CCLEngine, Engine, load_image
 
 from .gt import BenchmarkStore, Sample
-from .metrics import CharMetrics, RegionMetrics, SampleMetrics, TextMetrics, WordMetrics, evaluate
+from .metrics import (
+    CharMetrics,
+    GroupingMetrics,
+    RegionMetrics,
+    SampleMetrics,
+    TextMetrics,
+    WordMetrics,
+    evaluate,
+)
 
 PERCENTILES = (50, 95, 99)
 
@@ -186,6 +194,33 @@ def aggregate_text(metrics: Iterable[TextMetrics | None]) -> TextMetrics:
         out.n_gt_words += m.n_gt_words
         out.n_pred_words += m.n_pred_words
         out.matched_words += m.matched_words
+        out.gt_complete = out.gt_complete and m.gt_complete
+    if not any_seen:
+        out.gt_complete = False
+    return out
+
+
+def aggregate_grouping(metrics: Iterable[GroupingMetrics | None]) -> GroupingMetrics:
+    out = GroupingMetrics()
+    any_seen = False
+    for m in metrics:
+        if m is None:
+            continue
+        any_seen = True
+        out.n_gt_lines += m.n_gt_lines
+        out.n_pred_lines += m.n_pred_lines
+        out.tp_lines += m.tp_lines
+        out.n_gt_words += m.n_gt_words
+        out.n_pred_words += m.n_pred_words
+        out.tp_words += m.tp_words
+        out.word_splits += m.word_splits
+        out.word_merges += m.word_merges
+        out.p_tp_lines += m.p_tp_lines
+        out.p_pred_lines += m.p_pred_lines
+        out.p_tp_words += m.p_tp_words
+        out.p_pred_words += m.p_pred_words
+        out.tp_lines_any += m.tp_lines_any
+        out.tp_words_any += m.tp_words_any
         out.gt_complete = out.gt_complete and m.gt_complete
     if not any_seen:
         out.gt_complete = False

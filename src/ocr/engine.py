@@ -18,6 +18,7 @@ from .binarize import binarize
 from .ccl import label_with_maps
 from .config import DEFAULT_CONFIG, PipelineConfig
 from .filters import filter_components
+from .group import group_components, rescale_lines
 from .preprocess import Preprocessed, preprocess
 from .split import split_merged
 from .timing import StageTimer
@@ -45,12 +46,12 @@ class DebugArtifacts:
 
 
 class CCLEngine:
-    """Connected-component engine. Phases 0-2: no recognition, boxes only.
+    """Connected-component engine: boxes and layout, no recognition yet.
 
     ``run`` returns components with :class:`~ocr.types.ComponentKind` already assigned,
-    in original-image coordinates. Text reconstruction (Phase 5) and character
-    classification (Phase 3) are not implemented, so :attr:`PageResult.lines` is empty
-    and :attr:`PageResult.text` is the empty string.
+    grouped into :attr:`PageResult.lines` of words (Phase 5), all in original-image
+    coordinates. Character classification (Phase 3) is not implemented, so word text,
+    and :attr:`PageResult.text`, are empty.
     """
 
     name = "ccl"
@@ -84,6 +85,9 @@ class CCLEngine:
 
         proc_h, proc_w = binary.shape[:2]
         filter_stats = filter_components(components, proc_w, proc_h, cfg.filters, timer)
+        lines, rejected_lines, group_stats = group_components(
+            components, proc_w, proc_h, filter_stats.median_height, cfg.group, timer
+        )
 
         # Map geometry back to the caller's coordinate frame. pixel_area is deliberately
         # left alone: an ink count does not survive resampling, and fill_ratio was
@@ -94,12 +98,16 @@ class CCLEngine:
                 for c in components:
                     c.bbox = c.bbox.scaled(inv)
                     c.centroid = (c.centroid[0] * inv, c.centroid[1] * inv)
+                rescale_lines(lines, inv)
+                rescale_lines(rejected_lines, inv)
 
         orig_h, orig_w = pre.original_size
         result = PageResult(
             width=orig_w,
             height=orig_h,
             components=components,
+            lines=lines,
+            rejected_lines=rejected_lines,
             timings_ms=timer.as_dict(),
             scale=pre.scale,
             meta={
@@ -108,6 +116,7 @@ class CCLEngine:
                 "processed_size": [proc_w, proc_h],
                 "filter": filter_stats.as_dict(),
                 "split": split_stats.as_dict(),
+                "group": group_stats.as_dict(),
             },
         )
 

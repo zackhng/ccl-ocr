@@ -218,11 +218,80 @@ class SplitConfig:
 
 
 @dataclass(frozen=True, slots=True)
+class GroupConfig:
+    """Grouping of character candidates into words and lines (Phase 5).
+
+    Ratios are in units of the filter's median glyph height. Lines here are line
+    *segments*: a gap wider than ``line_gap_ratio`` breaks a row in two, which is what
+    a form or an ID card needs (``RACE`` and ``SEX`` share a row but are separate
+    fields), and what the ground truth annotates.
+
+    Defaults from ``scripts/tune_group.py`` on the held-out set (seed 11). As with the
+    splitter, the plateau is flat: the gap ratios and junk gates each move F1 by about
+    a point either way.
+    """
+
+    enabled: bool = True
+
+    line_gap_ratio: float = 2.5
+    """Horizontal gap that still joins two glyphs into one line segment."""
+
+    word_gap_ratio: float = 0.25
+    """Gap above which two neighbouring glyphs in a line start a new word. Kerning and
+    letter spacing sit well below it; a printed space sits above."""
+
+    word_gap_median_factor: float = 2.0
+    """...unless the line's own letter spacing is wide: the threshold is also at least
+    this many times the line's median gap. Receipts are set in monospaced type, whose
+    letter gaps are a large fraction of the glyph height; a fixed threshold split their
+    words apart (word precision 55-66% on held-out receipts). 0 disables."""
+
+    core_fraction: float = 0.6
+    """Each glyph contributes the middle fraction of its height to the line mask. The
+    core of a capital, an x-height letter and a descender letter on one line still
+    overlap vertically, while a descender cannot reach the line below."""
+
+    core_cap_ratio: float = 1.0
+    """A core band is at most ``core_fraction * core_cap_ratio`` glyph heights tall,
+    centred on its component. Without the cap, one tall component — text fused to a
+    rule, a large handwritten glyph — contributes a core spanning two rows and chains
+    them into one line (half the lines lost on synthetic cheque photos). Headings are
+    unaffected: their glyphs share a centre row, so their capped cores still chain."""
+
+    # --- Junk-line gates: a line failing one is not emitted (its components remain) ---
+    junk_max_height_ratio: float = 0.7
+    """A *short* line (at most ``junk_small_max_count`` components) whose tallest glyph
+    is below this is made of specks, not text."""
+
+    junk_small_max_count: int = 2
+    """The small-height gate applies only to runs this short. Several small components
+    in a row is small print — "AUTHORISED SIGNATORY", "PAY", a cheque's caption text —
+    not speckle; gating it by height alone dropped such lines wholesale."""
+
+    junk_single_height_ratio: float = 0.9
+    """A one-component line shorter than this is an isolated speck."""
+
+    junk_median_height_ratio: float = 0.6
+    """A line of three or more components whose median height is below this is a
+    texture (a portrait's hair, a hatched background), not a run of glyphs."""
+
+    junk_barcode_aspect: float = 0.15
+    """A line of five or more components whose median width/height is below this is a
+    barcode: each bar is glyph-tall and a few pixels wide, so the bars chain into a
+    "line" exactly as glyphs do. No script's glyphs are that narrow on average.
+
+    The held-out sweep preferred 0.25 (+0.5 pt line F1), which is too close to a run of
+    digit 1s (w/h ~0.25-0.35) — "1111" in an account number must never be dropped as a
+    barcode. 0.15 keeps a margin."""
+
+
+@dataclass(frozen=True, slots=True)
 class PipelineConfig:
     preprocess: PreprocessConfig = field(default_factory=PreprocessConfig)
     binarize: BinarizeConfig = field(default_factory=BinarizeConfig)
     split: SplitConfig = field(default_factory=SplitConfig)
     filters: FilterConfig = field(default_factory=FilterConfig)
+    group: GroupConfig = field(default_factory=GroupConfig)
 
     connectivity: Literal[4, 8] = 8
     """8-connectivity keeps diagonally-touching strokes together; 4 fragments italic
@@ -238,6 +307,7 @@ class PipelineConfig:
             binarize=BinarizeConfig(**d.get("binarize", {})),
             split=SplitConfig(**d.get("split", {})),
             filters=FilterConfig(**d.get("filters", {})),
+            group=GroupConfig(**d.get("group", {})),
             connectivity=d.get("connectivity", 8),
         )
 

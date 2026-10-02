@@ -336,10 +336,12 @@ def apply_tier2(components: list[Component], page_w: int, page_h: int, cfg: Filt
             parent = _find_parent(c, index, median_h, median_h, cfg)
             if parent is not None and c.bbox.h <= cfg.diacritic_max_height_ratio * median_h:
                 _route(c, ComponentKind.DIACRITIC, "t2:diacritic")
-            elif _find_line_neighbour(c, index, median_h, median_h, cfg) is not None:
+                c.anchor_id = parent.id
+            elif (neighbour := _find_line_neighbour(c, index, median_h, median_h, cfg)) is not None:
                 # Punctuation is a character in its own right for the classifier, not
                 # part of its neighbour — so TEXT, not DIACRITIC.
                 c.reason = "t2:punctuation"
+                c.anchor_id = neighbour.id
             else:
                 _route(c, ComponentKind.NOISE, "t2:small_orphan")
 

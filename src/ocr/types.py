@@ -157,6 +157,13 @@ class Component:
     """Produced by the merge splitter (Phase 2b) rather than by plain CCL. Diagnostic
     only — lets the overlay show where splitting happened."""
 
+    anchor_id: int | None = None
+    """For a small mark the filter kept — a diacritic, or baseline punctuation — the
+    :attr:`id` of the full-height glyph it belongs beside. Grouping (Phase 5) attaches
+    the mark to its anchor's word instead of building lines from it: a dot sits above
+    the line's core band and a full stop below it, so their own geometry would start
+    spurious lines."""
+
     @property
     def aspect_ratio(self) -> float:
         """Width over height. Tall glyphs < 1, wide rules >> 1."""
@@ -186,6 +193,9 @@ class Line:
 
     bbox: BBox
     words: list[Word] = field(default_factory=list)
+    rejected: str = ""
+    """Which junk gate set this line aside ("" for an emitted line). Rejected lines
+    live in :attr:`PageResult.rejected_lines`, not :attr:`PageResult.lines`."""
 
     @property
     def text(self) -> str:
@@ -200,6 +210,10 @@ class PageResult:
     height: int
     components: list[Component] = field(default_factory=list)
     lines: list[Line] = field(default_factory=list)
+    rejected_lines: list[Line] = field(default_factory=list)
+    """Candidate lines the grouping junk gates set aside (Phase 5). Routed, not
+    deleted: geometry cannot tell a row of small print from a texture, so a later
+    stage with a recogniser can still read them back."""
     timings_ms: dict[str, float] = field(default_factory=dict)
     scale: float = 1.0
     """Downscale factor applied internally. Boxes are already mapped back; this is

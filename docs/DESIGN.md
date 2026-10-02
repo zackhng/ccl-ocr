@@ -238,6 +238,33 @@ mid-height down to just below the baseline, as TEXT with reason `t2:punctuation`
 the splitter off, retention on the held-out set rose from 81.6% to **98.1%**. The old
 figure had been inflated by merges all along.
 
+## 11. Phase 5: grouping
+
+`src/ocr/group.py`. Lines are built by **run-length smoothing on glyph cores**:
+1. Each full-height glyph paints the middle 60% of its height into a mask, capped at
+   0.6 glyph heights so one tall blob cannot span two rows.
+2. The mask is dilated horizontally by 2.5 glyph heights and labelled.
+3. Each label is a line segment.
+
+Small marks (diacritics, punctuation) do not build lines. They join the word of the
+glyph the filter anchored them to (`Component.anchor_id`): a dot sits above the core
+band and a full stop below it.
+
+Decisions worth keeping:
+
+- **Segments, not full rows.** Forms and ID cards put several fields on one row; the
+  ground truth and every downstream consumer (PII fields) want them apart.
+- **Per-line word threshold.** A fixed 0.25 h gap splits monospaced receipts mid-word.
+  The threshold is also at least 2× the line's median gap.
+- **Junk routed, not deleted** (`PageResult.rejected_lines`). The same principle as the
+  filter (§1). The median-height gate trades ~4 points of photo line recall for ~7 of
+  precision, and only a recogniser can resolve that properly.
+- **Outward rounding of cores at 5 px per glyph.** Inward rounding, tried to keep lines
+  apart at low resolution, cost 2–3 points of word F1 by breaking skewed lines. The
+  mask resolution itself is immaterial between 4 and 12 px per glyph.
+- **Vectorised.** A per-line loop with BBox unions measured P95 10–15 ms. The cost was
+  per-call overhead, not arithmetic.
+
 ## Known limitations
 
 - **Ground-truth boxes are axis-aligned**, so under perspective warp we store the

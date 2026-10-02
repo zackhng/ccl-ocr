@@ -23,7 +23,7 @@ inherits that ceiling — which is why this is measured before anything is train
 
 ```bash
 uv sync --group dev
-uv run pytest                                   # 159 tests
+uv run pytest                                   # 180 tests
 
 # Materialise the benchmark: checks what is already on disk, downloads only what is
 # missing. Idempotent. --check reports without downloading; --offline skips the network.
@@ -70,7 +70,7 @@ fail building the project itself. Use `uv sync --no-install-project ...` and run
 
 | Path | What it is |
 |---|---|
-| `src/ocr/` | The engine. `preprocess` → `binarize` → `ccl` → `split` → `filters`, wired by `engine.py`. |
+| `src/ocr/` | The engine. `preprocess` → `binarize` → `ccl` → `split` → `filters` → `group`, wired by `engine.py`. |
 | `src/ocr/visualize.py` | Overlay rendering. The real Phase 1 gate — look before you trust a metric. |
 | `src/ocrbench/synth/` | Synthetic document generator. The only source of exact per-glyph ground truth, and the only source of NRIC-shaped documents at all. |
 | `src/ocrbench/adapters/` | Normalise each public dataset into one on-disk ground-truth format. |
