@@ -38,7 +38,7 @@ from statistics import median
 
 import numpy as np
 
-from ocr.types import BBox, ComponentKind, PageResult
+from ocr.types import BBox, Component, ComponentKind, PageResult
 
 from .gt import Sample
 
@@ -394,8 +394,33 @@ def _surviving_boxes(result: PageResult) -> list[BBox]:
     return [c.bbox for c in result.components if c.kind in SURVIVING_KINDS]
 
 
-def char_metrics(sample: Sample, result: PageResult) -> CharMetrics:
-    """Per-character outcomes. Requires ``sample.chars``."""
+@dataclass(slots=True)
+class CharOutcome:
+    """One ground-truth character's fate, for diagnosis rather than scoring.
+
+    ``components`` index into :func:`surviving_components` of the same result: the
+    component(s) that swallowed it (merged), matched it ambiguously, or split it
+    (over-segmented). Empty for isolated and missed characters."""
+
+    index: int
+    outcome: str
+    """isolated | merged | ambiguous | over_segmented | missed"""
+    components: list[int] = field(default_factory=list)
+
+
+def surviving_components(result: PageResult) -> list[Component]:
+    """The components that reach the classifier, in the order the metrics index them."""
+    return [c for c in result.components if c.kind in SURVIVING_KINDS]
+
+
+def char_metrics(
+    sample: Sample, result: PageResult, detail: list[CharOutcome] | None = None
+) -> CharMetrics:
+    """Per-character outcomes. Requires ``sample.chars``.
+
+    Pass a list as ``detail`` to also receive each character's :class:`CharOutcome`
+    (``scripts/diagnose_isolation.py`` uses it); the counts are the same either way.
+    """
     gt_boxes = [c.bbox for c in (sample.chars or [])]
     comp_boxes = _surviving_boxes(result)
     gt_complete = bool(sample.meta.get("gt_complete", sample.source == "synth"))
@@ -452,15 +477,21 @@ def char_metrics(sample: Sample, result: PageResult) -> CharMetrics:
         if len(covered) >= 2:
             merged_gt.update(covered)
 
+    def note(i: int, outcome: str, comps: list[int] | None = None) -> None:
+        if detail is not None:
+            detail.append(CharOutcome(i, outcome, comps or []))
+
     for i, gb in enumerate(gt_boxes):
         matches = gt_matches[i]
         if len(matches) == 1 and len(comp_matches[matches[0]]) == 1:
             m.isolated += 1
+            note(i, "isolated")
             if i in small_idx:
                 m.small_retained += 1
             continue
         if i in merged_gt:
             m.merged += 1
+            note(i, "merged", [j for j, cov in enumerate(comp_covers) if i in cov and len(cov) >= 2])
             # A merged character still *reached* the classifier, so for the purpose of
             # "did the size filter throw this mark away" it counts as retained.
             if i in small_idx:
@@ -468,6 +499,7 @@ def char_metrics(sample: Sample, result: PageResult) -> CharMetrics:
             continue
         if len(gt_fragments[i]) >= 2 and gt_frag_area[i] >= FRAGMENT_INSIDE * gb.area:
             m.over_segmented += 1
+            note(i, "over_segmented", gt_fragments[i])
             if i in small_idx:
                 m.small_retained += 1
             continue
@@ -475,10 +507,12 @@ def char_metrics(sample: Sample, result: PageResult) -> CharMetrics:
             # Matched, but ambiguously (several candidates, or the component also
             # matches another character). Not isolated, not a clean merge or split.
             m.merged += 1
+            note(i, "ambiguous", matches)
             if i in small_idx:
                 m.small_retained += 1
             continue
         m.missed += 1
+        note(i, "missed")
         if i in small_idx and gt_touched[i]:
             # Something was there but too partial to count; still not "thrown away".
             m.small_retained += 1
