@@ -851,7 +851,10 @@ def text_metrics(sample: Sample, result: PageResult) -> TextMetrics | None:
     preds = [(b, t) for b, t in preds if t]
     if not preds:
         return None
-    gts = [(ln.bbox, ln.text) for ln in sample.lines if ln.text]
+    # Lines where annotated; otherwise words (XFUND annotates words only). Cluster
+    # scoring is indifferent to the granularity: predicted lines simply link to several
+    # GT words, which are joined in reading order.
+    gts = [(ln.bbox, ln.text) for ln in (sample.lines or sample.words) if ln.text]
     if not gts:
         return None
     gt_complete = bool(sample.meta.get("gt_complete", sample.source == "synth"))

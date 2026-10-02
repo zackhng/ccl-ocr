@@ -23,3 +23,11 @@ overlays/
 bench_tune/
 # Regenerable diagnostic dossiers (scripts/diagnose_isolation.py).
 bench/diagnostics/
+
+# Phase 3: corpora, glyph datasets and model checkpoints (regenerable, large).
+data/
+models/
+
+# Real-document test benchmark: pixels and GT regenerate via scripts/fetch_real.py.
+bench_real/images/
+bench_real/gt/

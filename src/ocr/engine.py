@@ -46,18 +46,19 @@ class DebugArtifacts:
 
 
 class CCLEngine:
-    """Connected-component engine: boxes and layout, no recognition yet.
+    """Connected-component engine: boxes and layout, plus text when given a recogniser.
 
     ``run`` returns components with :class:`~ocr.types.ComponentKind` already assigned,
     grouped into :attr:`PageResult.lines` of words (Phase 5), all in original-image
-    coordinates. Character classification (Phase 3) is not implemented, so word text,
-    and :attr:`PageResult.text`, are empty.
+    coordinates. Without a recogniser, word text and :attr:`PageResult.text` are empty;
+    with one (Phase 3, :class:`ocr.recog.recognizer.Recognizer`), words carry text and
+    the engine reports itself as ``ccl-cnn``.
     """
 
-    name = "ccl"
-
-    def __init__(self, config: PipelineConfig | None = None) -> None:
+    def __init__(self, config: PipelineConfig | None = None, recognizer=None) -> None:
         self.config = config or DEFAULT_CONFIG
+        self.recognizer = recognizer
+        self.name = "ccl-cnn" if recognizer is not None else "ccl"
 
     def run(self, image: np.ndarray) -> PageResult:
         result, _ = self._run(image, debug=False)
@@ -108,7 +109,6 @@ class CCLEngine:
             components=components,
             lines=lines,
             rejected_lines=rejected_lines,
-            timings_ms=timer.as_dict(),
             scale=pre.scale,
             meta={
                 "polarity_inverted": pre.polarity_inverted,
@@ -119,6 +119,10 @@ class CCLEngine:
                 "group": group_stats.as_dict(),
             },
         )
+
+        if self.recognizer is not None:
+            self.recognizer.recognise(image, result, timer)
+        result.timings_ms = timer.as_dict()
 
         artifacts = DebugArtifacts(preprocessed=pre, binary=binary) if debug else None
         return result, artifacts

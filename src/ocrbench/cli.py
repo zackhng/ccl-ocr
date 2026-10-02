@@ -33,13 +33,19 @@ def _config(path: str | None) -> PipelineConfig:
     return PipelineConfig.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
 
 
-ENGINES = ("ccl", "paddle", "paddle-det")
+ENGINES = ("ccl", "ccl-cnn", "ccl-cnn-nolm", "paddle", "paddle-det")
 
 
 def make_engine(name: str, cfg: PipelineConfig, threads: int | None) -> Engine:
     """Build an engine by name. Paddle is imported only when asked for."""
     if name == "ccl":
         return CCLEngine(cfg)
+    if name in ("ccl-cnn", "ccl-cnn-nolm"):
+        from ocr.recog.recognizer import default_recognizer
+
+        engine = CCLEngine(cfg, recognizer=default_recognizer(lm=name == "ccl-cnn"))
+        engine.name = name
+        return engine
     from ocr.paddle_engine import PaddleConfig, PaddleEngine
 
     kw = {"cpu_threads": threads} if threads else {}
@@ -98,7 +104,7 @@ def cmd_run(args: argparse.Namespace) -> int:
     engine = make_engine(args.engine, cfg, args.threads)
     print(f"running {engine.name} over {store.root}")
     result = runner.run(store, engine=engine, run_config=rc,
-                        pipeline_config=cfg if args.engine == "ccl" else None)
+                        pipeline_config=cfg if args.engine.startswith("ccl") else None)
 
     out_dir = runner.save(result, args.results)
     summary_path = report.write(result, out_dir)

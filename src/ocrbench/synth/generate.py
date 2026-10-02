@@ -87,6 +87,15 @@ def generate_sample(sample_id: str, template: str, profile_name: str, seed: int)
     """Build one sample. Returns ``(sample, bgr_image)``."""
     rng = random.Random(seed)
     spec = TEMPLATES[template](rng)
+    return sample_from_spec(sample_id, spec, profile_name, rng, seed, template)
+
+
+def sample_from_spec(
+    sample_id: str, spec, profile_name: str, rng: random.Random, seed: int, template: str = ""
+) -> tuple[Sample, "object"]:
+    """Render a :class:`DocumentSpec`, degrade it, and carry the GT through the same
+    geometry. Shared by the benchmark templates and the Phase 3 corpus pages, so both
+    get byte-identical capture simulation."""
     rendered = render(spec)
     profile = PROFILES[profile_name]
 

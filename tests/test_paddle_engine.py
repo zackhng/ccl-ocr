@@ -49,26 +49,35 @@ class TestConversion:
             page_from_paddle({"rec_polys": [quad(0, 0, 5, 5)], "rec_texts": []}, 10, 10)
 
 
-@pytest.fixture(scope="module")
-def paddle_engine():
+def test_paddle_end_to_end():
+    """Run in a subprocess. paddlepaddle and torch ship conflicting native DLLs on
+    Windows: depending on what the process loaded first, one of them fails to import.
+    The engines never need to share a process (Paddle is a baseline whose runs are
+    saved and compared with ``ocrbench.cli report``), so neither do their tests."""
     pytest.importorskip("paddleocr")
-    from ocr.paddle_engine import PaddleConfig, PaddleEngine
+    import subprocess
+    import sys
+    from pathlib import Path
 
-    try:
-        return PaddleEngine(PaddleConfig(cpu_threads=2))
-    except Exception as exc:  # model download blocked, etc.
-        pytest.skip(f"PaddleOCR unavailable: {exc}")
-
-
-def test_paddle_end_to_end(paddle_engine):
-    import cv2
-
-    img = np.full((120, 600, 3), 255, np.uint8)
-    cv2.putText(img, "ACCOUNT 12345", (20, 75), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 3)
-    page = paddle_engine.run(img)
-    assert isinstance(paddle_engine, Engine)
-    assert len(page.lines) == 1
-    assert "12345" in page.lines[0].text
-    box = page.lines[0].bbox
-    assert 0 <= box.x < 60 and 20 <= box.y < 60  # original-image coordinates
-    assert page.timings_ms["total"] > 0
+    code = """
+import numpy as np, cv2
+from ocr.engine import Engine
+from ocr.paddle_engine import PaddleConfig, PaddleEngine
+e = PaddleEngine(PaddleConfig(cpu_threads=2))
+img = np.full((120, 600, 3), 255, np.uint8)
+cv2.putText(img, "ACCOUNT 12345", (20, 75), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 3)
+page = e.run(img)
+assert isinstance(e, Engine)
+assert len(page.lines) == 1 and "12345" in page.lines[0].text, page.lines
+b = page.lines[0].bbox
+assert 0 <= b.x < 60 and 20 <= b.y < 60
+assert page.timings_ms["total"] > 0
+print("OK")
+"""
+    src = str(Path(__file__).resolve().parents[1] / "src")
+    proc = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                          env={**__import__("os").environ, "PYTHONPATH": src}, timeout=600)
+    if "OK" not in proc.stdout:
+        if "No module named" in proc.stderr or "PaddleOCR unavailable" in proc.stderr:
+            pytest.skip("PaddleOCR unavailable")
+        raise AssertionError(proc.stderr[-2000:])

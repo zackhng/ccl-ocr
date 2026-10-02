@@ -1,0 +1,7614 @@
+{
+ "samples": [
+  {
+   "sample_id": "cord_test_0",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 24,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_1",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 12,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_10",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 13,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_11",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 12,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_12",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 23,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_13",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 25,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_14",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_15",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 15,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_16",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 36,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_17",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_18",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 11,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_19",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_2",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 25,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_20",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 33,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_21",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 24,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_22",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_23",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 14,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_24",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 25,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_25",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_26",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 35,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_27",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 17,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_28",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 22,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_29",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 47,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_3",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 12,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_30",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_31",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 23,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_32",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 15,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_33",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 28,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_34",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 21,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_35",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 23,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_36",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_37",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 11,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_38",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 51,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_39",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 56,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_4",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 23,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_40",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_41",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 41,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_42",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_43",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_44",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 10,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_45",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 27,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_46",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_47",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 36,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_48",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_49",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 22,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_5",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_50",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 14,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_51",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 39,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_52",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_53",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 27,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_54",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 9,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_55",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 14,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_56",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 13,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_57",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 8,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_58",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_59",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 59,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_6",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_60",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 28,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_61",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 53,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_62",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_63",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 26,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_64",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 9,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_65",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 13,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_66",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_67",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 14,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_68",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 9,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_69",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 22,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_7",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_70",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 66,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_71",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 12,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_72",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 14,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_73",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 21,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_74",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 40,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_75",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 37,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_76",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_77",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_78",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_79",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 16,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_8",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 28,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_80",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 15,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_81",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 22,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_82",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_83",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 17,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_84",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 24,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_85",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_86",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_87",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_88",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 22,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_89",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_9",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 11,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_90",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_91",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 13,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_92",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 13,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_93",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 20,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_94",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 30,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_95",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 23,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_96",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 18,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_97",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 19,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_98",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 27,
+   "image_present": true
+  },
+  {
+   "sample_id": "cord_test_99",
+   "source": "cord",
+   "capture": "photo",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 59,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82092117",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 223,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82200067_0069",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 167,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82250337_0338",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 214,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82251504",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 222,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82252956_2958",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 108,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253058_3059",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253245_3247",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 234,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82253362_3364",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 228,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82254765",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 116,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82491256",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 70,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82504862",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 63,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82562350",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82573104",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 135,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_82837252",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 112,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83443897",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 194,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83553333_3334",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 204,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83573282",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 299,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83594639",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 87,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83624198",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83635935",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 141,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83641919_1921",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 209,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83772145",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 236,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83823750",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 162,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_83996357",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 98,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_85201976",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 80,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_85240939",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 154,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_85540866",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 25,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_85629964",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 94,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86075409_5410",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 125,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86079776_9777",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 210,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86220490",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 75,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86230203_0206",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 134,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86236474_6476",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 118,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86244113",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 80,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86263525",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 90,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_86328049_8050",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 199,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87086073",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 56,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87093315_87093318",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 194,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87125460",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 72,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87137840",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 76,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87147607",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 204,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87332450",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 158,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87428306",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87528321",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 198,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87528380",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 411,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_87594142_87594144",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 433,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_89856243",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 311,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_91814768_91814769",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 354,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_92380595",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 270,
+   "image_present": true
+  },
+  {
+   "sample_id": "funsd_93106788",
+   "source": "funsd",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 200,
+   "has_char_gt": false,
+   "n_words": 310,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X00016469670",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X00016469671",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005200931",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230605",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230616",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230621",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230648",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230657",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005230659",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005268275",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005268408",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005288570",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005301666",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005337867",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005337877",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361906",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361908",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361912",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005361923",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005365187",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433518",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433543",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433548",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005433556",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442322",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442334",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442343",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442366",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442375",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442382",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005442388",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444040",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444041",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444044",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005444046",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447841",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447842",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447844",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447851",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005447859",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568855",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568866",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568885",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568887",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568889",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568890",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568892",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568894",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005568895",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005577191",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005582745",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005587261",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005605287",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005605295",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005605332",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005621482",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663274",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663300",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663307",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663309",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663310",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005663323",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005675099",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005675103",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005675104",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005675914",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005676534",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005676535",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005676537",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005676542",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005676548",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005677327",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005677333",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005677336",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005677337",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X510056849111",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005684949",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005705727",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005705729",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005705759",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005705784",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005710963",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005711402",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005711443",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005711444",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005711446",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005711449",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005715006",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005715007",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005715455",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719823",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719855",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719857",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719863",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719888",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719889",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719895",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719898",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719903",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005719905",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724552",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724609",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724611",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724622",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724623",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724624",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724625",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724626",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005724628",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005741929",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005742110",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005745213",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005745244",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005745298",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005746203",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005746204",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005746206",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005746207",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005746210",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005749904",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757220",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757233",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757282",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757292",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757308",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005757342",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005763958",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005763964",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005763999",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005764031",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005764154",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005764161",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806692",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806695",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806696",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806718",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806719",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51005806720",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008081",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008082",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008083",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008090",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008092",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008093",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008105",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008166",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006008206",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006248253",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006311714",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006327953",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006327960",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006328345",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006328937",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006328967",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006329183",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006329388",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006332641",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334139",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334742",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334766",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334770",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334819",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006334927",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006335818",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006349081",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006349083",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006349085",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006350737",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006387660",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006387737",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006387931",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006387950",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006387973",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006388068",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006388081",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006388089",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006389894",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006389898",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006392167",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006401845",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006401853",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006401940",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006401977",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414425",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414427",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414433",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414512",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414532",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414592",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414593",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414600",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414632",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414702",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414708",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414715",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414717",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006414728",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006438346",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006466070",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006502534",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006502535",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006502540",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006554841",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006555819",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006555833",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006555835",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556603",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556610",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556648",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556654",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556657",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556658",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556723",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556728",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556734",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556740",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556806",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556808",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556809",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556810",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556812",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556821",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556826",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556827",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556829",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556851",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006556865",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557115",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557169",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557173",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557187",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557194",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557196",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557208",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557209",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006557507",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619328",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619338",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619345",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619346",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619503",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619506",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619507",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619509",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619564",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619567",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619569",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619570",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619700",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619703",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619704",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619757",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619760",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619764",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619766",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619779",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619782",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619784",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619790",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619842",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619863",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006619869",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006620175",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006620182",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006620192",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006620437",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006647933",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006647984",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006714066",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006733495",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006828199",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006828200",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006828201",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006856982",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006857126",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006857132",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006857137",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006857540",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006912959",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006912976",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006912998",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006913018",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006913032",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006913060",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006913061",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51006913067",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007103597",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007103610",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007103649",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007103668",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007103687",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007225406",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231274",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231275",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231276",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231331",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231341",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231343",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231346",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231364",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007231372",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339105",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339109",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339116",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339119",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339121",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339122",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339125",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339127",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339134",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339159",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339160",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339161",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339163",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007339638",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007391390",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007433809",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007579714",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007579719",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007579725",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846266",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846268",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846282",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846283",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846288",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846289",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846290",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846303",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846304",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846310",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846321",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846355",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846358",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846360",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846361",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846371",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846372",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846379",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846387",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846392",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846396",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846397",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846400",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51007846403",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008030561",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008030563",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008042779",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008042780",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008042781",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008042786",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008042787",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008099047",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008099086",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008099088",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008099090",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51008099100",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51009008091",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51009008095",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51009447842",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51009453729",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "sroie_X51009568881",
+   "source": "sroie",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 150,
+   "has_char_gt": false,
+   "n_words": 0,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_0",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 314,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_1",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 216,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_10",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 99,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_11",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 94,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_12",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 540,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_13",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_14",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 305,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_15",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_16",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 214,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_17",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 227,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_18",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 465,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_19",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 239,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_2",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 193,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_20",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 489,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_21",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 137,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_22",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 176,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_23",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 359,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_24",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 94,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_25",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 201,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_26",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 35,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_27",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 195,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_28",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 245,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_29",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 297,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_3",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 115,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_30",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 64,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_31",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 472,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_32",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 204,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_33",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 68,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_34",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 343,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_35",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 197,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_36",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 126,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_37",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 404,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_38",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 56,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_39",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 349,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_4",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 94,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_40",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 109,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_41",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 90,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_42",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 99,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_43",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 240,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_44",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 49,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_45",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 68,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_46",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 104,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_47",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 151,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_48",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 161,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_49",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 90,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_5",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 164,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_6",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 122,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_7",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 177,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_8",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 177,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_de_val_9",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 327,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_0",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 193,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_1",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 413,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_10",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 192,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_11",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 338,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_12",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 277,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_13",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 246,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_14",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 470,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_15",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 159,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_16",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 140,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_17",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 197,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_18",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 419,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_19",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 178,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_2",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 150,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_20",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 197,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_21",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 451,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_22",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 369,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_23",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 345,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_24",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 286,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_25",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 161,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_26",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 874,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_27",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 711,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_28",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 248,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_29",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 328,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_3",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 326,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_30",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 231,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_31",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 199,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_32",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 313,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_33",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 330,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_34",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 151,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_35",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 344,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_36",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 224,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_37",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 182,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_38",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 289,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_39",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 246,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_4",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 74,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_40",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 538,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_41",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 144,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_42",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 342,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_43",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 377,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_44",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 106,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_45",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 298,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_46",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_47",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 243,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_48",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 224,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_49",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 301,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_5",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 149,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_6",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 510,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_7",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 559,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_8",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 648,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_es_val_9",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 328,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_0",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 333,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_1",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 482,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_10",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 86,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_11",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 230,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_12",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 126,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_13",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 281,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_14",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 300,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_15",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 204,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_16",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 291,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_17",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 462,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_18",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 118,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_19",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 706,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_2",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 132,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_20",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 362,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_21",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 308,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_22",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 228,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_23",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 115,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_24",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 124,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_25",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 404,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_26",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 188,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_27",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 331,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_28",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 243,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_29",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_3",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 300,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_30",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 284,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_31",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 187,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_32",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 970,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_33",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 438,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_34",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_35",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 508,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_36",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 160,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_37",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 507,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_38",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 306,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_39",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 274,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_4",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 138,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_40",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 170,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_41",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 203,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_42",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 378,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_43",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 245,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_44",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 535,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_45",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 445,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_46",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 167,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_47",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 84,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_48",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 311,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_49",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 135,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_5",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 120,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_6",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 163,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_7",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 149,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_8",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 374,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_fr_val_9",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 150,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_0",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 281,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_1",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 451,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_10",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 750,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_11",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 457,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_12",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 423,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_13",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 150,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_14",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 322,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_15",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 380,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_16",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 585,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_17",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 448,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_18",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 216,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_19",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 159,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_2",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 408,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_20",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 228,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_21",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 205,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_22",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 623,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_23",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 160,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_24",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 178,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_25",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 354,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_26",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 477,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_27",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 132,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_28",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 701,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_29",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 905,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_3",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 393,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_30",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 319,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_31",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 234,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_32",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 703,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_33",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 356,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_34",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 440,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_35",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 294,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_36",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 733,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_37",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 271,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_38",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 191,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_39",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 271,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_4",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 540,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_40",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 222,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_41",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 423,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_42",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 224,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_43",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 180,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_44",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 312,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_45",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 336,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_46",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 428,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_47",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 327,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_48",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 717,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_49",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 539,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_5",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 323,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_6",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 457,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_7",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 469,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_8",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 154,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_it_val_9",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 192,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_0",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 648,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_1",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 415,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_10",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 251,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_11",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 312,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_12",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 244,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_13",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 188,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_14",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 250,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_15",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 101,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_16",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 805,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_17",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 503,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_18",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 502,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_19",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 335,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_2",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 349,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_20",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 245,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_21",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 334,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_22",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 491,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_23",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 286,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_24",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 267,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_25",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 302,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_26",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 191,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_27",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 589,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_28",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 190,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_29",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 55,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_3",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 288,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_30",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 327,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_31",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 249,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_32",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 292,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_33",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 360,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_34",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 210,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_35",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 72,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_36",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 232,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_37",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 388,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_38",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 357,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_39",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 110,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_4",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 222,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_40",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 972,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_41",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 290,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_42",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 175,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_43",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 431,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_44",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 309,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_45",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 228,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_46",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 267,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_47",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 307,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_48",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 223,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_49",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 119,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_5",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 366,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_6",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 119,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_7",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 296,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_8",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 772,
+   "image_present": true
+  },
+  {
+   "sample_id": "xfund_pt_val_9",
+   "source": "xfund",
+   "capture": "scan",
+   "script": "latin",
+   "dpi": 300,
+   "has_char_gt": false,
+   "n_words": 384,
+   "image_present": true
+  }
+ ]
+}
