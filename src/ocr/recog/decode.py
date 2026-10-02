@@ -53,6 +53,8 @@ class DecodeConfig:
     """Log-score bonus for a structured token that satisfies its grammar."""
     multi_penalty: float = 2.0
     """Charged when a <MULTI> cluster falls back to a single character."""
+    case_pass: bool = True
+    """Word-level case consistency (:func:`_case_pass`)."""
 
 
 Expander = Callable[[int, int], "list[torch.Tensor] | None"]
@@ -68,6 +70,9 @@ class _Hyp:
     """Characters of the current word (for the format check)."""
     state: int
     """Row of the LM state/log-prob tensors holding this hypothesis's context."""
+    rows: tuple = ()
+    """The CNN log-prob row behind each emitted character (``None`` for the word
+    separator), for the word-level case pass."""
 
 
 def _best_char(row: torch.Tensor) -> str:
@@ -131,7 +136,7 @@ def decode_line(words: list[torch.Tensor], lm, cfg: DecodeConfig,
 
     use_lm = lm is not None and cfg.lm_weight > 0
     ctx = _LMState(lm) if use_lm else None
-    beams = [_Hyp(0.0, "", "", 0)]
+    beams = [_Hyp(0.0, "", "", 0, ())]
 
     for wi, (w, kind) in enumerate(zip(words, kinds)):
         lam = cfg.lm_weight if (use_lm and formats.uses_language_model(kind)) else 0.0
@@ -145,6 +150,7 @@ def decode_line(words: list[torch.Tensor], lm, cfg: DecodeConfig,
                     h.state = r
             for h in beams:
                 h.text += "\x1f"  # word separator, split on at the end
+                h.rows = h.rows + (None,)
                 h.token = ""
 
         for ci in range(w.shape[0]):
@@ -185,7 +191,8 @@ def decode_line(words: list[torch.Tensor], lm, cfg: DecodeConfig,
                     rows = ctx.advance(parents, tokens)
                 else:
                     rows = parents
-                beams = [_Hyp(s, h.text + ch, h.token + ch, r) for (s, h, ch), r in zip(chosen, rows)]
+                beams = [_Hyp(s, h.text + ch, h.token + ch, r, h.rows + ((row,) * len(ch)))
+                         for (s, h, ch), r in zip(chosen, rows)]
 
         if kind != "word" and cfg.format_bonus:
             for h in beams:
@@ -193,4 +200,52 @@ def decode_line(words: list[torch.Tensor], lm, cfg: DecodeConfig,
                     h.score += cfg.format_bonus
 
     best = max(beams, key=lambda h: h.score)
-    return best.text.split("\x1f")
+    text = best.text
+    if cfg.case_pass:
+        text = _case_pass(text, best.rows)
+    return text.split("\x1f")
+
+
+def _pattern_score(chars: list[str], rows: list, pattern: str) -> float | None:
+    total = 0.0
+    for k, (c, row) in enumerate(zip(chars, rows)):
+        want = c.upper() if (pattern == "upper" or (pattern == "title" and k == 0)) else c.lower()
+        idx = GLYPH_INDEX.get(want)
+        if idx is None or len(want) != 1:
+            return None
+        total += float(row[idx])
+    return total
+
+
+def _case_pass(text: str, rows: tuple) -> str:
+    """Word-level case: each alphabetic run takes ALL CAPS, all lower or Title —
+    whichever the CNN's own case-variant probabilities, summed over the run, favour.
+
+    Case is decided per glyph by the CNN, and a single glyph's case is often ambiguous
+    (c/C, o/O, s/S differ mainly in size); real-document output looked like
+    "AKademiSCheS". Summing over a run lets the confident glyphs carry the ambiguous
+    ones. Runs are split at non-letters, so "PROMOS-Stipendienprogramm" keeps both its
+    parts' patterns. A run with a character lacking a case variant in the charset (ß),
+    or emitted from an expanded <MULTI> piece rather than its own row, is left as read.
+    """
+    out = list(text)
+    i, n = 0, len(text)
+    while i < n:
+        if not text[i].isalpha():
+            i += 1
+            continue
+        j = i
+        while j < n and text[j].isalpha():
+            j += 1
+        run_rows = list(rows[i:j])
+        if j - i >= 2 and len(run_rows) == j - i and all(r is not None for r in run_rows):
+            chars = list(text[i:j])
+            scores = {p: _pattern_score(chars, run_rows, p) for p in ("upper", "lower", "title")}
+            scores = {p: v for p, v in scores.items() if v is not None}
+            if scores:
+                best = max(scores, key=scores.get)
+                for k in range(i, j):
+                    c = text[k]
+                    out[k] = c.upper() if (best == "upper" or (best == "title" and k == i)) else c.lower()
+        i = j
+    return "".join(out)

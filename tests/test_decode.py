@@ -95,3 +95,22 @@ def test_multi_expands_through_the_callback():
 def test_multi_without_callback_falls_back_to_one_character():
     w = cnn({MULTI: 0.9, "m": 0.05})
     assert decode_line([w], None, DecodeConfig(lm_weight=0.0)) == ["m"]
+
+
+def test_case_pass_makes_a_word_consistent():
+    """Ambiguous per-glyph case ("AKademiSCheS") resolves to the word's best pattern."""
+    w = cnn({"A": 0.9, "a": 0.05}, {"K": 0.5, "k": 0.45}, {"a": 0.8, "A": 0.15},
+            {"d": 0.9}, {"e": 0.9}, {"m": 0.9})
+    assert decode_line([w], None, DecodeConfig(lm_weight=0.0)) == ["Akadem"]
+
+
+def test_case_pass_keeps_all_caps_and_compound_parts():
+    upper = cnn({"T": 0.9}, {"O": 0.5, "o": 0.45}, {"T": 0.9}, {"A": 0.9}, {"L": 0.9})
+    assert decode_line([upper], None, DecodeConfig(lm_weight=0.0)) == ["TOTAL"]
+    compound = cnn({"P": 0.9}, {"R": 0.9}, {"O": 0.9}, {"-": 0.9}, {"S": 0.9}, {"t": 0.9}, {"I": 0.5, "i": 0.45})
+    assert decode_line([compound], None, DecodeConfig(lm_weight=0.0)) == ["PRO-Sti"]
+
+
+def test_case_pass_can_be_disabled():
+    w = cnn({"A": 0.9}, {"K": 0.5, "k": 0.45}, {"a": 0.9})
+    assert decode_line([w], None, DecodeConfig(lm_weight=0.0, case_pass=False)) == ["AKa"]

@@ -196,6 +196,9 @@ class Line:
     rejected: str = ""
     """Which junk gate set this line aside ("" for an emitted line). Rejected lines
     live in :attr:`PageResult.rejected_lines`, not :attr:`PageResult.lines`."""
+    script: str = "latin"
+    """Which reader produced this line's text (Phase 7 routes non-Latin lines to a
+    sequence recogniser). One document can mix scripts, so this is per line."""
 
     @property
     def text(self) -> str:

@@ -131,6 +131,37 @@ def funsd_forms(root: Path, excluded: set[str]) -> tuple[list[str], list[str]]:
     return lines, skipped
 
 
+SCRIPT_WIKIS = {"han": "zh", "devanagari": "hi", "thai": "th", "arabic": "ar"}
+"""Phase 7: one Wikipedia per non-Latin script in scope (CN, IN, TH, UAE)."""
+
+
+def script_corpus(lang: str, max_chars: int) -> list[str]:
+    """Lines of one Wikipedia, NFC and whitespace-normalised only — the Latin
+    charset filter (``normalise``) would erase these scripts."""
+    import re
+    import unicodedata
+
+    import pyarrow.parquet as pq
+    from huggingface_hub import HfFileSystem
+
+    fs = HfFileSystem()
+    shard = sorted(fs.glob(f"datasets/wikimedia/wikipedia/20231101.{lang}/train-00000-of-*.parquet"))[0]
+    lines, total = [], 0
+    with fs.open(shard, "rb") as fh:
+        pf = pq.ParquetFile(fh)
+        for rg in range(pf.num_row_groups):
+            for text in pf.read_row_group(rg, columns=["text"]).column("text").to_pylist():
+                for para in (text or "").splitlines():
+                    t = " ".join(unicodedata.normalize("NFC", para).split())
+                    if len(t) < 20 or re.fullmatch(r"[\W\d_]+", t):
+                        continue
+                    lines.append(t)
+                    total += len(t)
+                if total >= max_chars:
+                    return lines
+    return lines
+
+
 def excluded_roots(bench: str) -> list[Path]:
     return [p for p in (Path(bench), Path("bench_real")) if (p / "gt").exists()]
 
@@ -178,10 +209,19 @@ def main() -> int:
     ap.add_argument("--scale", type=float, default=1.0, help="multiply per-language budgets")
     ap.add_argument("--real-train", default="data/real/train")
     ap.add_argument("--financial-only", action="store_true", help="rebuild financial.txt only")
+    ap.add_argument("--scripts", nargs="*", choices=list(SCRIPT_WIKIS),
+                    help="Phase 7: fetch only these scripts' corpora (script_<name>.txt)")
+    ap.add_argument("--script-chars", type=int, default=4_000_000)
     args = ap.parse_args()
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    if args.scripts is not None:
+        for script in args.scripts or list(SCRIPT_WIKIS):
+            lines = script_corpus(SCRIPT_WIKIS[script], args.script_chars)
+            (out / f"script_{script}.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+            print(f"  {script} ({SCRIPT_WIKIS[script]}): {len(lines)} lines, {sum(map(len, lines)) / 1e6:.1f}M chars", flush=True)
+        return 0
     excluded = benchmark_ids(Path(args.bench))
     if Path("bench_real/manifest.json").exists():
         excluded |= benchmark_ids(Path("bench_real"))

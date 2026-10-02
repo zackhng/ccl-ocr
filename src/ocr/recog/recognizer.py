@@ -28,7 +28,7 @@ from ..config import SplitConfig
 from ..group import reading_order
 from ..split import cut_columns
 from ..timing import StageTimer
-from ..types import BBox, PageResult
+from ..types import BBox, PageResult, Word
 from . import char_lm, glyph_cnn
 from .charset import GLYPH_INDEX, NONTEXT, PART
 from .crops import Cluster, extract
@@ -48,6 +48,13 @@ class RecogConfig:
     """A rejected line is promoted when fewer than this share of its clusters read as
     <NONTEXT>/<PART>."""
     device: str = "cuda"
+    script_id_path: str | None = None
+    """Phase 7. When set, every line is classified by script first; non-Latin lines are
+    read whole by that script's sequence recogniser instead of the glyph CNN."""
+    seq_paths: dict | None = None
+    """Phase 7: script name -> CRNN checkpoint (``ocr.recog.seq``)."""
+    script_min_confidence: float = 0.6
+    """Below this, a line stays on the Latin path (the default reader)."""
 
 
 class Recognizer:
@@ -58,6 +65,26 @@ class Recognizer:
         self.cnn = glyph_cnn.load(cfg.cnn_path, self.device)
         self.lm = char_lm.load(cfg.lm_path, self.device) if cfg.lm_path else None
         self._cut_cfg = SplitConfig(split_touching_columns=True)
+        self.script_id = None
+        self.readers: dict = {}
+        if cfg.script_id_path:
+            from .script_id import ScriptIdentifier
+            from .seq import SequenceRecognizer
+
+            self.script_id = ScriptIdentifier(cfg.script_id_path, self.device)
+            for script, path in (cfg.seq_paths or {}).items():
+                self.readers[script] = SequenceRecognizer(path, self.device)
+
+    def _route(self, gray: np.ndarray, lines: list) -> dict[int, str]:
+        """Line index -> script, for lines a sequence recogniser should read."""
+        if self.script_id is None or not lines:
+            return {}
+        crops = [_line_crop(gray, ln.bbox) for ln in lines]
+        routed = {}
+        for i, (script, conf) in enumerate(self.script_id.classify(crops)):
+            if script != "latin" and script in self.readers and conf >= self.cfg.script_min_confidence:
+                routed[i] = script
+        return routed
 
     @torch.no_grad()
     def _classify(self, crops: np.ndarray, geom: np.ndarray) -> torch.Tensor:
@@ -99,7 +126,8 @@ class Recognizer:
             by_word.setdefault((cl.line_index, cl.word_index), []).append(i)
         for k in by_word:
             by_word[k].sort(key=lambda i: clusters[i].bbox.x)
-        return Prepared(gray, clusters, logp, by_word, page.lines + page.rejected_lines)
+        lines = page.lines + page.rejected_lines
+        return Prepared(gray, clusters, logp, by_word, lines, self._route(gray, lines))
 
     def decode(self, prep: "Prepared", page: PageResult, cfg: DecodeConfig | None = None,
                lm=...) -> list:
@@ -110,7 +138,23 @@ class Recognizer:
         lm = self.lm if lm is ... else lm
         logp, clusters = prep.logp, prep.clusters
         promoted = []
+        # Phase 7: non-Latin lines are read whole by their script's recogniser. The
+        # line's words collapse into one span: a CRNN reads a line, not CCL's words.
+        by_script: dict[str, list[int]] = {}
+        for li, script in prep.routes.items():
+            by_script.setdefault(script, []).append(li)
+        for script, idxs in by_script.items():
+            texts = self.readers[script].read([_line_crop(prep.gray, prep.lines[i].bbox) for i in idxs])
+            for li, text in zip(idxs, texts):
+                line = prep.lines[li]
+                line.words = [Word(bbox=line.bbox, components=[c for w in line.words for c in w.components],
+                                   text=text)]
+                line.script = script
+                if line.rejected and text.strip():
+                    promoted.append(line)
         for li, line in enumerate(prep.lines):
+            if li in prep.routes:
+                continue
             rows, wclusters, keys = [], [], []
             for wi in range(len(line.words)):
                 idx = prep.by_word.get((li, wi), [])
@@ -149,9 +193,29 @@ class Prepared:
     logp: torch.Tensor
     by_word: dict
     lines: list
+    routes: dict = None
+    """Phase 7: line index -> script for lines read by a sequence recogniser."""
+
+    def __post_init__(self):
+        if self.routes is None:
+            self.routes = {}
+
+
+def _line_crop(gray: np.ndarray, b: BBox) -> np.ndarray:
+    m = max(2, b.h // 6)
+    return gray[max(0, b.y - m): b.y2 + m, max(0, b.x - m): b.x2 + m]
 
 
 def default_recognizer(models: str | Path = "models", lm: bool = True) -> Recognizer:
+    """Latin path always; the Phase 7 script router and sequence recognisers are used
+    automatically for whichever of their checkpoints exist in ``models``."""
     m = Path(models)
-    return Recognizer(RecogConfig(cnn_path=str(m / "glyph_cnn.pt"),
-                                  lm_path=str(m / "char_lm.pt") if lm else None))
+    seq_paths = {s: str(m / f"seq_{s}.pt") for s in ("han", "devanagari", "thai", "arabic")
+                 if (m / f"seq_{s}.pt").exists()}
+    script_id = m / "script_id.pt"
+    return Recognizer(RecogConfig(
+        cnn_path=str(m / "glyph_cnn.pt"),
+        lm_path=str(m / "char_lm.pt") if lm else None,
+        script_id_path=str(script_id) if script_id.exists() and seq_paths else None,
+        seq_paths=seq_paths or None,
+    ))

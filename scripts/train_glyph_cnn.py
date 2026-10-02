@@ -113,7 +113,11 @@ def main() -> int:
     Xva = np.concatenate([p[0] for p in va_parts]); Gva = np.concatenate([p[1] for p in va_parts])
     Yva = np.concatenate([p[2] for p in va_parts]); Sva = np.concatenate([p[3] for p in va_parts])
 
-    xtr, gtr = glyph_cnn.prepare(Xtr, Gtr, dev)
+    # Training crops stay uint8 on the GPU (4x smaller than float) and are converted a
+    # batch at a time; a full float copy of ~1M crops exhausted host memory once.
+    xtr = torch.as_tensor(Xtr, device=dev)
+    _, gtr = glyph_cnn.prepare(Xtr[:0], Gtr, dev)
+    del Xtr
     ytr = torch.as_tensor(Ytr, device=dev)
     xva, gva = glyph_cnn.prepare(Xva, Gva, dev)
     model = glyph_cnn.GlyphCNN(width=args.width).to(dev)
@@ -141,7 +145,8 @@ def main() -> int:
         for i in range(0, len(Ytr), args.batch):
             idx = perm[i:i + args.batch]
             with torch.autocast(device_type=dev.type, dtype=torch.bfloat16, enabled=dev.type == "cuda"):
-                loss = loss_fn(model(augment(xtr[idx]), gtr[idx]), ytr[idx])
+                xb = (1.0 - xtr[idx].float() / 255.0).unsqueeze(1)
+                loss = loss_fn(model(augment(xb), gtr[idx]), ytr[idx])
             opt.zero_grad(set_to_none=True)
             loss.backward()
             opt.step()
