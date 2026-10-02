@@ -9,9 +9,13 @@ marks (``ế`` is a base and two marks). The CNN classifies the cluster as one c
 letter. Baseline punctuation is anchored too but is a character in its own right, so it
 forms its own cluster (it is TEXT, not DIACRITIC).
 
-**Geometry.** A 32x32 crop is scale-free, so on its own it cannot tell ``o`` from ``O``,
-``c`` from ``C``, ``,`` from ``'`` or ``-`` from ``_``. Five features restore what
-scaling removed, measured against the cluster's line:
+**Crop.** Each glyph is cropped at its *line's* scale — a square window spanning the
+line's band from above the cap line to below the baseline, centred on the glyph — then
+resized to 32x32. A glyph-scaled crop (CNN v1) made ``c``/``C``, ``o``/``O``, ``s``/``S``
+identical images, and real-document case errors were rife ("AkademiSCheS").
+
+**Geometry.** Five features add the remaining position information, measured against
+the cluster's line:
 ``h/g``, ``w/g``, ``(top - line_top)/g``, ``(bottom - line_base)/g``, ``w/h``
 where ``g`` is the line's typical glyph height.
 """
@@ -27,8 +31,11 @@ from ..types import BBox, Component, ComponentKind, Line, PageResult
 
 CROP = 32
 N_GEOMETRY = 5
-CONTEXT = 0.08
-"""Margin around the cluster, as a fraction of its larger side."""
+ABOVE = 0.35
+"""Window above the line's cap line, in line heights: room for accents (Vietnamese
+stacks two marks above a capital)."""
+BELOW = 0.35
+"""Window below the baseline, in line heights: room for descenders and commas."""
 
 
 @dataclass(slots=True)
@@ -76,9 +83,12 @@ def _line_bands(result: PageResult) -> list[tuple[float, float, float]]:
         h = np.array([c.bbox.h for c in comps], dtype=np.float64)
         g = float(np.median(h))
         tall = [c for c in comps if c.bbox.h >= 0.6 * g] or comps
-        top = float(np.median([c.bbox.y for c in tall]))
+        # Cap/ascender line: a low percentile of tops, so a mostly lower-case line still
+        # finds its capitals' height. Baseline: median bottom of full-height glyphs
+        # (descenders are the minority and do not move a median).
+        top = float(np.percentile([c.bbox.y for c in tall], 15))
         base = float(np.median([c.bbox.y2 for c in tall]))
-        bands.append((top, base, max(1.0, g)))
+        bands.append((top, base, max(1.0, base - top)))
     return bands
 
 
@@ -98,10 +108,16 @@ def extract(gray: np.ndarray, result: PageResult, clusters: list[Cluster] | None
     H, W = gray.shape[:2]
     for i, cl in enumerate(clusters):
         b = cl.bbox
-        side = max(b.w, b.h)
-        side = int(side * (1 + 2 * CONTEXT)) + 2
-        cx, cy = b.x + b.w / 2.0, b.y + b.h / 2.0
-        x0, y0 = int(round(cx - side / 2)), int(round(cy - side / 2))
+        top, base, g = bands[cl.line_index]
+        # Line-height crop: the window spans the line's band (with room above for
+        # stacked accents and below for descenders), not the glyph's own box, so the
+        # *scale* is the line's — a lower-case 'c' fills less of it than a 'C'. A glyph
+        # sticking out of the band (a misgrouped tall component) extends the window.
+        y0f = min(top - ABOVE * g, b.y - 1)
+        y1f = max(base + BELOW * g, b.y2 + 1)
+        side = max(int(round(y1f - y0f)), b.w + 4)
+        cx = b.x + b.w / 2.0
+        x0, y0 = int(round(cx - side / 2)), int(round((y0f + y1f) / 2 - side / 2))
         x1, y1 = x0 + side, y0 + side
         patch = np.full((side, side), 255, dtype=np.uint8)
         sx0, sy0, sx1, sy1 = max(0, x0), max(0, y0), min(W, x1), min(H, y1)
@@ -110,7 +126,6 @@ def extract(gray: np.ndarray, result: PageResult, clusters: list[Cluster] | None
         interp = cv2.INTER_AREA if side > CROP else cv2.INTER_CUBIC
         crops[i] = cv2.resize(patch, (CROP, CROP), interpolation=interp)
 
-        top, base, g = bands[cl.line_index]
         geom[i] = (b.h / g, b.w / g, (b.y - top) / g, (b.y2 - base) / g, b.w / max(1, b.h))
     return crops, geom, clusters
 

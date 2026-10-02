@@ -72,3 +72,15 @@ def test_tuning_split_is_stable_and_about_ten_percent():
     assert 0.07 < share < 0.13
     assert [is_tune_doc(i) for i in ids[:50]] == [is_tune_doc(i) for i in ids[:50]]
     assert doc_seed("a") != doc_seed("b") and doc_seed("a") > 0
+
+
+def test_thin_glyph_in_a_wide_gt_box_is_the_character_not_a_part():
+    """Regression: an 'I' 3 px wide in a 10 px GT box (side bearings) has IoU 0.3. It is
+    the whole character; labelling it <PART> taught CNN v1 to drop thin letters."""
+    chars = [GTChar(BBox(0, 10, 10, 20), "I")]
+    assert label_clusters(sample(chars=chars), [cl(4, w=3)]) == [GLYPH_INDEX["I"]]
+
+
+def test_short_piece_inside_a_character_is_still_a_part():
+    chars = [GTChar(BBox(0, 10, 10, 20), "E")]
+    assert label_clusters(sample(chars=chars), [cl(0, w=10, h=6)]) == [GLYPH_INDEX[PART]]

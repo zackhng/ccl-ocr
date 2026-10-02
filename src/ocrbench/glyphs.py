@@ -148,6 +148,20 @@ def label_clusters(sample: Sample, clusters: list[Cluster]) -> list[int]:
         covered = sum(1 for i in near if b.intersection_area(gt_boxes[i]) >= COVER * gt_boxes[i].area)
         if covered >= 2:
             labels[j] = GLYPH_INDEX[MULTI]
+            continue
+        # A thin glyph (I, l, i, 1, |) is 2-3 px of ink inside a GT box that includes
+        # the font's side bearings, so its IoU falls below 0.5 although it is the whole
+        # character. Labelling it <PART> taught CNN v1 that thin letters are fragments
+        # (they then decoded to nothing: "MARKEING", "nternatIOnal"). The isolation
+        # dossier found the same artefact in the metric. A cluster inside one character,
+        # spanning most of its height, and unmatched to anything else *is* it.
+        host = [i for i in near if i not in used_g
+                and b.intersection_area(gt_boxes[i]) >= 0.8 * b.area
+                and b.h >= 0.7 * gt_boxes[i].h]
+        if len(host) == 1:
+            used_g.add(host[0])
+            ch = unicodedata.normalize("NFC", gt[host[0]].char)
+            labels[j] = GLYPH_INDEX.get(ch, -1)
         elif any(b.intersection_area(gt_boxes[i]) >= INSIDE * b.area for i in near):
             labels[j] = GLYPH_INDEX[PART]
     return labels
