@@ -146,11 +146,29 @@ class SequenceRecognizer:
 
     @torch.no_grad()
     def read(self, crops: list[np.ndarray]) -> list[str]:
-        if not crops:
-            return []
-        x, lengths = batch([line_tensor(c) for c in crops], self.device)
-        texts = greedy_decode(self.model(x), lengths, self.charset)
-        return [visual_to_logical(t, self.script) for t in texts]
+        return [t for t, _ in self.read_scored(crops)]
+
+    @torch.no_grad()
+    def read_scored(self, crops: list[np.ndarray], max_batch: int = 64) -> list[tuple[str, float]]:
+        """(text, confidence) per crop. Confidence is the mean top probability over the
+        frames that emit a character — low when any glyph is ambiguous; 0 for empty."""
+        out: list[tuple[str, float]] = []
+        # Batches of similar width, so one long line does not pad every short one.
+        order = sorted(range(len(crops)), key=lambda i: crops[i].shape[1] / max(1, crops[i].shape[0]))
+        res: dict[int, tuple[str, float]] = {}
+        for s in range(0, len(order), max_batch):
+            idx = order[s:s + max_batch]
+            x, lengths = batch([line_tensor(crops[i]) for i in idx], self.device)
+            logp = self.model(x).float()
+            texts = greedy_decode(logp, lengths, self.charset)
+            top, arg = logp.max(-1)
+            for k, i in enumerate(idx):
+                n = int(lengths[k])
+                emit = arg[k, :n] != 0
+                conf = float(top[k, :n][emit].exp().mean()) if bool(emit.any()) else 0.0
+                res[i] = (visual_to_logical(texts[k], self.script), conf)
+        out = [res[i] for i in range(len(crops))]
+        return out
 
 
 def save(model: CRNN, path: str | Path, script: str, charset: list[str], meta: dict) -> None:

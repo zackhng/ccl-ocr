@@ -19,6 +19,7 @@ import sys
 import time
 from pathlib import Path
 
+import cv2
 import numpy as np
 import torch
 from torch import nn
@@ -26,24 +27,58 @@ from torch import nn
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from ocr.recog import seq  # noqa: E402
-from ocrbench.metrics import levenshtein  # noqa: E402
+from ocrbench.metrics import CASE_FOLDED_SOURCES, levenshtein  # noqa: E402
 
 
 def load(dirs: list[str]):
-    crops, labels, texts = [], [], []
+    """Crops, labels, texts, and whether each line's transcript is case-folded."""
+    crops, labels, texts, folded = [], [], [], []
     for d in dirs:
         for f in sorted(Path(d).glob("shard_*.npz")):
             z = np.load(f, allow_pickle=True)
             strip, offs, widths = z["strip"], z["offsets"], z["widths"]
-            for o, w, lab, txt in zip(offs, widths, z["labels"], z["texts"]):
+            profiles = z["profiles"] if "profiles" in z else [""] * len(offs)
+            for o, w, lab, txt, prof in zip(offs, widths, z["labels"], z["texts"], profiles):
                 crops.append(strip[:, o:o + w])
                 labels.append(str(lab))
                 texts.append(str(txt))
-    return crops, labels, texts
+                folded.append(str(prof) in CASE_FOLDED_SOURCES)
+    return crops, labels, texts, folded
+
+
+def fold_case(logp: torch.Tensor, upper: torch.Tensor, lower: torch.Tensor) -> torch.Tensor:
+    """Log-probs with each lowercase letter's mass added to its uppercase partner: CTC
+    against an upper-cased transcript then accepts either case."""
+    out = logp.clone()
+    out[..., upper] = torch.logaddexp(logp[..., upper], logp[..., lower])
+    return out
 
 
 def to_input(crop: np.ndarray) -> np.ndarray:
     return 1.0 - crop.astype(np.float32) / 255.0
+
+
+def augment(crop: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    """Capture-style jitter for real line crops: width stretch, slight rotation and
+    vertical shift (CCL's line boxes are not GT boxes), blur, contrast and noise."""
+    h, w = crop.shape
+    img = crop
+    sx = rng.uniform(0.8, 1.2)
+    nw = int(np.clip(round(w * sx), 8, seq.MAX_WIDTH))
+    img = cv2.resize(img, (nw, h), interpolation=cv2.INTER_LINEAR)
+    if rng.random() < 0.5:
+        m = cv2.getRotationMatrix2D((nw / 2, h / 2), rng.uniform(-1.5, 1.5), 1.0)
+        m[1, 2] += rng.uniform(-3, 3)
+        img = cv2.warpAffine(img, m, (nw, h), borderMode=cv2.BORDER_REPLICATE)
+    if rng.random() < 0.3:
+        img = cv2.GaussianBlur(img, (3, 3), rng.uniform(0.3, 1.0))
+    f = img.astype(np.float32)
+    if rng.random() < 0.5:
+        lo, hi = rng.uniform(0, 60), rng.uniform(190, 255)
+        f = lo + f * (hi - lo) / 255.0
+    if rng.random() < 0.3:
+        f += rng.normal(0, rng.uniform(2, 10), f.shape)
+    return 1.0 - np.clip(f, 0, 255) / 255.0
 
 
 def main() -> int:
@@ -55,18 +90,32 @@ def main() -> int:
     ap.add_argument("--epochs", type=int, default=12)
     ap.add_argument("--batch", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-3)
+    ap.add_argument("--augment", action="store_true", help="capture-style jitter (real line data)")
+    ap.add_argument("--glyph-charset", action="store_true",
+                    help="also include the Latin glyph classes (accented Latin, Vietnamese, currencies)")
     args = ap.parse_args()
 
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     rng = random.Random(0)
-    crops, labels, texts = load(args.data)
+    nrng = np.random.default_rng(0)
+    crops, labels, texts, folded = load(args.data)
     corpus = Path(args.corpus or f"data/corpora/script_{args.script}.txt")
     corpus_lines = corpus.read_text(encoding="utf-8").splitlines() if corpus.exists() else []
+    extra = []
+    if args.glyph_charset:
+        from ocr.recog.charset import GLYPH_CLASSES
+        extra = ["".join(c for c in GLYPH_CLASSES if len(c) == 1)]
     charset = seq.build_charset(corpus_lines + labels)
+    if extra:  # whole, not subject to build_charset's coverage cut
+        charset = [seq.BLANK] + sorted(set(charset[1:]) | set(extra[0]))
     index = {c: i for i, c in enumerate(charset)}
 
-    items = [(c, [index[ch] for ch in lab], txt) for c, lab, txt in zip(crops, labels, texts)
+    items = [(c, [index[ch] for ch in lab], txt, f) for c, lab, txt, f in zip(crops, labels, texts, folded)
              if lab and all(ch in index for ch in lab)]
+    pairs = [(index[c.upper()], index[c]) for c in charset[1:]
+             if len(c.upper()) == 1 and c.upper() != c and c.upper() in index]
+    upper_idx = torch.tensor([u for u, _ in pairs], device=dev)
+    lower_idx = torch.tensor([lo for _, lo in pairs], device=dev)
     rng.shuffle(items)
     n_val = max(200, int(0.03 * len(items)))
     val, train = items[:n_val], items[n_val:]
@@ -92,10 +141,12 @@ def main() -> int:
         edits = total = 0
         with torch.no_grad():
             for b in batches(val, False):
-                x, lengths = seq.batch([to_input(c) for c, _, _ in b], dev)
+                x, lengths = seq.batch([to_input(c) for c, _, _, _ in b], dev)
                 preds = seq.greedy_decode(model(x), lengths, charset)
-                for p, (_, _, txt) in zip(preds, b):
+                for p, (_, _, txt, f) in zip(preds, b):
                     p = seq.visual_to_logical(p, args.script)
+                    if f:
+                        p = p.upper()
                     edits += levenshtein(txt, p)
                     total += len(txt)
         model.train()
@@ -104,18 +155,23 @@ def main() -> int:
     for epoch in range(args.epochs):
         t0, tot, n = time.time(), 0.0, 0
         for b in batches(train, True):
-            x, lengths = seq.batch([to_input(c) for c, _, _ in b], dev)
-            targets = torch.tensor([i for _, lab, _ in b for i in lab], dtype=torch.long)
-            tlens = torch.tensor([len(lab) for _, lab, _ in b], dtype=torch.long)
+            prep = (lambda c: augment(c, nrng)) if args.augment else to_input
+            x, lengths = seq.batch([prep(c) for c, _, _, _ in b], dev)
+            targets = torch.tensor([i for _, lab, _, _ in b for i in lab], dtype=torch.long)
+            tlens = torch.tensor([len(lab) for _, lab, _, _ in b], dtype=torch.long)
             with torch.autocast(device_type=dev.type, dtype=torch.bfloat16, enabled=dev.type == "cuda"):
                 logp = model(x)
-            loss = ctc(logp.float().transpose(0, 1), targets, lengths, tlens)
+            logp = logp.float()
+            fmask = torch.tensor([f for _, _, _, f in b], device=dev)
+            if len(pairs) and bool(fmask.any()):
+                logp = torch.where(fmask[:, None, None], fold_case(logp, upper_idx, lower_idx), logp)
+            loss = ctc(logp.transpose(0, 1), targets, lengths, tlens)
             opt.zero_grad(set_to_none=True)
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             opt.step()
             sched.step()
-            tot += float(loss) * len(b)
+            tot += float(loss.detach()) * len(b)
             n += len(b)
         print(f"  epoch {epoch + 1}: ctc {tot / max(1, n):.3f}  val CER {evaluate():.2%}  ({time.time() - t0:.0f}s)", flush=True)
 

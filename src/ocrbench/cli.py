@@ -33,17 +33,20 @@ def _config(path: str | None) -> PipelineConfig:
     return PipelineConfig.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
 
 
-ENGINES = ("ccl", "ccl-cnn", "ccl-cnn-nolm", "paddle", "paddle-det")
+ENGINES = ("ccl", "ccl-cnn", "ccl-cnn-nolm", "ccl-crnn", "ccl-glyph", "paddle", "paddle-det")
 
 
 def make_engine(name: str, cfg: PipelineConfig, threads: int | None) -> Engine:
     """Build an engine by name. Paddle is imported only when asked for."""
     if name == "ccl":
         return CCLEngine(cfg)
-    if name in ("ccl-cnn", "ccl-cnn-nolm"):
+    if name in ("ccl-cnn", "ccl-cnn-nolm", "ccl-crnn", "ccl-glyph"):
         from ocr.recog.recognizer import default_recognizer
 
-        engine = CCLEngine(cfg, recognizer=default_recognizer(lm=name == "ccl-cnn"))
+        # ccl-cnn: glyph CNN + LM, and the Latin line CRNN per line by confidence when
+        # its checkpoint exists. ccl-crnn / ccl-glyph: one Latin reader only (ablations).
+        route = {"ccl-crnn": "crnn", "ccl-glyph": "cnn"}.get(name, "confidence")
+        engine = CCLEngine(cfg, recognizer=default_recognizer(lm=name != "ccl-cnn-nolm", latin_route=route))
         engine.name = name
         return engine
     from ocr.paddle_engine import PaddleConfig, PaddleEngine

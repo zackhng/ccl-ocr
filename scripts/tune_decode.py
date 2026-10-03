@@ -35,6 +35,9 @@ def main() -> int:
     ap.add_argument("--store", default="data/real/train")
     ap.add_argument("--lm-weights", nargs="+", type=float, default=[0.0, 0.2, 0.35, 0.5, 0.75, 1.0])
     ap.add_argument("--format-bonus", nargs="+", type=float, default=[0.0, 2.0, 4.0])
+    ap.add_argument("--latin-routes", nargs="+", default=["config"],
+                    help="Latin reader choice per line: config, cnn, crnn, or a margin (float) "
+                         "for confidence routing, e.g. -0.1 0 0.1")
     args = ap.parse_args()
 
     store = BenchmarkStore(args.store)
@@ -50,19 +53,21 @@ def main() -> int:
     print(f"{len(pages)} tuning documents from {store.root}\n", flush=True)
 
     best = None
-    for lam, bonus in itertools.product(args.lm_weights, args.format_bonus):
+    for lam, bonus, rt in itertools.product(args.lm_weights, args.format_bonus, args.latin_routes):
         cfg = replace(rec.cfg.decode, lm_weight=lam, format_bonus=bonus)
+        route, margin = (None, None) if rt == "config" else (rt, None) if rt in ("cnn", "crnn") else ("confidence", float(rt))
         metrics = []
         for sample, page, prep in pages:
-            promoted = rec.decode(prep, page, cfg, lm=rec.lm if lam > 0 else None)
+            promoted = rec.decode(prep, page, cfg, lm=rec.lm if lam > 0 else None,
+                                  latin_route=route, latin_margin=margin)
             view = PageResult(width=page.width, height=page.height, components=page.components,
                               lines=page.lines + promoted)
             metrics.append(text_metrics(sample, view))
         agg = aggregate_text(metrics)
-        print(f"  lm_weight {lam:4.2f}  format_bonus {bonus:3.1f}  CER {agg.cer:6.2%}  word F1 {agg.word_f1:6.2%}", flush=True)
+        print(f"  lm_weight {lam:4.2f}  format_bonus {bonus:3.1f}  latin {rt:>6}  CER {agg.cer:6.2%}  word F1 {agg.word_f1:6.2%}", flush=True)
         if best is None or agg.cer < best[0]:
-            best = (agg.cer, lam, bonus, agg.word_f1)
-    print(f"\nbest: lm_weight {best[1]} format_bonus {best[2]} -> CER {best[0]:.2%}, word F1 {best[3]:.2%}")
+            best = (agg.cer, lam, bonus, agg.word_f1, rt)
+    print(f"\nbest: lm_weight {best[1]} format_bonus {best[2]} latin {best[4]} -> CER {best[0]:.2%}, word F1 {best[3]:.2%}")
     return 0
 
 

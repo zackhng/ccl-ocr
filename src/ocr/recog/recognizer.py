@@ -8,7 +8,11 @@ Pipeline per page:
    LM and field formats.
 3. ``<MULTI>`` clusters are cut at low-ink columns (:func:`ocr.split.cut_columns`, the
    Phase 2b splitter's cutter) and the pieces re-read by the CNN, inside the decoder.
-4. Rejected lines (junk-gated by Phase 5 geometry) are promoted back into
+4. With a Latin line CRNN (``latin_seq_path``), every Latin line is also read whole,
+   and each line keeps whichever reading is more confident (``latin_route``). The
+   CRNN copes with what per-glyph classification cannot — broken and touching glyphs
+   on photographed receipts — while the glyph path keeps the LM and field formats.
+5. Rejected lines (junk-gated by Phase 5 geometry) are promoted back into
    ``PageResult.lines`` when the CNN reads them as mostly real characters — the
    recogniser, not geometry, has the final say on small print.
 
@@ -55,6 +59,12 @@ class RecogConfig:
     """Phase 7: script name -> CRNN checkpoint (``ocr.recog.seq``)."""
     script_min_confidence: float = 0.6
     """Below this, a line stays on the Latin path (the default reader)."""
+    latin_seq_path: str | None = None
+    """Latin line CRNN (``ocr.recog.seq``), a second reader for Latin lines."""
+    latin_route: str = "confidence"
+    """``"crnn"``, ``"cnn"`` (glyph path only) or ``"confidence"``: per line, the CRNN's
+    reading is kept when its confidence + ``latin_margin`` >= the glyph CNN's."""
+    latin_margin: float = 0.0
 
 
 class Recognizer:
@@ -74,6 +84,11 @@ class Recognizer:
             self.script_id = ScriptIdentifier(cfg.script_id_path, self.device)
             for script, path in (cfg.seq_paths or {}).items():
                 self.readers[script] = SequenceRecognizer(path, self.device)
+        self.latin_reader = None
+        if cfg.latin_seq_path:
+            from .seq import SequenceRecognizer
+
+            self.latin_reader = SequenceRecognizer(cfg.latin_seq_path, self.device)
 
     def _route(self, gray: np.ndarray, lines: list) -> dict[int, str]:
         """Line index -> script, for lines a sequence recogniser should read."""
@@ -127,15 +142,24 @@ class Recognizer:
         for k in by_word:
             by_word[k].sort(key=lambda i: clusters[i].bbox.x)
         lines = page.lines + page.rejected_lines
-        return Prepared(gray, clusters, logp, by_word, lines, self._route(gray, lines))
+        routes = self._route(gray, lines)
+        latin_reads = {}
+        if self.latin_reader is not None:
+            idxs = [i for i in range(len(lines)) if i not in routes]
+            reads = self.latin_reader.read_scored([_line_crop(gray, lines[i].bbox) for i in idxs])
+            latin_reads = dict(zip(idxs, reads))
+        return Prepared(gray, clusters, logp, by_word, lines, routes, latin_reads)
 
     def decode(self, prep: "Prepared", page: PageResult, cfg: DecodeConfig | None = None,
-               lm=...) -> list:
+               lm=..., latin_route: str | None = None, latin_margin: float | None = None) -> list:
         """Fill word texts for every line (emitted and rejected) under ``cfg``; return
         the rejected lines that read as text. Does not reorder ``page`` — repeatable,
         so a tuner can decode one prepared page under many configs."""
         cfg = cfg or self.cfg.decode
         lm = self.lm if lm is ... else lm
+        route = latin_route or self.cfg.latin_route
+        margin = self.cfg.latin_margin if latin_margin is None else latin_margin
+        n_crnn = 0
         logp, clusters = prep.logp, prep.clusters
         promoted = []
         # Phase 7: non-Latin lines are read whole by their script's recogniser. The
@@ -155,6 +179,8 @@ class Recognizer:
         for li, line in enumerate(prep.lines):
             if li in prep.routes:
                 continue
+            if li in prep.original_words:  # a previous decode replaced them with the CRNN's
+                line.words = list(prep.original_words[li])
             rows, wclusters, keys = [], [], []
             for wi in range(len(line.words)):
                 idx = prep.by_word.get((li, wi), [])
@@ -164,11 +190,20 @@ class Recognizer:
             expand = self._expander(prep.gray, page, wclusters, None) if self.cfg.expand_multi else None
             for word, text in zip(line.words, decode_line(rows, lm, cfg, expand)):
                 word.text = text
+            flat = [i for k in keys for i in k]
+            read = prep.latin_reads.get(li)
+            if read is not None and route != "cnn":
+                text, conf = read
+                cnn_conf = float(logp[flat].max(-1).values.exp().mean()) if flat else 0.0
+                if text.strip() and (route == "crnn" or conf + margin >= cnn_conf):
+                    prep.original_words.setdefault(li, list(line.words))
+                    _set_line_text(line, text)
+                    n_crnn += 1
             if line.rejected:
-                flat = [i for k in keys for i in k]
                 junk = sum(1 for i in flat if int(logp[i].argmax()) in _JUNK)
                 if flat and junk / len(flat) < self.cfg.promote_rejected_below and line.text.strip():
                     promoted.append(line)
+        prep.crnn_lines = n_crnn
         return promoted
 
     def recognise(self, image: np.ndarray, page: PageResult, timer: StageTimer | None = None) -> None:
@@ -183,7 +218,8 @@ class Recognizer:
                     line.rejected = ""
                 lines = page.lines + promoted
                 page.lines = [lines[i] for i in reading_order([ln.bbox for ln in lines])]
-            page.meta["recognize"] = {"clusters": len(prep.clusters), "promoted_lines": len(promoted)}
+            page.meta["recognize"] = {"clusters": len(prep.clusters), "promoted_lines": len(promoted),
+                                      "crnn_lines": prep.crnn_lines}
 
 
 @dataclass(slots=True)
@@ -196,9 +232,30 @@ class Prepared:
     routes: dict = None
     """Phase 7: line index -> script for lines read by a sequence recogniser."""
 
+    latin_reads: dict = None
+    """Line index -> (text, confidence) from the Latin line CRNN."""
+    original_words: dict = None
+    """Line index -> CCL's words, for lines a decode replaced with a CRNN reading."""
+    crnn_lines: int = 0
+
     def __post_init__(self):
         if self.routes is None:
             self.routes = {}
+        if self.latin_reads is None:
+            self.latin_reads = {}
+        if self.original_words is None:
+            self.original_words = {}
+
+
+def _set_line_text(line, text: str) -> None:
+    """Put a whole-line reading on ``line``. When its tokens match CCL's words one to
+    one they keep their word boxes; otherwise the line becomes a single word."""
+    tokens = text.split()
+    if len(tokens) == len(line.words):
+        line.words = [Word(bbox=w.bbox, components=w.components, text=t) for w, t in zip(line.words, tokens)]
+    else:
+        line.words = [Word(bbox=line.bbox, components=[c for w in line.words for c in w.components],
+                           text=" ".join(tokens))]
 
 
 def _line_crop(gray: np.ndarray, b: BBox) -> np.ndarray:
@@ -206,9 +263,11 @@ def _line_crop(gray: np.ndarray, b: BBox) -> np.ndarray:
     return gray[max(0, b.y - m): b.y2 + m, max(0, b.x - m): b.x2 + m]
 
 
-def default_recognizer(models: str | Path = "models", lm: bool = True) -> Recognizer:
-    """Latin path always; the Phase 7 script router and sequence recognisers are used
-    automatically for whichever of their checkpoints exist in ``models``."""
+def default_recognizer(models: str | Path = "models", lm: bool = True,
+                       latin_route: str = "confidence") -> Recognizer:
+    """Latin path always; the Latin line CRNN, the Phase 7 script router and sequence
+    recognisers are used automatically for whichever of their checkpoints exist in
+    ``models``."""
     m = Path(models)
     seq_paths = {s: str(m / f"seq_{s}.pt") for s in ("han", "devanagari", "thai", "arabic")
                  if (m / f"seq_{s}.pt").exists()}
@@ -218,4 +277,6 @@ def default_recognizer(models: str | Path = "models", lm: bool = True) -> Recogn
         lm_path=str(m / "char_lm.pt") if lm else None,
         script_id_path=str(script_id) if script_id.exists() and seq_paths else None,
         seq_paths=seq_paths or None,
+        latin_seq_path=str(m / "seq_latin.pt") if (m / "seq_latin.pt").exists() and latin_route != "cnn" else None,
+        latin_route=latin_route,
     ))
